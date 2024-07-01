@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "packages": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "npmClient": "npm",
+  "version": "independent"
+}

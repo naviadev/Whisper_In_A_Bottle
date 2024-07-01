@@ -1,0 +1,29 @@
+{
+  "name": "whisper_in_a_bottle",
+  "version": "1.0.0",
+  "description": "유리병 편지 프로젝트",
+  "main": "index.js",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "lerna": "^8.1.5",
+    "ts-alias": "^0.0.7",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "dependencies": {
+    "three": "^0.166.0"
+  }
+}
