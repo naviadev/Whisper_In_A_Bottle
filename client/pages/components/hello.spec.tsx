@@ -7,6 +7,8 @@ describe('Hello component', () => {
   it('renders a message', () => {
     render(<Hello />);
     const message = screen.getByText('Hello, world!');
+
+    
     expect(message).toBeInTheDocument();
   });
 });
