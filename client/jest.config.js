@@ -5,6 +5,12 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testEnvironment: "jsdom",
-  "testRegex": ".*\\.spec\\.(ts|tsx)$"
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/client/tsconfig.json',
+    },
+  },
+  "testRegex": ".*\\.spec\\.(ts|tsx)$",
+  // moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/client' }),
 };
 module.exports = createJestConfig(customJestConfig);
