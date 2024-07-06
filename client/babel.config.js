@@ -1,11 +1,11 @@
 module.exports = {
-  presets: ['next/babel'],
+  presets: ["next/babel"],
   plugins: [
     [
-      'module-resolver',
+      "module-resolver",
       {
         alias: {
-          '@shared': '../shared',
+          "@shared": "../shared",
         },
       },
     ],

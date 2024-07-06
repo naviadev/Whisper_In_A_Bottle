@@ -49,7 +49,6 @@
     "semi": ["error", "always"],
     "quotes": [2, "double", { "avoidEscape": false }],
     "indent": ["error", 2],
-    "comma-dangle": ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "@typescript-eslint/no-unused-vars": "warn",
     "import/order": ["error", {
