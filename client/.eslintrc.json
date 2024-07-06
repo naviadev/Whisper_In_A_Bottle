@@ -24,8 +24,16 @@
       "version": "detect"
     },
     "import/resolver": {
+      "typescript":{},
       "node": {
+        "paths": ["src"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "alias": {
+        "map": [
+          ["@", "./src"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".css"]
       }
     }
   },
@@ -39,7 +47,7 @@
   ],
   "rules": {
     "semi": ["error", "always"],
-    "quotes": ["error", "single"],
+    "quotes": [2, "double", { "avoidEscape": false }],
     "indent": ["error", 2],
     "comma-dangle": ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],

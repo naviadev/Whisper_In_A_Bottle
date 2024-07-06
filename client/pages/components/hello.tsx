@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Hello = () => {
   return <h2>Hello, world!</h2>;
