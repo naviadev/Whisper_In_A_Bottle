@@ -1,6 +1,6 @@
 import nextJest from "next/jest";
 const createJestConfig = nextJest({
-  dir: "./",
+  dir: __dirname,
 });
 const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
