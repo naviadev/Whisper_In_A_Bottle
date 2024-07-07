@@ -44,6 +44,7 @@ describe("loginViewModel.spec.ts", () => {
     expect(result.current.isLoggedIn).toBe(false);
   });
 
+  //* 로그인 성공
   it("Valid Email", async () => {
     const { result } = renderHook(() => loginViewModel());
     const mockFetch = jest.fn().mockResolvedValue({
