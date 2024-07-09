@@ -26,6 +26,7 @@
     "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "connect-pg-simple": "^9.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
