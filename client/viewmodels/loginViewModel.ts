@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { ValidateEmail } from "@client/models/ValidateEmail";
+import { ValidateEmail } from "@client/models/auth/ValidateEmail";
 
-import { login } from "../models/login";
+import { login } from "../models/auth/login";
 
 /**
  * * Login View와 Model(login, ValidateEmail) 상호 작용하는 ViewModel
