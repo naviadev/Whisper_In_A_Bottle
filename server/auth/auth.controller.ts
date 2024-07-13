@@ -1,6 +1,13 @@
-import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UnauthorizedException,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { User } from '@shared/DTO/userInterface';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth') //auth 경로로 들어오는 모든 요청을 처리
 export class AuthController {
@@ -16,6 +23,7 @@ export class AuthController {
     return this.authService.login(validatedUser);
   }
 
+  @UseGuards(JwtAuthGuard) // 로그아웃도 인증이 필요한 경우
   @Post('logout') //logout 경로로 들어오는 post 요청을 처리
   async logout() {
     return this.authService.logout();
