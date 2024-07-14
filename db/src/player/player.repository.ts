@@ -5,6 +5,8 @@ import { Player } from './player.entity';
 
 @Injectable()
 export class PlayerRepository {
+  //* Nest의 typeormmodule을 통해 주입
+  //* Player 엔티티에 대한 TypeORM 리포지토리
   constructor(
     @InjectRepository(Player)
     private readonly playerRepository: Repository<Player>,
