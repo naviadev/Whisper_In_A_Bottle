@@ -1,21 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { Player } from './player.entity';
 import { PlayerRepository } from './player.repository';
-import { Player as PlayerDTO } from '@shared/DTO/player';
+import { User } from '@shared/DTO/userInterface';
 
 @Injectable()
 export class PlayerService {
   constructor(private readonly playerRepository: PlayerRepository) {}
 
-  async CreateAccountPlayer(playerDTO: PlayerDTO): Promise<boolean> {
+  async CreatePlayer(user: User): Promise<boolean> {
     //* 이미 존재하는 아이디
-    if (await this.playerRepository.FindPlayerById(playerDTO.id)) {
+    if (await this.playerRepository.FindPlayerById(user.id)) {
       return false;
     }
     const player = new Player();
-    player.id = playerDTO.id;
-    player.password = playerDTO.password;
-    player.sendTime = playerDTO.sendTime;
+    player.id = user.id;
+    player.password = user.password;
 
     await this.playerRepository.CreateAccount(player);
     return true;
