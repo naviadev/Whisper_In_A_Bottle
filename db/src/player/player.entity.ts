@@ -10,7 +10,4 @@ export class Player extends BaseEntity {
 
   @Column()
   password: string;
-
-  @Column()
-  sendTime: number;
 }
