@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PlayerService } from '../player.service';
 import { Player } from '../player.entity';
-import { Player as PlayerDTO } from '@shared/DTO/player';
+import { User } from '@shared/DTO/userInterface';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PlayerRepository } from '../player.repository';
@@ -31,23 +31,19 @@ describe('PlayerService', () => {
   });
 
   describe('Create Player', () => {
-    const playerDTO: PlayerDTO = {
+    const playerDTO: User = {
       id: 'Hwang',
       password: '2222',
-      receiveTime: 333,
-      sendTime: 333,
-      isAssign: true,
-      stash: [],
     };
 
-    const player = { id: 'Hwang', password: '1111', sendTime: 333 } as Player;
+    const player = { id: 'Hwang', password: '1111' } as Player;
 
     //* 이미플레이어가 존재할 때,
     it('Aleady Exist Player', async () => {
       jest.spyOn(playerRepoMock, 'save').mockResolvedValue(player);
       jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(player);
 
-      expect(await service.CreateAccountPlayer(playerDTO)).toBeFalsy();
+      expect(await service.CreatePlayer(playerDTO)).toBeFalsy();
     });
 
     //* 플레이어 회원가입
@@ -55,7 +51,7 @@ describe('PlayerService', () => {
       jest.spyOn(playerRepoMock, 'save').mockResolvedValue(player);
       jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(null);
 
-      expect(await service.CreateAccountPlayer(playerDTO)).toBe(true);
+      expect(await service.CreatePlayer(playerDTO)).toBe(true);
     });
   });
 });
