@@ -31,7 +31,7 @@ describe('PlayerRepository Test', () => {
 
   describe('CreatePlayer', () => {
     it('Create Player', async () => {
-      const mockPlayer = { id: 'hwang', password: 'eee', sendTime: 1111 };
+      const mockPlayer = { id: 'hwang', password: 'eee' };
 
       jest
         .spyOn(playerRepoMock, 'save')
@@ -46,8 +46,8 @@ describe('PlayerRepository Test', () => {
   describe('FindAllPlayers', () => {
     it('Return All Player', async () => {
       const mockPlayers = [
-        { id: 'moon', password: 'moon123', sendTime: 11111 },
-        { id: 'bae', password: 'bae123', sendTime: 22222 },
+        { id: 'moon', password: 'moon123' },
+        { id: 'bae', password: 'bae123' },
       ];
 
       jest
