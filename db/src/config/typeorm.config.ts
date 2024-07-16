@@ -1,7 +1,19 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { join } from 'path';
+import * as fs from 'fs';
 
 dotenv.config();
+
+const sslOptions =
+  process.env.DB_SSL === 'true'
+    ? {
+        rejectUnauthorized: false,
+        ca: fs
+          .readFileSync(join(__dirname, 'ap-northeast-2-bundle.pem'))
+          .toString(),
+      }
+    : false;
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -12,4 +24,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: process.env.TYPEORM_SYNC === 'true',
+  ssl: sslOptions,
 };
