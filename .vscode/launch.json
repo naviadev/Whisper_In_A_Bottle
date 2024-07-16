@@ -6,6 +6,7 @@
       "request": "launch",
       "name": "Debug Client All Jest",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "cwd": "${workspaceFolder}/client",
       "args": ["--runInBand", "--config", "${workspaceFolder}/client/jest.config.ts"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
@@ -15,6 +16,7 @@
       "type": "node",
       "request": "launch",
       "name": "Debug Client Current Jest",
+      "cwd": "${workspaceFolder}/client",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
         "--runInBand",
@@ -31,6 +33,7 @@
       "request": "launch",
       "name": "Debug DB All Jest",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "cwd": "${workspaceFolder}/db",
       "args": ["--runInBand", "--config", "${workspaceFolder}/db/package.json"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
@@ -41,6 +44,7 @@
       "request": "launch",
       "name": "Debug DB Current Jest",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "cwd": "${workspaceFolder}/db",
       "args": [
         "--runInBand",
         "--config",
@@ -51,6 +55,24 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Nest Framework (DB)",
+      "runtimeExecutable": "npm",
+      "cwd": "${workspaceFolder}/db",
+      "runtimeArgs": [
+        "run",
+        "start:debug",
+        "--",
+        "--inspect-brk"
+      ],
+      "autoAttachChildProcesses": true,
+      "restart": true,
+      "sourceMaps": true,
+      "stopOnEntry": false,
+      "console": "integratedTerminal",
     }
   ]
 }
