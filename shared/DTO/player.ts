@@ -1,4 +1,4 @@
-import { User } from "./userInterface"
+import User from "./user"
 import { Letter } from "./letter"
 
 export interface Player extends User {

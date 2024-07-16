@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PlayerController } from '../player.controller';
 import { Repository } from 'typeorm';
 import { PlayerRepository } from '../player.repository';
-import { User } from '@shared/DTO/userInterface';
+import User from '@shared/DTO/user';
 import { Player } from '../player.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { PlayerService } from '../player.service';
