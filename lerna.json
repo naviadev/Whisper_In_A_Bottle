@@ -3,7 +3,8 @@
   "packages": [
     "client",
     "server",
-    "shared"
+    "shared",
+    "db"
   ],
   "npmClient": "npm",
   "version": "independent"
