@@ -6,7 +6,8 @@
   "workspaces": [
     "client",
     "server",
-    "shared"
+    "shared",
+    "db"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
