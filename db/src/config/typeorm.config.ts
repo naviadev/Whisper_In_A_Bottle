@@ -1,6 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
-import { join } from 'path';
 import * as fs from 'fs';
 
 dotenv.config();
@@ -9,9 +8,7 @@ const sslOptions =
   process.env.DB_SSL === 'true'
     ? {
         rejectUnauthorized: false,
-        ca: fs
-          .readFileSync(join(__dirname, 'ap-northeast-2-bundle.pem'))
-          .toString(),
+        ca: fs.readFileSync('ap-northeast-2-bundle.pem').toString(),
       }
     : false;
 
