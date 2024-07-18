@@ -13,7 +13,7 @@ export class PlayerService {
       return false;
     }
     const player = new Player();
-    player.id = user.id;
+    player.userId = user.id;
     player.password = user.password;
 
     await this.playerRepository.CreateAccount(player);
