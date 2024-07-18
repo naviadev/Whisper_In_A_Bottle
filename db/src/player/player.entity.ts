@@ -6,7 +6,7 @@ import { BaseEntity, Entity, PrimaryColumn, Column } from 'typeorm'; // TypeORM 
 @Entity({ name: 'player' })
 export class Player extends BaseEntity {
   @PrimaryColumn()
-  id: string;
+  userId: string;
 
   @Column()
   password: string;
