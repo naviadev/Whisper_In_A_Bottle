@@ -31,7 +31,7 @@ describe('PlayerRepository Test', () => {
 
   describe('CreatePlayer', () => {
     it('Create Player', async () => {
-      const mockPlayer = { id: 'hwang', password: 'eee' };
+      const mockPlayer = { userId: 'hwang', password: 'eee' };
 
       jest
         .spyOn(playerRepoMock, 'save')
@@ -46,8 +46,8 @@ describe('PlayerRepository Test', () => {
   describe('FindAllPlayers', () => {
     it('Return All Player', async () => {
       const mockPlayers = [
-        { id: 'moon', password: 'moon123' },
-        { id: 'bae', password: 'bae123' },
+        { userId: 'moon', password: 'moon123' },
+        { userId: 'bae', password: 'bae123' },
       ];
 
       jest
@@ -68,7 +68,7 @@ describe('PlayerRepository Test', () => {
 
       expect(result).toBeNull();
       expect(playerRepoMock.findOne).toHaveBeenCalledWith({
-        where: { id: 'Lee' },
+        where: { userId: 'Lee' },
       });
     });
 
@@ -79,7 +79,7 @@ describe('PlayerRepository Test', () => {
 
       expect(result).toBeNull();
       expect(playerRepoMock.findOne).toHaveBeenCalledWith({
-        where: { id: '999' },
+        where: { userId: '999' },
       });
     });
   });

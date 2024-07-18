@@ -38,8 +38,12 @@ describe('PlayerController', () => {
         password: 'test',
       };
 
-      jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(user as Player);
-      jest.spyOn(playerRepoMock, 'save').mockResolvedValue(user as Player);
+      const player = new Player();
+      player.userId = user.id;
+      player.password = user.password;
+
+      jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(player);
+      jest.spyOn(playerRepoMock, 'save').mockResolvedValue(player);
 
       expect(await controller.CreatePlayer(user)).toBeFalsy();
     });
@@ -50,8 +54,12 @@ describe('PlayerController', () => {
         password: 'test',
       };
 
+      const player = new Player();
+      player.userId = user.id;
+      player.password = user.password;
+
       jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(null);
-      jest.spyOn(playerRepoMock, 'save').mockResolvedValue(user as Player);
+      jest.spyOn(playerRepoMock, 'save').mockResolvedValue(player);
 
       expect(await controller.CreatePlayer(user)).toBeTruthy();
     });

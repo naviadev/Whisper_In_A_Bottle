@@ -3,11 +3,17 @@ import { BaseEntity, Entity, PrimaryColumn, Column } from 'typeorm'; // TypeORM 
 /**
  * * 데이터베이스 테이블 plyer (name) 에 매핑한다.
  */
-@Entity({ name: 'player' })
-export class Player extends BaseEntity {
+@Entity({ name: 'player_state' })
+export class PlayerState extends BaseEntity {
   @PrimaryColumn()
   userId: string;
 
+  @Column('bigint')
+  receiveTime: number;
+
+  @Column('bigint')
+  lastLoginTime: number;
+
   @Column()
-  password: string;
+  lastLoginIp: string;
 }

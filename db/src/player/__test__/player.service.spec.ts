@@ -36,7 +36,7 @@ describe('PlayerService', () => {
       password: '2222',
     };
 
-    const player = { id: 'Hwang', password: '1111' } as Player;
+    const player = { userId: 'Hwang', password: '1111' } as Player;
 
     //* 이미플레이어가 존재할 때,
     it('Aleady Exist Player', async () => {
