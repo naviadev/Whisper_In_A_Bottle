@@ -6,14 +6,14 @@ import { BaseEntity, Entity, PrimaryColumn, Column } from 'typeorm'; // TypeORM 
 @Entity({ name: 'player_state' })
 export class PlayerState extends BaseEntity {
   @PrimaryColumn()
-  user_id: string;
+  userId: string;
 
   @Column('bigint')
-  receive_time: number;
+  receiveTime: number;
 
   @Column('bigint')
-  last_login_time: number;
+  lastLoginTime: number;
 
   @Column()
-  last_login_ip: string;
+  lastLoginIp: string;
 }
