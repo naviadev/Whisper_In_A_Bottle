@@ -1,5 +1,7 @@
 /**
  * ! 매개변수 func는 request와 관련된 비동기 함수여야 합니다.
+ * * 전체적인 동작은 Sleep 메소드를 통해 일정간격(time)으로 func를 실행한다.
+ * * time, func는 매개변수로 받아, 프로퍼티로 등록
  */
 export class LongPolling {
   time;
