@@ -5,12 +5,13 @@ import { RegisterService } from './auth/register.service';
 import { RegisterController } from './auth/register.controller';
 
 /**
- * CHECKLIST
- * [ ] Module 정의 .
- * NOTE : 사전 작업
- * NOTE : 1. Register Service Controller Entity 구현
+ * * Decorator : Module
+ * 작성자 : @naviadev / 2024-07-16
+ * 편집자 : @naviadev / 2024-07-17
+ * Issue : WIB-14
+ * @decorator Module
+ * @description : Register 그룹화.
  */
-
 @Module({
   imports: [TypeOrmModule.forFeature([RegisterEntity])],
   controllers: [RegisterController],
