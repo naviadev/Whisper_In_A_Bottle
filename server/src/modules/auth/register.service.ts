@@ -1,20 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { RegisterEntity } from '../auth/registerEntity';
+import { RegisterEntity } from './registerEntity';
 
 import AuthService from './authInterface';
-import RegisterInfo from '@shared/DTO/registerInfo';
-import User from '@shared/DTO/userInterface';
+import { PlayerDTO } from '@shared/DTO/sharedDTO';
 
 /**
- * CHECKLIST : 1순위
- * [x] TypeORM 설정하기
- * [x] PostgreSQL 설정하기
- * [x] Service 로직 생성하기
- * [ ] Service Test 작업 파일 생성하기
+ * * Decorator : Injectable
+ * 작성자 : @naviadev / 2024-07-16
+ * 편집자 : @naviadev / 2024-07-17
+ * Issue : WIB-14
+ * @class RegisterService
+ * @description : 데이터베이스에 RegisterInfo Entity Save, 간단한 Type 검사 진행.
  */
-
 @Injectable()
 export class RegisterService implements AuthService {
   constructor(
@@ -22,24 +21,23 @@ export class RegisterService implements AuthService {
     private readonly registerRepository: Repository<RegisterEntity>,
   ) {}
 
-  validateDTO(Data: User | RegisterInfo): boolean {
+  validateDTO(Data: PlayerDTO): boolean {
     const dataType = this.isRegisterInfo(Data);
 
     if (dataType) {
       const isId = typeof Data.id === 'string';
-      const isPassword = typeof Data.password === 'string';
-      const isEmail = typeof Data.email === 'string';
-      return isId && isPassword && isEmail;
+      const isPassword = typeof Data.pw === 'string';
+      return isId && isPassword;
     } else {
       return false;
     }
   }
 
-  private isRegisterInfo(Data: User | RegisterInfo): Data is RegisterInfo {
-    return 'email' in Data;
+  private isRegisterInfo(Data: PlayerDTO) {
+    return 'id' in Data;
   }
 
-  async insertToDatabase(Data: User | RegisterInfo): Promise<boolean> {
+  async insertToDatabase(Data: PlayerDTO): Promise<boolean> {
     console.log(Data);
     try {
       const entity = this.registerRepository.create(Data);
