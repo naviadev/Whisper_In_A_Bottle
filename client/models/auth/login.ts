@@ -1,4 +1,4 @@
-import { User } from "@shared/DTO/userInterface";
+import User from "@shared/DTO/user";
 
 export const login = async (user: User): Promise<boolean> => {
   const res = await fetch("http://localhost:3000/login", {

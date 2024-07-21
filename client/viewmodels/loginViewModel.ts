@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ValidateEmail } from "@client/models/auth/ValidateEmail";
+import { ValidateId } from "@client/models/auth/ValidateId";
 
 import { login } from "../models/auth/login";
 
@@ -22,7 +22,7 @@ const useLoginViewModel = () => {
     }
 
     //* 유효하지 않는 이메일 형식
-    if (!ValidateEmail(id)) {
+    if (!ValidateId(id)) {
       return false;
     }
 
