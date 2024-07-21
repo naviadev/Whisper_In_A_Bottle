@@ -31,6 +31,10 @@ const useRegisterViewModel = () => {
   };
 
   return {
+    id,
+    password,
+    passwordCheck,
+    isRegister,
     setId,
     setPassword,
     setPasswordCheck,

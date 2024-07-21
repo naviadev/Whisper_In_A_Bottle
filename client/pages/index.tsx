@@ -1,12 +1,11 @@
 import React from "react";
 
-import Hello from "./components/hello";
+import RegisterForm from "./components/auth/registerForm";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Welcome to Next.js!</h1>
-      <Hello />
+      <RegisterForm />
     </div>
   );
 };
