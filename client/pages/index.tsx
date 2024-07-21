@@ -1,12 +1,10 @@
-import React from "react";
-
-import Hello from "./components/hello";
+import App from "./_app";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Welcome to Next.js!</h1>
-      <Hello />
+      <h1>Welcome to the Letter Sending App</h1>
+      <App />
     </div>
   );
 };
