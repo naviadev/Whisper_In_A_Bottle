@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RegisterEntity } from './auth/registerEntity';
+import User from 'src/entity/User.entity';
 import { RegisterService } from './auth/register.service';
 import { RegisterController } from './auth/register.controller';
 
@@ -13,7 +13,7 @@ import { RegisterController } from './auth/register.controller';
  * @description : Register 그룹화.
  */
 @Module({
-  imports: [TypeOrmModule.forFeature([RegisterEntity])],
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [RegisterController],
   providers: [RegisterService],
 })
