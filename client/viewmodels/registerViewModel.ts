@@ -2,14 +2,7 @@ import { useState } from "react";
 
 import { ValidatePassword } from "@client/models/auth/ValidatePassword";
 import { ValidateId } from "@client/models/auth/ValidateId";
-// eslint-disable-next-line import/no-named-as-default
 import RegisterModel from "@client/models/auth/register";
-
-/**
- * CHECKLIST
- * [ ] Register Model 적용 후 테스트
- * [ ] Register Form에 정상적으로 적용되는 지 테스트
- */
 
 const useRegisterViewModel = () => {
   const [id, setId] = useState<string>("");
@@ -38,13 +31,9 @@ const useRegisterViewModel = () => {
   };
 
   return {
-    id,
     setId,
-    password,
     setPassword,
-    passwordCheck,
     setPasswordCheck,
-    isRegister,
     handleRegister,
   };
 };
