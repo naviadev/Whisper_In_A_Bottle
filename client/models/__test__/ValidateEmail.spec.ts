@@ -1,27 +1,27 @@
-import { ValidateEmail } from "../auth/ValidateEmail";
+import { ValidateId } from "../auth/ValidateId";
 
-describe("ValidateEmail Test", () => {
+describe("ValidateId Test", () => {
   it("Email Correct (1)", () => {
-    expect(ValidateEmail("dummy@gmail.com")).toBe(true);
+    expect(ValidateId("dummy@gmail.com")).toBe(true);
   });
 
   it("Email Correct (2)", () => {
-    expect(ValidateEmail("dummy@gmail.co.kr")).toBe(true);
+    expect(ValidateId("dummy@gmail.co.kr")).toBe(true);
   });
 
   it("Email Correct (3)", () => {
-    expect(ValidateEmail("dummy@gmail.gg")).toBe(true);
+    expect(ValidateId("dummy@gmail.gg")).toBe(true);
   });
 
   it("Email InCorrect (1)", () => {
-    expect(ValidateEmail("dummy")).toBe(false);
+    expect(ValidateId("dummy")).toBe(false);
   });
 
   it("Email InCorrect (2)", () => {
-    expect(ValidateEmail("dummy@eee")).toBe(false);
+    expect(ValidateId("dummy@eee")).toBe(false);
   });
 
   it("Email InCorrect (3)", () => {
-    expect(ValidateEmail("dummy@eee.")).toBe(false);
+    expect(ValidateId("dummy@eee.")).toBe(false);
   });
 });
