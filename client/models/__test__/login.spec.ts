@@ -1,4 +1,4 @@
-import { User } from "@shared/DTO/userInterface";
+import User from "@shared/DTO/user";
 
 import { login } from "../auth/login";
 

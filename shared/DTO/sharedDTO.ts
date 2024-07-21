@@ -1,7 +1,7 @@
 // dto.ts
 export interface PlayerDTO {
   id: string;
-  pw: string;
+  password: string;
 }
 
 export interface PlayerStateDTO {
