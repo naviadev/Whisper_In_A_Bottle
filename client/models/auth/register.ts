@@ -10,12 +10,13 @@ import axios, { AxiosResponse } from "axios";
  */
 const RegisterModel = async (registerData: User): Promise<boolean> => {
   try {
-    const response: AxiosResponse<boolean> = await axios.post(
+    const response: AxiosResponse = await axios.post(
       "http://localhost:3001/register",
       registerData,
     );
 
-    console.log(response);
+    console.log(response.data.message);
+    console.log(response.status);
 
     if (response.status === 200) {
       return true;
@@ -23,6 +24,7 @@ const RegisterModel = async (registerData: User): Promise<boolean> => {
       return false;
     }
   } catch (err) {
+    console.log("중복");
     console.error(err);
     return false;
   }
