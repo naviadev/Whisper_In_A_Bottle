@@ -1,6 +1,14 @@
-import { Controller, Post, Body } from '@nestjs/common';
-import RegisterInterface from './registerInterface';
-import User from '@shared/DTO/user';
+import {
+  Controller,
+  Post,
+  Body,
+  HttpException,
+  HttpStatus,
+  HttpCode,
+} from '@nestjs/common';
+
+import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import { RegisterService } from './register.service';
 
 /**
  * * Decorator : Controller
@@ -13,14 +21,35 @@ import User from '@shared/DTO/user';
 
 @Controller('register')
 export class RegisterController {
-  constructor(private readonly registerService: RegisterInterface) {}
+  constructor(private readonly registerService: RegisterService) {}
   @Post()
-  async registerUser(@Body() registerData: User) {
+  @HttpCode(200)
+  async registerUser(@Body() registerData: PlayerDTO) {
     if (this.registerService.validateDTO(registerData)) {
       const result = await this.registerService.insertToDatabase(registerData);
-      return result;
+
+      if (result) {
+        return {
+          success: true,
+          message: '가입 완료',
+        };
+      } else {
+        throw new HttpException(
+          {
+            success: false,
+            message: '이미 존재하는 아이디',
+          },
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
     } else {
-      return false;
+      throw new HttpException(
+        {
+          success: false,
+          message: '유효성 검사 실패',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }

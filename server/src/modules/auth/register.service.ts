@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { RegisterEntity } from './registerEntity';
 
 import AuthService from './authInterface';
 import { PlayerDTO } from '@shared/DTO/sharedDTO';
-
+import User from 'src/entity/User.entity';
 /**
  * * Decorator : Injectable
  * 작성자 : @naviadev / 2024-07-16
@@ -17,8 +16,8 @@ import { PlayerDTO } from '@shared/DTO/sharedDTO';
 @Injectable()
 export class RegisterService implements AuthService {
   constructor(
-    @InjectRepository(RegisterEntity)
-    private readonly registerRepository: Repository<RegisterEntity>,
+    @InjectRepository(User)
+    private readonly registerRepository: Repository<User>,
   ) {}
 
   validateDTO(Data: PlayerDTO): boolean {
@@ -26,7 +25,7 @@ export class RegisterService implements AuthService {
 
     if (dataType) {
       const isId = typeof Data.id === 'string';
-      const isPassword = typeof Data.pw === 'string';
+      const isPassword = typeof Data.password === 'string';
       return isId && isPassword;
     } else {
       return false;
@@ -40,6 +39,13 @@ export class RegisterService implements AuthService {
   async insertToDatabase(Data: PlayerDTO): Promise<boolean> {
     console.log(Data);
     try {
+      const existingUser = await this.registerRepository.findOneBy({
+        id: Data.id,
+      });
+
+      if (existingUser) {
+        return false;
+      }
       const entity = this.registerRepository.create(Data);
       await this.registerRepository.save(entity);
       return true;
