@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { letterModule } from './letter/letter.module';
+import { letterModule } from './modules/letter/letter.module';
 import User from './entity/User.entity';
 import { RegisterModule } from './modules/register.module';
 
-import { AuthModule } from '../auth/auth.module';
+import { AuthModule } from './modules/login/auth.module';
 
 @Module({
   imports: [

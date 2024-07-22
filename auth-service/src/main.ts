@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { CustomIoAdapter } from './letter/custom-io-adapter';
+import { CustomIoAdapter } from './modules/letter/custom-io-adapter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

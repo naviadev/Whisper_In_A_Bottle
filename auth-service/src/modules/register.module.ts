@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import User from 'src/entity/User.entity';
-import { RegisterService } from './auth/register.service';
-import { RegisterController } from './auth/register.controller';
+import { RegisterService } from './register/register.service';
+import { RegisterController } from './register/register.controller';
 
 /**
  * * Decorator : Module
