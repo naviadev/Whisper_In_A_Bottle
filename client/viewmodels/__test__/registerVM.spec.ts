@@ -7,20 +7,20 @@ import useRegisterViewModel from "../registerViewModel";
 // Initialize a MockAdapter for axios
 let mockAxios: MockAdapter;
 
-beforeEach(() => {
+beforeAll(() => {
   mockAxios = new MockAdapter(axios);
   mockAxios
     .onPost("http://localhost:3001/register")
     .reply(200, { success: true });
 });
 
-afterEach(() => {
+afterAll(() => {
   mockAxios.restore();
   jest.resetAllMocks();
 });
 
 jest.mock("../../models/auth/register", () => ({
-  default: jest.fn(() => Promise.resolve(true)),
+  default: jest.fn().mockResolvedValue(true),
 }));
 
 describe("VM TEST", () => {
