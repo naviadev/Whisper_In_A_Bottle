@@ -2,9 +2,10 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": [
     "client",
-    "server",
+    "auth-service",
     "shared",
-    "db"
+    "db",
+    "letter-service"
   ],
   "npmClient": "npm",
   "version": "independent"
