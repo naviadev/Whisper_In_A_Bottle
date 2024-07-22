@@ -1,5 +1,5 @@
 {
-  "extends" : "../tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "strict": true,
     "module": "commonjs",
@@ -22,5 +22,6 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "exclude": ["dist"]
 }
