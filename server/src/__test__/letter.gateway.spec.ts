@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { letterGateway } from '../letter/letter.gateway'; // 경로를 실제 경로로 수정하세요
+import { letterGateway } from '../letter/letter.gateway';
 import { Server } from 'socket.io';
 
 describe('letterGateway', () => {

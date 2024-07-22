@@ -1,4 +1,4 @@
-import { CustomIoAdapter } from '../letter/custom-io-adapter'; // 경로를 실제 경로로 수정하세요
+import { CustomIoAdapter } from '../letter/custom-io-adapter';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { INestApplicationContext } from '@nestjs/common';
 import { ServerOptions } from 'socket.io';
@@ -9,10 +9,9 @@ describe('CustomIoAdapter', () => {
   let createIOServerSpy: jest.SpyInstance;
 
   beforeEach(async () => {
-    mockApp = {} as INestApplicationContext; // 간단한 mock 객체 생성
+    mockApp = {} as INestApplicationContext;
     adapter = new CustomIoAdapter(mockApp);
 
-    // IoAdapter.prototype.createIOServer 메서드를 spy합니다
     createIOServerSpy = jest.spyOn(IoAdapter.prototype, 'createIOServer');
   });
 
@@ -30,8 +29,8 @@ describe('CustomIoAdapter', () => {
       const options: ServerOptions = {
         path: '/socket.io',
         serveClient: false,
-        adapter: null as any, // Mock 또는 기본값을 사용
-        parser: null as any, // Mock 또는 기본값을 사용
+        adapter: null as any,
+        parser: null as any,
         connectTimeout: 45000,
         connectionStateRecovery: {
           maxDisconnectionDuration: 120000,

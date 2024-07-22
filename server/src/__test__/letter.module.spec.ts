@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { letterModule } from '../letter/letter.module'; // 경로를 실제 경로로 수정하세요
-import { letterGateway } from '../letter/letter.gateway'; // 경로를 실제 경로로 수정하세요
+import { letterModule } from '../letter/letter.module';
+import { letterGateway } from '../letter/letter.gateway';
 
 describe('letterModule', () => {
   let module: TestingModule;
