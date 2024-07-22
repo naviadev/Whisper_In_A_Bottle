@@ -6,6 +6,8 @@ import { letterModule } from './letter/letter.module';
 import User from './entity/User.entity';
 import { RegisterModule } from './modules/register.module';
 
+import { AuthModule } from '../auth/auth.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,7 +20,8 @@ import { RegisterModule } from './modules/register.module';
       entities: [User],
     }),
     RegisterModule,
-    letterModule
+    letterModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
