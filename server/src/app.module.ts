@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { letterModule } from './letter.module';
+import { letterModule } from './letter/letter.module';
 
 @Module({
   imports: [letterModule],
