@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { PlayerService } from './player.service';
-import { User } from '@shared/DTO/userInterface';
+import User from '@shared/DTO/user';
 @Controller('player')
 export class PlayerController {
   constructor(private readonly playerService: PlayerService) {}

@@ -24,6 +24,6 @@ export class PlayerRepository {
 
   //* 특정 유저를 조회
   async FindPlayerById(id: string): Promise<Player | null> {
-    return this.playerRepository.findOne({ where: { userId: id } });
+    return this.playerRepository.findOne({ where: { id } });
   }
 }

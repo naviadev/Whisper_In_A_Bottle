@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Player } from './player.entity';
 import { PlayerRepository } from './player.repository';
-import { User } from '@shared/DTO/userInterface';
+import User from '@shared/DTO/user';
 
 @Injectable()
 export class PlayerService {
@@ -13,7 +13,7 @@ export class PlayerService {
       return false;
     }
     const player = new Player();
-    player.userId = user.id;
+    player.id = user.id;
     player.password = user.password;
 
     await this.playerRepository.CreateAccount(player);
