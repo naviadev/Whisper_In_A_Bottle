@@ -7,7 +7,11 @@
       "name": "Debug Client All Jest",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "cwd": "${workspaceFolder}/client",
-      "args": ["--runInBand", "--config", "${workspaceFolder}/client/jest.config.ts"],
+      "args": [
+        "--runInBand",
+        "--config",
+        "${workspaceFolder}/client/jest.config.ts"
+      ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"]
@@ -22,6 +26,37 @@
         "--runInBand",
         "--config",
         "${workspaceFolder}/client/jest.config.ts",
+        "${relativeFile}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Server All Jest",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "cwd": "${workspaceFolder}/server",
+      "args": [
+        "--runInBand",
+        "--config",
+        "${workspaceFolder}/server/package.json"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Server Current Jest",
+      "cwd": "${workspaceFolder}/server",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "--runInBand",
+        "--config",
+        "${workspaceFolder}/server/package.json",
         "${relativeFile}"
       ],
       "console": "integratedTerminal",
@@ -62,17 +97,12 @@
       "name": "Debug Nest Framework (DB)",
       "runtimeExecutable": "npm",
       "cwd": "${workspaceFolder}/db",
-      "runtimeArgs": [
-        "run",
-        "start:debug",
-        "--",
-        "--inspect-brk"
-      ],
+      "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
       "autoAttachChildProcesses": true,
       "restart": true,
       "sourceMaps": true,
       "stopOnEntry": false,
-      "console": "integratedTerminal",
+      "console": "integratedTerminal"
     }
   ]
 }
