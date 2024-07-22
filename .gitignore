@@ -3,6 +3,5 @@
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
-**/ormconfig.json
 .env
 **/*/*.pem
