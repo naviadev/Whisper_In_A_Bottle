@@ -1,3 +1,5 @@
+import Socket from "./components/socket";
+
 import React from "react";
 
 import RegisterForm from "./components/auth/registerForm";
@@ -5,6 +7,8 @@ import RegisterForm from "./components/auth/registerForm";
 const HomePage = () => {
   return (
     <div>
+      <h1>Welcome to the Letter Sending App</h1>
+      <Socket />
       <RegisterForm />
     </div>
   );

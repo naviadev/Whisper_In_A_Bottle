@@ -15,7 +15,9 @@
     "react": "^18",
     "react-dom": "^18",
     "socket.io": "^4.7.5",
-    "three": "^0.166.0"
+    "socket.io-client": "^4.7.5",
+    "three": "^0.166.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
@@ -25,7 +27,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/socket.io": "^3.0.2",
     "@types/three": "^0.166.0",
+    "@types/ws": "^8.5.11",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "axios-mock-adapter": "^1.22.0",
