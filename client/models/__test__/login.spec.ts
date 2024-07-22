@@ -1,6 +1,6 @@
-import { User } from "@shared/DTO/userInterface";
+import User from "@shared/DTO/user";
 
-import { login } from "../login";
+import { login } from "../auth/login";
 
 describe("login test", () => {
   const dummyUser: User = {

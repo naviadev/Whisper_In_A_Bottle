@@ -2,7 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PlayerController } from '../player.controller';
 import { Repository } from 'typeorm';
 import { PlayerRepository } from '../player.repository';
+<<<<<<< HEAD
+import User from '@shared/DTO/user';
+=======
 import { User } from '@shared/DTO/userInterface';
+>>>>>>> develop
 import { Player } from '../player.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { PlayerService } from '../player.service';
@@ -38,12 +42,17 @@ describe('PlayerController', () => {
         password: 'test',
       };
 
+<<<<<<< HEAD
+      jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(user as Player);
+      jest.spyOn(playerRepoMock, 'save').mockResolvedValue(user as Player);
+=======
       const player = new Player();
       player.userId = user.id;
       player.password = user.password;
 
       jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(player);
       jest.spyOn(playerRepoMock, 'save').mockResolvedValue(player);
+>>>>>>> develop
 
       expect(await controller.CreatePlayer(user)).toBeFalsy();
     });
@@ -54,12 +63,17 @@ describe('PlayerController', () => {
         password: 'test',
       };
 
+<<<<<<< HEAD
+      jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(null);
+      jest.spyOn(playerRepoMock, 'save').mockResolvedValue(user as Player);
+=======
       const player = new Player();
       player.userId = user.id;
       player.password = user.password;
 
       jest.spyOn(playerRepoMock, 'findOne').mockResolvedValue(null);
       jest.spyOn(playerRepoMock, 'save').mockResolvedValue(player);
+>>>>>>> develop
 
       expect(await controller.CreatePlayer(user)).toBeTruthy();
     });
