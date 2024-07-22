@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3001", {
   withCredentials: true, // 자격 증명을 함께 보냄
-}); // 서버 URL과 포트
+});
 
 const Socket = () => {
   const [letter, setletter] = useState(""); //입력된 문자
