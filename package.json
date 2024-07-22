@@ -28,11 +28,13 @@
     "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
+    "@nestjs/config": "^3.2.3",
     "axios": "^1.7.2",
     "connect-pg-simple": "^9.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "joi": "^17.13.3",
     "passport": "^0.7.0",
     "three": "^0.166.0"
   }
