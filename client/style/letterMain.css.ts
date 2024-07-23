@@ -49,3 +49,29 @@ export const button = style({
     outline: "none",
   },
 });
+
+export const contentContainer = style({
+  width: "600px",
+  height: "400px",
+  padding: "10px",
+  border: "1px solid #ccc",
+  borderRadius: "4px",
+  boxSizing: "border-box",
+  fontSize: "16px",
+  resize: "vertical",
+  marginBottom: "10px",
+  display: "flex",
+  flexDirection: "column",
+  alignContent: "center",
+  justifyContent: "center",
+});
+
+export const Content = style({
+  width: "90%",
+  height: "20px",
+  padding: "10px",
+  border: "1px solid #ccc",
+  borderRadius: "4px",
+  margin: "10px",
+  textAlign: "center",
+});
