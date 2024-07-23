@@ -18,7 +18,7 @@ import { RegisterModule } from './modules/register.module';
       entities: [User],
     }),
     RegisterModule,
-    letterModule
+    letterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
