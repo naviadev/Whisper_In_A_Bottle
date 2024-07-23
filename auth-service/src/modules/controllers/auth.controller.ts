@@ -5,16 +5,16 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { User } from '@shared/DTO/userInterface';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { AuthService } from '../services/auth.service';
+import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
 @Controller('auth') //auth 경로로 들어오는 모든 요청을 처리
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login') //login 경로로 들어오는 post 요청을 처리
-  async login(@Body() user: User) {
+  async login(@Body() user: PlayerDTO) {
     const { id, password } = user;
     const validatedUser = await this.authService.validateUser(id, password);
     if (!validatedUser) {
