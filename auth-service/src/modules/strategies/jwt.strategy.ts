@@ -1,17 +1,16 @@
-//jwt전략
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
+import { jwtInterface } from '../interfaces/jwtInterface';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly configService: ConfigService) {
-    const secretOrKey = configService.get<string>('JWT_SECRET_KEY'); // 환경 변수에서 비밀 키 가져오기
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), //JWT추출방법
       ignoreExpiration: false, //토큰만료 무시하지 않음
-      secretOrKey: secretOrKey,
+      secretOrKey: configService.get<string>('JWT.SECRET.KEY'),
     });
   }
 
@@ -20,7 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
    * @param payload
    * @returns User object
    */
-  async validate(payload: any) {
+  async validate(payload: jwtInterface) {
     if (!payload || !payload.username) {
       throw new UnauthorizedException();
     }
