@@ -10,12 +10,15 @@ import { RegisterService } from './services/register.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { AuthController } from './controllers/auth.controller';
 import { RegisterController } from './controllers/register.controller';
+import { ProtectedController } from './controllers/protected.controller';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { ValidationService } from './services/validation.service';
 
 /**
  * * Decorator : Module
  * 작성자 : @naviadev / 2024-07-16
- * 편집자 : @naviadev / 2024-07-17
- * Issue : WIB-14
+ * 편집자 : @moonhr / 2024-07-24
+ * Issue : WIB-6
  * @decorator Module
  * @description : Auth 및 Register 그룹화.
  */
@@ -33,7 +36,14 @@ import { RegisterController } from './controllers/register.controller';
     }),
     ConfigModule,
   ],
-  providers: [AuthService, RegisterService, JwtStrategy],
-  controllers: [AuthController, RegisterController],
+  controllers: [AuthController, RegisterController, ProtectedController],
+  providers: [
+    AuthService,
+    RegisterService,
+    JwtStrategy,
+    JwtAuthGuard,
+    ValidationService,
+  ],
+  exports: [JwtAuthGuard],
 })
 export class AuthModule {}
