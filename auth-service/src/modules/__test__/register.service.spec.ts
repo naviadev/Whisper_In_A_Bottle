@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { RegisterService } from '../register.service';
-import User from '../../../entity/User.entity';
+import { RegisterService } from '../services/register.service';
+import User from '../../entity/User.entity';
 import { PlayerDTO } from '@shared/DTO/sharedDTO';
 
 // Mocking Repository

@@ -6,15 +6,14 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
-
 import { PlayerDTO } from '@shared/DTO/sharedDTO';
-import { RegisterService } from './register.service';
+import { RegisterService } from '../services/register.service';
 
 /**
  * * Decorator : Controller
  * 작성자 : @naviadev / 2024-07-16
- * 편집자 : @naviadev / 2024-07-17
- * Issue : WIB-14
+ * 편집자 : @moonhr / 2024-07-23
+ * Issue : WIB-6
  * @class RegisterController
  * @description : '/register 요청을 처리하는 엔드포인트'
  */
