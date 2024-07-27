@@ -3,23 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { letterModule } from './modules/letter/letter.module';
-import User from './entity/User.entity';
 import { AuthModule } from './modules/auth.module';
-
+import { typeOrmConfig } from 'config/typeorm.config';
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'sungbin',
-      password: '',
-      database: 'whisper',
-      entities: [User],
-    }),
-    AuthModule,
-    letterModule,
-  ],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule, letterModule],
   controllers: [AppController],
   providers: [AppService],
 })
