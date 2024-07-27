@@ -5,3 +5,4 @@
 **/._.DS_Store
 .env
 **/*/*.pem
+ap-northeast-2-bundle.pem
