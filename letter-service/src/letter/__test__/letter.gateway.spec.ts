@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import io, { Socket } from 'socket.io-client';
-import { LetterGateway } from './letter.gateway';
-import { Letter } from '@shared/DTO/letter';
+import { LetterGateway } from '../letter.gateway';
+import { LetterDto } from '../dto/letter';
 
 describe('LetterGateway', () => {
   let app: INestApplication;
@@ -50,7 +50,7 @@ describe('LetterGateway', () => {
   //* 특정 아이디로 메세지 보내서, 편지 왔는지 확인하기.
   it('should send message to client', (done) => {
     const userId = 'testUser';
-    const letter: Letter = { id: '1', ip: '2222', body: '333', time: 3333 };
+    const letter: LetterDto = { id: '1', ip: '2222', body: '333', time: 3333 };
     clientSocket.emit('initial_data', userId);
 
     clientSocket.on('new_message', (receivedLetter) => {
