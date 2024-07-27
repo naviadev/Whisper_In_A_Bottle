@@ -7,7 +7,7 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Letter } from '@shared/DTO/letter';
+import { LetterDto } from './dto/letter';
 
 @WebSocketGateway()
 export class LetterGateway
@@ -20,6 +20,9 @@ export class LetterGateway
   userIdKeyMap: Map<string, Set<string>> = new Map();
   clientIdKeyMap: Map<string, string> = new Map();
 
+  //* userId, setTimeout에 키 저장
+  userSetTimeoutKeyMap: Map<string, NodeJS.Timeout> = new Map();
+
   afterInit() {
     console.log('Init');
   }
@@ -28,6 +31,7 @@ export class LetterGateway
     console.log(`Client connected: ${client.id}`);
   }
 
+  //* disconnect 했을 때. Map에서 정보를 지운다.
   handleDisconnect(client: Socket) {
     console.log(`Client disconnected: ${client.id}`);
 
@@ -38,6 +42,11 @@ export class LetterGateway
         clientIds.delete(client.id);
         if (clientIds.size === 0) {
           this.userIdKeyMap.delete(userId);
+          if (this.userSetTimeoutKeyMap.has(userId)) {
+            const timeoutId = this.userSetTimeoutKeyMap.get(userId);
+            clearTimeout(timeoutId);
+            this.userSetTimeoutKeyMap.delete(userId);
+          }
         }
       }
     }
@@ -45,6 +54,7 @@ export class LetterGateway
     this.clientIdKeyMap.delete(client.id);
   }
 
+  //* 처음에 접속했을 떄, 사용자 정보 저장
   @SubscribeMessage('initial_data')
   handleInitialData(client: Socket, userId: string): void {
     if (!this.userIdKeyMap.has(userId)) {
@@ -59,7 +69,7 @@ export class LetterGateway
   }
 
   //* 메세지 보내는 Method
-  sendMessageToClient(userId: string, letter: Letter): void {
+  sendMessageToClient(userId: string, letter: LetterDto): void {
     const clientIds = this.userIdKeyMap.get(userId);
 
     if (!clientIds) {
