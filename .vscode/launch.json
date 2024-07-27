@@ -35,14 +35,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Server All Jest",
+      "name": "Debug All Jest",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "cwd": "${workspaceFolder}/server",
-      "args": [
-        "--runInBand",
-        "--config",
-        "${workspaceFolder}/server/package.json"
-      ],
+      "cwd": "${workspaceFolder}/${input:service}",
+      "args": ["--runInBand", "--config", "--detectOpenHandles","${workspaceFolder}/{input:service}/package.json"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"]
@@ -50,59 +46,40 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Server Current Jest",
-      "cwd": "${workspaceFolder}/server",
+      "name": "Debug Jest Tests",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
         "--runInBand",
         "--config",
-        "${workspaceFolder}/server/package.json",
-        "${relativeFile}"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug DB All Jest",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "cwd": "${workspaceFolder}/db",
-      "args": ["--runInBand", "--config", "${workspaceFolder}/db/package.json"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug DB Current Jest",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "cwd": "${workspaceFolder}/db",
-      "args": [
-        "--runInBand",
-        "--config",
-        "${workspaceFolder}/db/package.json",
+        "${workspaceFolder}/${input:service}/package.json",
         "${relativeFile}",
         "--detectOpenHandles"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"]
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/${input:service}"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Nest Framework (DB)",
+      "name": "Debug Nest Framework",
       "runtimeExecutable": "npm",
-      "cwd": "${workspaceFolder}/db",
+      "cwd": "${workspaceFolder}/{input:service}",
       "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
       "autoAttachChildProcesses": true,
       "restart": true,
       "sourceMaps": true,
       "stopOnEntry": false,
       "console": "integratedTerminal"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "service",
+      "type": "pickString",
+      "description": "Select the service folder",
+      "options": ["db", "auth-service","letter-service"]
     }
   ]
 }
