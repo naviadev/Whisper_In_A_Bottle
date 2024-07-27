@@ -6,6 +6,7 @@
   "workspaces": [
     "client",
     "server",
+    "auth-service",
     "shared",
     "db"
   ],
