@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RegisterController } from '../register.controller';
-import { RegisterService } from '../register.service';
+import { RegisterController } from '../controllers/register.controller';
+import { RegisterService } from '../services/register.service';
 import { PlayerDTO } from '@shared/DTO/sharedDTO';
 
 // Mocking RegisterService

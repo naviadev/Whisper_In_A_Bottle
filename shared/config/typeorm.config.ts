@@ -1,22 +1,28 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import * as dotenv from 'dotenv';
-import * as fs from 'fs';
-import path from 'path';
+import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import * as dotenv from "dotenv";
+import * as fs from "fs";
+import path from "path";
 
-dotenv.config();
+dotenv.config({
+  path: path.resolve(process.cwd(), "../.env"),
+});
 
 const PORT = process.env.DB_PORT || "5432";
 
 const sslOptions =
-  process.env.DB_SSL === 'true'
+  process.env.DB_SSL === "true"
     ? {
         rejectUnauthorized: false,
-        ca: fs.readFileSync(path.resolve(process.cwd(),'../ap-northeast-2-bundle.pem')).toString(),
+        ca: fs
+          .readFileSync(
+            path.resolve(process.cwd(), "../ap-northeast-2-bundle.pem")
+          )
+          .toString(),
       }
     : false;
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
-  type: 'postgres',
+  type: "postgres",
   host: process.env.DB_HOST,
   port: parseInt(PORT, 10),
   username: process.env.DB_USER,

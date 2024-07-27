@@ -4,5 +4,7 @@
   "sourceRoot": "auth-service/src",
   "compilerOptions": {
     "deleteOutDir": true
-  }
+  },
+  "entryFile": "auth-service/src/main"
 }
+

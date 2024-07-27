@@ -3,6 +3,7 @@
   "packages": [
     "client",
     "auth-service",
+    "server",
     "shared",
     "db"
   ],
