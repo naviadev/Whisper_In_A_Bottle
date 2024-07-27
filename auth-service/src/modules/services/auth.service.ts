@@ -4,14 +4,14 @@ import { PlayerDTO } from '@shared/DTO/sharedDTO';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';
-import User from 'src/entity/User.entity';
+import User from '../../entity/User.entity';
 import { AuthInterface } from '../interfaces/authInterface';
 
 @Injectable()
 /**
  * * Class : AuthService
  * 작성자 : @moonhr / 2024-07-23
- * 편집자 : @moonhr / 2024-07-23
+ * 편집자 : @moonhr / 2024-07-24
  * Issue : WIB-6
  * @implements AuthInterface
  * @description 사용자 관련 로직 처리하는 서비스 클래스
