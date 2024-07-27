@@ -8,9 +8,9 @@ import { jwtInterface } from '../interfaces/jwtInterface';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly configService: ConfigService) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), //JWT추출방법
-      ignoreExpiration: false, //토큰만료 무시하지 않음
-      secretOrKey: configService.get<string>('JWT.SECRET.KEY'),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: configService.get('JWT_SECRET_KEY'),
     });
   }
 
