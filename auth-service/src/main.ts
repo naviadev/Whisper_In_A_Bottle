@@ -9,6 +9,7 @@ async function bootstrap() {
     origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
   });
 
   // WebSocket CORS 설정
