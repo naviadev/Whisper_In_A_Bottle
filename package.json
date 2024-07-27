@@ -5,7 +5,6 @@
   "main": "index.js",
   "workspaces": [
     "client",
-    "server",
     "auth-service",
     "shared",
     "db"

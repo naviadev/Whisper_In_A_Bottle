@@ -28,7 +28,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [process.cwd() + "/src/**/*.entity.{js,ts}"],
-  synchronize: process.env.TYPEORM_SYNC === "true",
+  entities: ["dist/**/*.entity.js"],
+  synchronize: process.env.TYPEORM_SYNC === 'true',
   ssl: sslOptions,
 };
