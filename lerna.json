@@ -2,6 +2,7 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": [
     "client",
+    "auth-service",
     "server",
     "shared",
     "db"
