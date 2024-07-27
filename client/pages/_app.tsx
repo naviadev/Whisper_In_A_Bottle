@@ -7,11 +7,16 @@ function App() {
 
   const login = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/auth/login", {
-        id: "test",
-        password: "password",
-      });
-      setToken(response.data.access_token);
+      console.log("login패치보냄");
+      const response = await axios.post(
+        "http://localhost:3001/auth/login",
+        {
+          id: "test",
+          password: "password",
+        },
+        { withCredentials: true },
+      );
+      localStorage.setItem("access_token", response.data.access_token);
       setMessage("Logged in successfully");
     } catch (error) {
       setMessage("Login failed");
