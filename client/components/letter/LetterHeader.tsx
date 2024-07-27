@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as styles from "../../../style/letterHeader.css";
+import * as styles from "../../style/letterHeader.css";
 const LetterHeader: React.FC = () => {
   return (
     <header className={styles.header}>

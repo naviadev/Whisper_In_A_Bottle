@@ -2,7 +2,7 @@ import React from "react";
 
 import useLetteContainerHooks from "@client/viewmodels/letter/letterMainViewModel";
 
-import * as styles from "../../../style/letterMain.css";
+import * as styles from "../../style/letterMain.css";
 
 import LetterListInnerContent from "./LetterContent";
 useLetteContainerHooks;
