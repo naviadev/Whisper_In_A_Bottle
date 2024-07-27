@@ -7,13 +7,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import User from '../entity/User.entity';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
-// import { JwtStrategy } from './strategies/jwt.strategy';
 import { AuthController } from './controllers/auth.controller';
 import { RegisterController } from './controllers/register.controller';
 import { ProtectedController } from './controllers/protected.controller';
-// import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ValidationService } from './services/validation.service';
-import { configOptions } from '@shared/config/env.config';
+import { configOptions } from '../config/env.config';
 
 /**
  * * Decorator : Module

@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { letterModule } from './modules/letter/letter.module';
 import { AuthModule } from './modules/auth.module';
-import { typeOrmConfig } from 'config/typeorm.config';
+import { typeOrmConfig } from './config/typeorm.config';
 @Module({
   imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule, letterModule],
   controllers: [AppController],
