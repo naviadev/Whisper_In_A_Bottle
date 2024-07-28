@@ -1,10 +1,10 @@
 import React from "react";
 
-import useRegisterViewModel from "@client/hooks/registerViewModel";
+import useRegisterHooks from "../../hooks/authView/useRegisterHooks";
 
 const RegisterForm = () => {
   const { setId, setPassword, setPasswordCheck, handleRegister } =
-    useRegisterViewModel();
+    useRegisterHooks();
   return (
     <div className="register-form">
       <input
