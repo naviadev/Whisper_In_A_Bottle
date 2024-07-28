@@ -6,9 +6,7 @@
   "workspaces": [
     "client",
     "auth-service",
-    "letter-service",
-    "shared",
-    "db"
+    "letter-service"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

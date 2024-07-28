@@ -3,8 +3,6 @@
   "packages": [
     "client",
     "auth-service",
-    "shared",
-    "db",
     "letter-service"
   ],
   "npmClient": "npm",
