@@ -25,7 +25,7 @@ const useLoginHooks = () => {
       return false;
     }
 
-    const success = await LoginAxios({ id: id, password: password });
+    const success = await LoginAxios({ playerID: id, password: password });
     if (success) {
       setIsLoggedIn(true);
       return true;

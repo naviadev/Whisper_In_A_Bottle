@@ -1,8 +1,8 @@
 import { renderHook, act } from "@testing-library/react";
 
-import loginViewModel from "../authView/loginViewModel";
+import useLoginHooks from "../authView/useLoginHooks";
 
-describe("loginViewModel.spec.ts", () => {
+describe("useLoginHooks.spec.ts", () => {
   const originalFetch = global.fetch;
 
   //! 테스트로 인한 오염된 global.fetch를 되돌린다.
@@ -11,7 +11,7 @@ describe("loginViewModel.spec.ts", () => {
   });
 
   it("Correct Update Id, Password", () => {
-    const { result } = renderHook(() => loginViewModel());
+    const { result } = renderHook(() => useLoginHooks());
 
     act(() => {
       result.current.setId("test@example.com");
@@ -24,7 +24,7 @@ describe("loginViewModel.spec.ts", () => {
 
   //* 유효하지 않는 이메일 형식
   it("Invalid Email (1)", async () => {
-    const { result } = renderHook(() => loginViewModel());
+    const { result } = renderHook(() => useLoginHooks());
     await act(async () => {
       result.current.setId("dummy");
       result.current.setPassword("1111");
@@ -36,7 +36,7 @@ describe("loginViewModel.spec.ts", () => {
 
   //* 아이디, 비번 공백
   it("Invalid Email (2)", async () => {
-    const { result } = renderHook(() => loginViewModel());
+    const { result } = renderHook(() => useLoginHooks());
     await act(async () => {
       await result.current.handleLogin();
     });
@@ -46,7 +46,7 @@ describe("loginViewModel.spec.ts", () => {
 
   //* 로그인 성공
   it("Valid Email", async () => {
-    const { result } = renderHook(() => loginViewModel());
+    const { result } = renderHook(() => useLoginHooks());
     const mockFetch = jest.fn().mockResolvedValue({
       ok: true,
       status: 200,

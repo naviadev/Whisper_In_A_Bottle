@@ -2,7 +2,7 @@ import { renderHook, act } from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
-import useRegisterViewModel from "../authView/registerViewModel";
+import useRegisterHooks from "../authView/useRegisterHooks";
 
 // Initialize a MockAdapter for axios
 let mockAxios: MockAdapter;
@@ -25,7 +25,7 @@ jest.mock("../../models/auth/register", () => ({
 
 describe("VM TEST", () => {
   it("ID PW CHECK", () => {});
-  const { result } = renderHook(() => useRegisterViewModel());
+  const { result } = renderHook(() => useRegisterHooks());
   act(() => {
     result.current.setId("test@example.com");
     result.current.setPassword("password");
@@ -34,7 +34,7 @@ describe("VM TEST", () => {
   expect(result.current.password).toBe("password");
 
   it("Invalid Email (1)", async () => {
-    const { result } = renderHook(() => useRegisterViewModel());
+    const { result } = renderHook(() => useRegisterHooks());
     await act(async () => {
       result.current.setId("dummy");
       result.current.setPassword("1111");
@@ -45,6 +45,6 @@ describe("VM TEST", () => {
   });
 
   it("success Register", async () => {
-    const { result } = renderHook(() => useRegisterViewModel());
+    const { result } = renderHook(() => useRegisterHooks());
   });
 });

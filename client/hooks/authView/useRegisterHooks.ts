@@ -4,7 +4,7 @@ import RegisterAxios from "../../models/services/registerAxios";
 import ValidateId from "../../models/validators/ValidateId";
 import ValidatePassword from "../../models/validators/ValidatePassword";
 
-const useRegisterViewModel = () => {
+const useRegisterHooks = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordCheck, setPasswordCheck] = useState<string>("");
@@ -22,7 +22,7 @@ const useRegisterViewModel = () => {
     }
 
     const success: boolean = await RegisterAxios({
-      id: id,
+      playerID: id,
       password: password,
     });
 
@@ -42,4 +42,4 @@ const useRegisterViewModel = () => {
   };
 };
 
-export default useRegisterViewModel;
+export default useRegisterHooks;
