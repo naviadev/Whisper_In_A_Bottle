@@ -1,6 +1,6 @@
 import { TPlayerID, TIp } from 'ts/types/types';
 
-export interface IIpDTO {
+export default interface IIpDTO {
   playerId: TPlayerID;
   ip: TIp;
 }
