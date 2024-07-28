@@ -1,13 +1,20 @@
 import React from "react";
+import Link from "next/link";
 
-const loginForm = () => {
+import { loginForm, input, button, link } from "../../style/loginForm.css";
+const LoginForm = () => {
   return (
-    <div className="login-form">
-      <input type="email" placeholder="test" />
-      <input type="password" placeholder="test" />
-      <button type="submit">send</button>
+    <div className={loginForm}>
+      <input type="email" placeholder="Email" className={input} />
+      <input type="password" placeholder="Password" className={input} />
+      <button type="submit" className={button}>
+        Send
+      </button>
+      <Link href="/register" className={link}>
+        처음이신가요? 회원가입
+      </Link>
     </div>
   );
 };
 
-export default loginForm;
+export default LoginForm;
