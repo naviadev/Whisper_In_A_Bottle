@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';
-import User from '../../entity/User.entity';
-import { AuthInterface } from '../../../ts/interfaces/auth/IAuth';
+import User from '../../../ts/entity/User.entity';
+import { IAuth } from 'ts/interfaces/auth/IAuth';
 
 @Injectable()
 /**
@@ -16,7 +16,7 @@ import { AuthInterface } from '../../../ts/interfaces/auth/IAuth';
  * @implements AuthInterface
  * @description 사용자 관련 로직 처리하는 서비스 클래스
  */
-export class AuthService implements AuthInterface {
+export class AuthService implements IAuth {
   constructor(
     private readonly jwtService: JwtService,
     private readonly validationService: ValidationService,
@@ -29,7 +29,7 @@ export class AuthService implements AuthInterface {
    * @param user PlayDTO타입
    * @returns 유효하면 true, 아니면 false
    */
-  validateDTO(user: PlayerDTO): boolean {
+  validateDTO(user: IPlayerDTO): boolean {
     return this.validationService.validateDTO(user);
   }
 
@@ -57,8 +57,8 @@ export class AuthService implements AuthInterface {
    * @param user PlayDTO타입
    * @returns JWT access_token
    */
-  async login(user: PlayerDTO): Promise<{ access_token: string }> {
-    const payload = { username: user.id, sub: user.id };
+  async login(user: IPlayerDTO): Promise<{ access_token: string }> {
+    const payload = { username: user.playerID, sub: user.playerID };
     return {
       access_token: this.jwtService.sign(payload),
     };

@@ -1,6 +1,6 @@
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { Request } from '@nestjs/common';
 
@@ -17,14 +17,17 @@ export class AuthController {
    * @description
    */
   @Post('login')
-  async login(@Body() data: PlayerDTO): Promise<{ access_token: string }> {
+  async login(@Body() data: IPlayerDTO): Promise<{ access_token: string }> {
     const isValid = await this.authService.validateDTO(data);
     if (!isValid) {
       throw new Error('유효하지 않음.');
     }
 
     // 사용자 검증 및 로그인 처리
-    const user = await this.authService.validateUser(data.id, data.password);
+    const user = await this.authService.validateUser(
+      data.playerID,
+      data.password,
+    );
     if (!user) {
       throw new Error('Invalid credentials');
     }
