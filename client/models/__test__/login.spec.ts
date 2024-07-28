@@ -1,6 +1,6 @@
 import User from "@shared/DTO/user";
 
-import { login } from "../auth/login";
+import LoginAxios from "../services/loginAxios";
 
 describe("login test", () => {
   const dummyUser: User = {
@@ -21,7 +21,7 @@ describe("login test", () => {
       ok: false,
     });
     global.fetch = mockFetch;
-    await expect(login(dummyUser)).rejects.toThrow(Error);
+    await expect(LoginAxios(dummyUser)).rejects.toThrow(Error);
   });
 
   //* 로그인 성공일때 테스트
@@ -32,7 +32,7 @@ describe("login test", () => {
     });
 
     global.fetch = mockFetch;
-    await expect(login(dummyUser)).resolves.toBe(true);
+    await expect(LoginAxios(dummyUser)).resolves.toBe(true);
   });
 
   //* 로그인 실패일때 테스트
@@ -43,6 +43,6 @@ describe("login test", () => {
     });
 
     global.fetch = mockFetch;
-    await expect(login(dummyUser)).resolves.toBe(false);
+    await expect(LoginAxios(dummyUser)).resolves.toBe(false);
   });
 });

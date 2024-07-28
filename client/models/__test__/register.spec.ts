@@ -2,7 +2,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import User from "@shared/DTO/user";
 
-import RegisterModel from "../auth/register";
+import RegisterAxios from "../services/registerAxios";
 
 describe("RegisterModel", () => {
   let mock: MockAdapter;
@@ -26,7 +26,7 @@ describe("RegisterModel", () => {
     };
     mock.onPost("http://localhost:3001/register").reply(200, true);
 
-    const result = await RegisterModel(registerData);
+    const result = await RegisterAxios(registerData);
     expect(result).toBe(true);
   });
 
@@ -37,7 +37,7 @@ describe("RegisterModel", () => {
     };
     mock.onPost("http://localhost:3001/register").reply(400, false);
 
-    const result = await RegisterModel(registerData);
+    const result = await RegisterAxios(registerData);
     expect(result).toBe(false);
   });
 
@@ -48,7 +48,7 @@ describe("RegisterModel", () => {
     };
     mock.onPost("http://localhost:3001/register").networkError();
 
-    const result = await RegisterModel(registerData);
+    const result = await RegisterAxios(registerData);
     expect(result).toBe(false);
   });
 });

@@ -1,6 +1,6 @@
 import User from "@shared/DTO/user";
 
-export const login = async (user: User): Promise<boolean> => {
+const LoginAxios = async (user: User): Promise<boolean> => {
   const res = await fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {
@@ -23,3 +23,5 @@ export const login = async (user: User): Promise<boolean> => {
     return false;
   }
 };
+
+export default LoginAxios;
