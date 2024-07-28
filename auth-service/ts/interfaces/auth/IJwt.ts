@@ -1,4 +1,4 @@
-export interface jwtInterface {
+export interface IJwt {
   sub: string;
   username: string;
 }

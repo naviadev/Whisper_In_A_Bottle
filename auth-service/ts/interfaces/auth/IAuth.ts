@@ -6,12 +6,12 @@ import User from 'src/entity/User.entity';
  * 작성일 : 2024-07-16
  * 최종 편집일 : 2024-07-23
  * 최종 편집자 : @moonhr
- * Issue : WIB-14
+ * Issue : 
  * @interface AuthService
  * @description : AuthService에 적용되는 메서드
  */
 
-export interface AuthInterface {
+export interface IAuth {
   validateDTO(Data: PlayerDTO): boolean;
   validateUser(
     id: string,

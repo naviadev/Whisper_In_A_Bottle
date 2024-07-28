@@ -2,7 +2,7 @@ import { JwtStrategy } from '../strategies/jwt.strategy';
 import { ConfigService } from '@nestjs/config';
 import { UnauthorizedException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { jwtInterface } from '../interfaces/jwtInterface';
+import { jwtInterface } from '../../../ts/interfaces/auth/IJwt';
 
 describe('JwtStrategy', () => {
   let jwtStrategy: JwtStrategy;

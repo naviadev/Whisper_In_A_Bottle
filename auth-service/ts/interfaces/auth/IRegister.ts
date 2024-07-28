@@ -8,7 +8,7 @@ import { PlayerDTO } from '@shared/DTO/sharedDTO';
  * @interface Auth
  * @description : Register Service에 상속하여 유효성 검사 및 데이터베이스에 추가
  */
-export interface RegisterInterface {
+export interface IRegister {
   validateDTO(Data: PlayerDTO): boolean;
   insertToDatabase(Data: PlayerDTO): Promise<boolean>;
 }
