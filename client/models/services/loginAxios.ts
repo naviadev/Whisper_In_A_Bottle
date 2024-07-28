@@ -1,6 +1,6 @@
-import User from "@shared/DTO/user";
+import IPlayerDTO from "../../ts/DTOs/IPlayerDTO";
 
-const LoginAxios = async (user: User): Promise<boolean> => {
+const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
   const res = await fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {

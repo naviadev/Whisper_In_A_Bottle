@@ -1,6 +1,6 @@
-import User from "@shared/DTO/user";
 import axios, { AxiosResponse } from "axios";
 
+import IPlayerDTO from "../../ts/DTOs/IPlayerDTO";
 /**
  * * Function : RegisterAxios
  * 작성자 : @naviadev / 2024-07-20
@@ -8,7 +8,7 @@ import axios, { AxiosResponse } from "axios";
  * Issue : WIB-14
  * @description : 'RESTful API 서버로 요청을 보내는 Axios 모듈'
  */
-const RegisterAxios = async (registerData: User): Promise<boolean> => {
+const RegisterAxios = async (registerData: IPlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       "http://localhost:3001/register",
