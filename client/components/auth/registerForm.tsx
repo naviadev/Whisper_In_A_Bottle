@@ -1,6 +1,6 @@
 import React from "react";
 
-import useRegisterViewModel from "@client/viewmodels/registerViewModel";
+import useRegisterViewModel from "@client/hooks/registerViewModel";
 
 const RegisterForm = () => {
   const { setId, setPassword, setPasswordCheck, handleRegister } =

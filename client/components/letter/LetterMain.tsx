@@ -1,6 +1,6 @@
 import React from "react";
 
-import useLetteContainerHooks from "@client/viewmodels/letter/letterMainViewModel";
+import useLetteContainerHooks from "@client/hooks/letter/letterMainViewModel";
 
 import * as styles from "../../style/letterMain.css";
 
