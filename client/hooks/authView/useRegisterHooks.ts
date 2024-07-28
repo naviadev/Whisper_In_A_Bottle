@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { ValidatePassword } from "@client/models/auth/ValidatePassword";
-import { ValidateId } from "@client/models/auth/ValidateId";
-import RegisterModel from "@client/models/auth/register";
+import RegisterAxios from "../../models/services/registerAxios";
+import ValidateId from "../../models/validators/ValidateId";
+import ValidatePassword from "../../models/validators/ValidatePassword";
 
 const useRegisterViewModel = () => {
   const [id, setId] = useState<string>("");
@@ -21,7 +21,7 @@ const useRegisterViewModel = () => {
       return false;
     }
 
-    const success: boolean = await RegisterModel({
+    const success: boolean = await RegisterAxios({
       id: id,
       password: password,
     });

@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 
-import loginViewModel from "../loginViewModel";
+import loginViewModel from "../authView/loginViewModel";
 
 describe("loginViewModel.spec.ts", () => {
   const originalFetch = global.fetch;

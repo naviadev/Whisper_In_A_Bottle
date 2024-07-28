@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { ValidateId } from "@client/models/auth/ValidateId";
-
-import { login } from "../models/auth/login";
+import ValidateId from "../../models/validators/ValidateId";
+import LoginAxios from "../../models/services/loginAxios";
 
 /**
  * * Login View와 Model(login, ValidateEmail) 상호 작용하는 ViewModel
@@ -10,7 +9,7 @@ import { login } from "../models/auth/login";
  * * UI와 독립적으로 테스트 할 수 있다는 장점이 있음
  * @returns React Hook
  */
-const useLoginViewModel = () => {
+const useLoginHooks = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -26,7 +25,7 @@ const useLoginViewModel = () => {
       return false;
     }
 
-    const success = await login({ id: id, password: password });
+    const success = await LoginAxios({ id: id, password: password });
     if (success) {
       setIsLoggedIn(true);
       return true;
@@ -46,4 +45,4 @@ const useLoginViewModel = () => {
   };
 };
 
-export default useLoginViewModel;
+export default useLoginHooks;
