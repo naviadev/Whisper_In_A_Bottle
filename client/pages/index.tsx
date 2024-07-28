@@ -1,9 +1,7 @@
 import React from "react";
 
-
-import RegisterForm from "./components/auth/registerForm";
+// import RegisterForm from "../components/auth/registerForm";
 import LettersPage from "./letterPage";
-
 
 const HomePage = () => {
   return (
