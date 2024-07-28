@@ -75,6 +75,7 @@ describe('letter-db.service 테스트', () => {
     await userStateRepository.save(user_1);
     await userStateRepository.save(user_2);
     await userStateRepository.save(user_3);
+    await userStateRepository.save(user_4);
 
     const letterState = new LetterState();
     letterState.letterId = 1;
