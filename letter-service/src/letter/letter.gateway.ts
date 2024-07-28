@@ -7,7 +7,7 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { LetterDto } from './dto/letter';
+import { LetterDto } from './dto/letter.dto';
 
 @WebSocketGateway()
 export class LetterGateway
@@ -69,22 +69,24 @@ export class LetterGateway
   }
 
   //* 메세지 보내는 Method
-  sendMessageToClient(userId: string, letter: LetterDto): void {
+  sendMessageToClient(userId: string, letter: LetterDto) {
     const clientIds = this.userIdKeyMap.get(userId);
 
     if (!clientIds) {
       // TODO: 보낼 때, 연결이 끊어진 것임으로 데이터베이스에 편지를 임시 저장하는 로직 추가
-      return;
+      return false;
     }
 
+    let isSuccess = false;
     //* 모든 접속한 페이지에 편지 보내기
     clientIds.forEach((clientId) => {
       const client = this.server.sockets.sockets.get(clientId);
       if (client) {
         client.emit('new_message', letter);
-      } else {
-        // TODO: 이것도 도중에 끊어진건가?
+        isSuccess = true;
       }
     });
+
+    return isSuccess;
   }
 }
