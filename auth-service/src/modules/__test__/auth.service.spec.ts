@@ -4,8 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import { ValidationService } from '../services/validation.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import User from '../../entity/User.entity';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import User from '../../../ts/entity/User.entity';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -38,13 +38,13 @@ describe('AuthService', () => {
 
   describe('validateDTO', () => {
     it('should return true for valid DTO', () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       jest.spyOn(validationService, 'validateDTO').mockReturnValue(true);
       expect(authService.validateDTO(playerDTO)).toBe(true);
     });
 
     it('should return false for invalid DTO', () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       jest.spyOn(validationService, 'validateDTO').mockReturnValue(false);
       expect(authService.validateDTO(playerDTO)).toBe(false);
     });
@@ -69,7 +69,7 @@ describe('AuthService', () => {
 
   describe('login', () => {
     it('should return a valid JWT token', async () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       const token = 'some-jwt-token';
       jest.spyOn(jwtService, 'sign').mockReturnValue(token);
 

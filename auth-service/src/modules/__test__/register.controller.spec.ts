@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RegisterController } from '../controllers/register.controller';
 import { RegisterService } from '../services/register.service';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 
 // Mocking RegisterService
 const mockRegisterService = () => ({
@@ -27,8 +27,8 @@ describe('RegisterController', () => {
 
   describe('registerUser', () => {
     it('should return true when DTO is valid and data is inserted successfully', async () => {
-      const dto: PlayerDTO = {
-        id: 'test@example.com',
+      const dto: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: 'password123',
       };
       (registerService.validateDTO as jest.Mock).mockReturnValue(true);
@@ -42,8 +42,8 @@ describe('RegisterController', () => {
     });
 
     it('should return false when DTO is valid but data insertion fails', async () => {
-      const dto: PlayerDTO = {
-        id: 'test@example.com',
+      const dto: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: 'password123',
       };
       (registerService.validateDTO as jest.Mock).mockReturnValue(true);
@@ -57,8 +57,8 @@ describe('RegisterController', () => {
     });
 
     it('should return false when DTO is invalid', async () => {
-      const dto: PlayerDTO = {
-        id: 'test@example.com',
+      const dto: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: 'password123',
       };
       (registerService.validateDTO as jest.Mock).mockReturnValue(false);

@@ -2,7 +2,7 @@ import { JwtStrategy } from '../strategies/jwt.strategy';
 import { ConfigService } from '@nestjs/config';
 import { UnauthorizedException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { jwtInterface } from '../../../ts/interfaces/auth/IJwt';
+import { IJwt } from 'ts/interfaces/auth/IJwt';
 
 describe('JwtStrategy', () => {
   let jwtStrategy: JwtStrategy;
@@ -32,13 +32,13 @@ describe('JwtStrategy', () => {
 
   describe('validate', () => {
     it('should return user object for valid payload', async () => {
-      const payload: jwtInterface = { username: 'testuser', sub: '12345' };
+      const payload: IJwt = { username: 'testuser', sub: '12345' };
       const result = await jwtStrategy.validate(payload);
       expect(result).toEqual({ userId: 'testuser' });
     });
 
     it('should throw UnauthorizedException for invalid payload', async () => {
-      const payload = { sub: '12345' } as jwtInterface;
+      const payload = { sub: '12345' } as IJwt;
 
       await expect(jwtStrategy.validate(payload)).rejects.toThrow(
         UnauthorizedException,

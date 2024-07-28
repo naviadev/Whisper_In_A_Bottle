@@ -1,5 +1,5 @@
 import { ValidationService } from '../services/validation.service';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 
 describe('ValidationService', () => {
   let validationService: ValidationService;
@@ -14,19 +14,19 @@ describe('ValidationService', () => {
 
   describe('validateDTO', () => {
     it('should return true for valid DTO', () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(true);
     });
 
     it('should return false for DTO missing id', () => {
-      const playerDTO = { password: 'password' } as PlayerDTO;
+      const playerDTO = { password: 'password' } as IPlayerDTO;
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(false);
     });
 
     it('should return false for DTO missing password', () => {
-      const playerDTO = { id: 'test' } as PlayerDTO;
+      const playerDTO = { playerID: 'test' } as IPlayerDTO;
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(false);
     });
@@ -35,13 +35,13 @@ describe('ValidationService', () => {
       const playerDTO = {
         id: 123,
         password: 'password',
-      } as unknown as PlayerDTO;
+      } as unknown as IPlayerDTO;
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(false);
     });
 
     it('should return false for DTO with non-string password', () => {
-      const playerDTO = { id: 'test', password: 123 } as unknown as PlayerDTO;
+      const playerDTO = { id: 'test', password: 123 } as unknown as IPlayerDTO;
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(false);
     });
@@ -49,19 +49,19 @@ describe('ValidationService', () => {
 
   describe('isPlayerDTO', () => {
     it('should return true for object with id and password', () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       const result = (validationService as any).isPlayerDTO(playerDTO);
       expect(result).toBe(true);
     });
 
     it('should return false for object missing id', () => {
-      const playerDTO = { password: 'password' } as PlayerDTO;
+      const playerDTO = { password: 'password' } as IPlayerDTO;
       const result = (validationService as any).isPlayerDTO(playerDTO);
       expect(result).toBe(false);
     });
 
     it('should return false for object missing password', () => {
-      const playerDTO = { id: 'test' } as PlayerDTO;
+      const playerDTO = { playerID: 'test' } as IPlayerDTO;
       const result = (validationService as any).isPlayerDTO(playerDTO);
       expect(result).toBe(false);
     });

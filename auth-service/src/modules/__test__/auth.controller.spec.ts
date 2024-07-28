@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from '../controllers/auth.controller';
 import { AuthService } from '../services/auth.service';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 import { ExecutionContext } from '@nestjs/common';
 
 describe('AuthController', () => {
@@ -47,7 +47,7 @@ describe('AuthController', () => {
 
   describe('login', () => {
     it('should return an access token for valid credentials', async () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       const token = { access_token: 'some-jwt-token' };
       jest.spyOn(authService, 'validateDTO').mockReturnValue(true);
       jest.spyOn(authService, 'validateUser').mockResolvedValue({ id: 'test' });
@@ -58,7 +58,7 @@ describe('AuthController', () => {
     });
 
     it('should throw an error for invalid DTO', async () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       jest.spyOn(authService, 'validateDTO').mockReturnValue(false);
 
       await expect(authController.login(playerDTO)).rejects.toThrow(
@@ -67,7 +67,7 @@ describe('AuthController', () => {
     });
 
     it('should throw an error for invalid credentials', async () => {
-      const playerDTO: PlayerDTO = { id: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
       jest.spyOn(authService, 'validateDTO').mockReturnValue(true);
       jest.spyOn(authService, 'validateUser').mockResolvedValue(null);
 

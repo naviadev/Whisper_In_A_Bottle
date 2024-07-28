@@ -1,10 +1,10 @@
 // validation.service.ts
 import { Injectable } from '@nestjs/common';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 
 @Injectable()
 export class ValidationService {
-  validateDTO(Data: PlayerDTO): boolean {
+  validateDTO(Data: IPlayerDTO): boolean {
     const dataType = this.isPlayerDTO(Data);
 
     if (dataType) {
@@ -16,7 +16,7 @@ export class ValidationService {
     }
   }
 
-  private isPlayerDTO(Data: PlayerDTO) {
+  private isPlayerDTO(Data: IPlayerDTO) {
     return 'id' in Data && 'password' in Data;
   }
 }

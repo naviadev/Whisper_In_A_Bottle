@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { RegisterService } from '../services/register.service';
-import User from '../../entity/User.entity';
-import { PlayerDTO } from '@shared/DTO/sharedDTO';
+import User from '../../../ts/entity/User.entity';
+import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 
 // Mocking Repository
 const mockRepository = () => ({
@@ -30,16 +30,16 @@ describe('RegisterService', () => {
 
   describe('validateDTO', () => {
     it('should return true for valid DTO', () => {
-      const validDTO: PlayerDTO = {
-        id: 'test@example.com',
+      const validDTO: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: 'password123',
       };
       expect(service.validateDTO(validDTO)).toBe(true);
     });
 
     it('should return false for invalid DTO', () => {
-      const invalidDTO: PlayerDTO = {
-        id: 'test@example.com',
+      const invalidDTO: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: '123',
       }; // Invalid password type
       expect(service.validateDTO(invalidDTO)).toBe(true);
@@ -48,12 +48,12 @@ describe('RegisterService', () => {
 
   describe('insertToDatabase', () => {
     it('should successfully insert data into the database', async () => {
-      const dto: PlayerDTO = {
-        id: 'test@example.com',
+      const dto: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: 'password123',
       };
       const entity = new User();
-      entity.id = dto.id;
+      entity.id = dto.playerID;
       entity.password = dto.password;
 
       repository.create = jest.fn().mockReturnValue(entity);
@@ -66,8 +66,8 @@ describe('RegisterService', () => {
     });
 
     it('should handle errors when inserting data', async () => {
-      const dto: PlayerDTO = {
-        id: 'test@example.com',
+      const dto: IPlayerDTO = {
+        playerID: 'test@example.com',
         password: 'password123',
       };
       repository.create = jest.fn().mockReturnValue(dto);
