@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import io, { Socket } from 'socket.io-client';
 import { LetterGateway } from '../letter.gateway';
-import { LetterDto } from '../dto/letter';
+import { LetterDto } from '../dto/letter.dto';
 
 describe('LetterGateway', () => {
   let app: INestApplication;
