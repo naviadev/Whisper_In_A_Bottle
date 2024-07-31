@@ -1,7 +1,7 @@
 import IPlayerDTO from "../../ts/DTOs/IPlayerDTO";
 
 const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
-  const res = await fetch("http://localhost:3000/login", {
+  const response = await fetch("http://localhost:3001/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -9,15 +9,17 @@ const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
     body: JSON.stringify(user),
   });
 
-  //* res.ok인 경우는 다음과 같습니다
+  //* response.ok인 경우는 다음과 같습니다
   //* 1. Http Status Code 200 ~ 299
   //* 2. 네트워크 오류가 없이 옳바르게 전송되었을 떄
   //* 둘 중 하나라도 만족하면 true입니다.
-  if (!res.ok) {
+  if (!response.ok) {
     throw new Error("Network Error");
   }
 
-  if (res.status === 200) {
+  if (response.status === 200) {
+    const { token } = await response.json();
+    localStorage.setItem("token", token);
     return true;
   } else {
     return false;

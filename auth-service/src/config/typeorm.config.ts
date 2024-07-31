@@ -23,7 +23,7 @@ const sslOptions =
         rejectUnauthorized: false,
         ca: fs
           .readFileSync(
-            path.resolve(process.cwd(), '../ap-northeast-2-bundle.pem'),
+            path.resolve(process.cwd(), '../.ap-northeast-2-bundle.pem'),
           )
           .toString(),
       }

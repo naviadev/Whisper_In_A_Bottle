@@ -1,7 +1,6 @@
 import React from "react";
 
-import useLetteContainerHooks from "@client/hooks/letter/letterMainViewModel";
-
+import useLetteContainerHooks from "../../hooks/letterView/useLetterHooks";
 import * as styles from "../../style/letterMain.css";
 
 import LetterListInnerContent from "./LetterContent";

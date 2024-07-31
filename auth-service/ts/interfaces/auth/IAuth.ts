@@ -11,7 +11,7 @@ import User from 'ts/entity/User.entity';
  * @description : AuthService에 적용되는 메서드
  */
 
-export default interface IAuth {
+interface IAuth {
   validateDTO(Data: IPlayerDTO): boolean;
   validateUser(
     id: string,
@@ -20,3 +20,4 @@ export default interface IAuth {
   login(user: IPlayerDTO): Promise<{ access_token: string }>;
   validateToken(token: string): Promise<boolean>;
 }
+export default IAuth;
