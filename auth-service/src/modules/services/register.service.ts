@@ -28,7 +28,7 @@ export class RegisterService implements IRegister {
   async insertToDatabase(Data: IPlayerDTO): Promise<boolean> {
     try {
       const existingUser = await this.registerRepository.findOneBy({
-        id: Data.playerID,
+        id: Data.id,
       });
 
       if (existingUser) {

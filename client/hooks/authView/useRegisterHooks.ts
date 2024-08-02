@@ -22,7 +22,7 @@ const useRegisterHooks = () => {
     }
 
     const success: boolean = await RegisterAxios({
-      playerID: id,
+      id: id,
       password: password,
     });
 

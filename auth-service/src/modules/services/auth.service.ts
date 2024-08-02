@@ -58,7 +58,7 @@ export class AuthService implements IAuth {
    * @returns JWT access_token
    */
   async login(user: IPlayerDTO): Promise<{ access_token: string }> {
-    const payload = { username: user.playerID, sub: user.playerID };
+    const payload = { username: user.id, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
     };
