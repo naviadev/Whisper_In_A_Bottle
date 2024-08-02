@@ -24,10 +24,7 @@ export class AuthController {
     }
 
     // 사용자 검증 및 로그인 처리
-    const user = await this.authService.validateUser(
-      data.playerID,
-      data.password,
-    );
+    const user = await this.authService.validateUser(data.id, data.password);
     if (!user) {
       throw new Error('Invalid credentials');
     }

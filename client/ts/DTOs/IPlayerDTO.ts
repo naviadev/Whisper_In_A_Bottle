@@ -1,7 +1,7 @@
 import { TPlayerID, TPassword } from "../types/types";
 
 interface IPlayerDTO {
-  playerID: TPlayerID;
+  id: TPlayerID;
   password: TPassword;
 }
 

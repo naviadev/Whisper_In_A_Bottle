@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+import ROUTE_PATH from "../../ts/enums/PATH.enum";
 import ValidateId from "../../models/validators/ValidateId";
 import LoginAxios from "../../models/services/loginAxios";
 
@@ -30,13 +31,13 @@ const useLoginHooks = () => {
       return false;
     }
 
-    const success = await LoginAxios({ playerID: id, password: password });
+    const success = await LoginAxios({ id: id, password: password });
     if (success) {
       setIsLoggedIn(true);
-      router.push("/letterView");
+      router.push(ROUTE_PATH.__LETTER_VIEW);
       return true;
     } else {
-      console.error("Login failed");
+      console.error("로그인 실패");
       return false;
     }
   };
