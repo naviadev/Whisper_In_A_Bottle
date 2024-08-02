@@ -49,7 +49,7 @@ const LetterMain: React.FC = () => {
   const handleCheckReceivedMessage = () => {
     if (receivedMessage) {
       isSetLetterContainerContentMode("LetterList");
-      setReceivedMessage(null); // 수신된 메시지 초기화
+      setReceivedMessage(null);
     }
   };
 
@@ -87,7 +87,7 @@ const LetterMain: React.FC = () => {
         >
           수신 확인
         </button>
-        <div>수신된 편지 : 1</div>
+        {receivedMessage && <div>수신된 편지 : 1</div>}
       </div>
     </main>
   );
