@@ -5,6 +5,14 @@ import { UserState } from '../entities/user-state.entity';
 import { Letter } from '../entities/letter.entity';
 import { LetterDbService } from '../letter-db.service';
 import { Repository } from 'typeorm';
+import {
+  letter,
+  letterState,
+  user_1,
+  user_2,
+  user_3,
+  user_4,
+} from './letter-dummyData';
 
 describe('letter-db.service 테스트', () => {
   let service: LetterDbService;
@@ -39,6 +47,13 @@ describe('letter-db.service 테스트', () => {
     );
 
     service = module.get<LetterDbService>(LetterDbService);
+
+    await userStateRepository.save(user_1);
+    await userStateRepository.save(user_2);
+    await userStateRepository.save(user_3);
+    await userStateRepository.save(user_4);
+    await letterStateRepository.save(letterState);
+    await letterRepository.save(letter);
   });
 
   afterAll(async () => {
@@ -48,49 +63,12 @@ describe('letter-db.service 테스트', () => {
   });
 
   it('편지 안받는 사용자 찾기', async () => {
-    const user_1 = new UserState();
-    user_1.userId = '1';
-    user_1.receiveTime = 100;
-    user_1.lastLoginIp = '192.0.0.1';
-    user_1.lastLoginTime = 2000;
-
-    const user_2 = new UserState();
-    user_2.userId = '2';
-    user_2.receiveTime = 200;
-    user_2.lastLoginIp = '192.0.0.2';
-    user_2.lastLoginTime = 3000;
-
-    const user_3 = new UserState();
-    user_3.userId = '3';
-    user_3.receiveTime = 1000;
-    user_3.lastLoginIp = '192.0.0.3';
-    user_3.lastLoginTime = 400;
-
-    const user_4 = new UserState();
-    user_4.userId = '4';
-    user_4.receiveTime = 500;
-    user_4.lastLoginIp = '192.0.0.4';
-    user_4.lastLoginTime = 500;
-
-    await userStateRepository.save(user_1);
-    await userStateRepository.save(user_2);
-    await userStateRepository.save(user_3);
-    await userStateRepository.save(user_4);
-
-    const letterState = new LetterState();
-    letterState.letterId = 1;
-    letterState.receiverId = '2';
-    letterState.sendTime = 5000;
-    letterState.senderId = '1';
-
-    await letterStateRepository.save(letterState);
-
     expect(await service.getUserWithLongestReceiveTime('1')).toEqual(user_3);
   });
 
   it('saveLetterMethod Test', async () => {
     expect(await service.saveLetter('hello')).toEqual({
-      letterId: 1,
+      letterId: 2,
       content: 'hello',
     });
   });
@@ -104,5 +82,18 @@ describe('letter-db.service 테스트', () => {
   it('deleteLetterState Test: 해당 id가 존재하지 않을 때', async () => {
     const result = await service.deleteLetterState(1);
     expect(result.affected).toBe(0);
+  });
+
+  it('getLetterUsingUserId 해당 userId에 등록된 편지 찾기', async () => {
+    await letterStateRepository.save(letterState);
+    const result = await service.getLetterUsingUserId('2');
+
+    const expectData = {
+      id: letterState.senderId,
+      body: letter.content,
+      time: letterState.sendTime,
+    };
+
+    expect(result).toEqual(expectData);
   });
 });
