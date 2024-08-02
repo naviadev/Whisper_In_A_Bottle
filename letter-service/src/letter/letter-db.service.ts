@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { LetterState } from './entities/letter-state.entity'; // 실제 경로로 변경
 import { UserState } from './entities/user-state.entity'; // 실제 경로로 변경
 import { Letter } from './entities/letter.entity';
+import { LetterDto } from './dto/letter.dto';
 
 @Injectable()
 export class LetterDbService {
@@ -60,5 +61,27 @@ export class LetterDbService {
 
   async deleteLetterState(letterId: number) {
     return await this.letterStateRepository.delete({ letterId });
+  }
+
+  async getLetterUsingUserId(receiverId: string) {
+    const letterStates = await this.letterStateRepository.findOne({
+      where: { receiverId },
+    });
+
+    if (letterStates === null) {
+      return null;
+    }
+
+    const letter = await this.letterRepository.findOne({
+      where: { letterId: letterStates.letterId },
+    });
+
+    const letterDto: Omit<LetterDto, 'ip'> = {
+      id: letterStates.senderId,
+      body: letter.content,
+      time: letterStates.sendTime,
+    };
+
+    return letterDto;
   }
 }
