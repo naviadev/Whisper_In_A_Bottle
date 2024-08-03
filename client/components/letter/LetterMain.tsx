@@ -1,13 +1,24 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from "react";
-import axios, { AxiosResponse } from "axios";
-import { socketDTO } from "ts/DTOs/socketDTO";
+// import { socketDTO } from "ts/DTOs/socketDTO";
 
 import { useSocket } from "../../components/SocketContext";
 import useLetteContainerHooks from "../../hooks/letterView/useLetterHooks";
 import * as styles from "../../style/letterMain.css";
 
 import LetterListInnerContent from "./LetterContent";
+
+//저장된 이름의 쿠키를 가져오는 기능
+const getCookie = (name: string) => {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [key, value] = cookie.split("=");
+    if (key === name) {
+      return value;
+    }
+  }
+  return null;
+};
 
 /**
  * @ReactComponent : LetterMain
@@ -26,63 +37,29 @@ const LetterMain: React.FC = () => {
   const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
   const socket = useSocket();
 
-  socket?.on("connect", () => {
-    console.log("Connected to Socket.io server");
-    const socketId = socket.id;
-    console.log("Socket ID:", socketId);
-
-    // Socket ID를 서버에 POST 요청으로 전송
-    sendSocketIdToServer(socketId);
-  });
-
-  //TODO id담아 서버에 저장된 편지 post로 요청
-  // 사용자 id와 클라이언트id를 보내주어야함.
-  // 사용자 id는 토큰에 존재함. decode로 출력가능.
-  // HTTPespresso참일 시 편지 감지
-  //[ ] 클라이언트 id
-  //[ ] 사용자 id
-  const HTTPespresso = async ({
-    socketId,
-    Id,
-  }: socketDTO): Promise<boolean> => {
-    try {
-      const res: AxiosResponse = await axios.post(
-        "http://localhost:3001/letter/espresso",
-        socketId,
-        Id
-      );
-      if (res.status === 200) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (err) {
-      console.error(err);
-      return false;
-    }
-  };
-
-  //TODO post(latte) 요청
   //작성된 편지 보냄
   useEffect(() => {
     if (socket) {
+      //유저의 토큰을 initial_Data로 보냄
+      const userToken = getCookie("token");
+      socket.emit("initial_Data", userToken);
+
       // 수신된 메시지 감지
-      socket.on("new_message", (message) => {
+      socket.on("latte", (message) => {
         setReceivedMessage(message);
       });
     }
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
-      socket?.off("data_received");
+      socket?.off("latte");
       socket?.disconnect();
     };
   }, [socket]);
 
-  //* 애는 필요없음 http post가 할거임
   const handleSendMessage = () => {
     if (socket && message.trim()) {
-      socket.emit("send_message", { content: message });
+      socket.emit("espresso", { content: message });
       setMessage("");
     }
   };
