@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { io, Socket } from "socket.io-client";
 
-import { useSocket } from "../../components/SocketContext";
+// import { useSocket } from "../../components/SocketContext";
 import useLetteContainerHooks from "../../hooks/letterView/useLetterHooks";
 import * as styles from "../../style/letterMain.css";
 
@@ -9,7 +10,7 @@ import LetterListInnerContent from "./LetterContent";
 /**
  * @ReactComponent : LetterMain
  * 작성자 : @naviadev / 2024-07-23
- * 편집자 : @moonhr / 2024-07-31
+ * 편집자 : @moonhr / 2024-08-02
  * Issue : WIB-28
  * @return : React.FC
  * @description : Letter 화면에서 출력되는 content 영역. 임시 테스트 컴포넌트로,
@@ -19,25 +20,27 @@ import LetterListInnerContent from "./LetterContent";
 const LetterMain: React.FC = () => {
   const { isLetterContainerContentMode, isSetLetterContainerContentMode } =
     useLetteContainerHooks();
-  const socket = useSocket();
+  const [socket, setSocket] = useState<Socket | null>(null);
   const [message, setMessage] = useState("");
   const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (socket) {
+    const newSocket: Socket = io();
+    setSocket(newSocket);
+
+    if (newSocket) {
       // 수신된 메시지 감지
-      socket.on("receive_message", (message) => {
+      newSocket.on("receive_message", (message) => {
         setReceivedMessage(message);
       });
     }
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
-      if (socket) {
-        socket.off("receive_message");
-      }
+      newSocket.off("receive_message");
+      newSocket.disconnect();
     };
-  }, [socket]);
+  }, []);
 
   const handleSendMessage = () => {
     if (socket && message.trim()) {
