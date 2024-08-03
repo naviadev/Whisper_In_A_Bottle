@@ -57,11 +57,19 @@ export class AuthService implements IAuth {
    * @param user PlayDTO타입
    * @returns JWT access_token
    */
-  async login(user: IPlayerDTO): Promise<{ access_token: string }> {
+  async login(
+    user: IPlayerDTO,
+  ): Promise<{ token: string; cookieOptions: any }> {
     const payload = { username: user.id, sub: user.id };
-    return {
-      access_token: this.jwtService.sign(payload),
+    const token = this.jwtService.sign(payload);
+
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production' || false,
+      maxAge: 3600000,
     };
+    console.log('토큰 출력 직전');
+    return { token, cookieOptions };
   }
 
   /**
