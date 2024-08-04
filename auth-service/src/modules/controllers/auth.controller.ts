@@ -1,8 +1,16 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Res,
+  UseGuards,
+  HttpStatus,
+} from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { Request } from '@nestjs/common';
+import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -17,22 +25,29 @@ export class AuthController {
    * @description
    */
   @Post('login')
-  async login(@Body() data: IPlayerDTO): Promise<{ access_token: string }> {
-    const isValid = await this.authService.validateDTO(data);
-    if (!isValid) {
-      throw new Error('유효하지 않음.');
-    }
+  async login(
+    @Body() data: IPlayerDTO,
+    @Res() res: Response,
+  ): Promise<VideoDecoderConfig> {
+    try {
+      const user = await this.authService.validateUser(data.id, data.password);
+      if (!user) {
+        // 사용자가 존재하지 않으면 에러 반환
+        res
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ success: false, message: 'Invalid credentials' });
+        return;
+      }
 
-    // 사용자 검증 및 로그인 처리
-    const user = await this.authService.validateUser(
-      data.playerID,
-      data.password,
-    );
-    if (!user) {
-      throw new Error('Invalid credentials');
-    }
+      const { token, cookieOptions } = await this.authService.login(data);
 
-    return this.authService.login(data);
+      res.cookie('token', token, cookieOptions);
+      res.status(HttpStatus.OK).json({ success: true, token });
+    } catch (error) {
+      res
+        .status(HttpStatus.UNAUTHORIZED)
+        .json({ success: false, message: 'Invalid credentials' });
+    }
   }
 
   /**

@@ -7,3 +7,4 @@
 **/*/*.pem
 ap-northeast-2-bundle.pem
 package-lock.json
+.ap-northeast-2-bundle.pem

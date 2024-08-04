@@ -1,15 +1,11 @@
 import React from "react";
 
-
-import RegisterForm from "./components/auth/registerForm";
-import LettersPage from "./letterPage";
-
+import LoginForm from "../components/auth/loginForm";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Welcome to the Letter Sending App</h1>
-      <LettersPage />
+      <LoginForm />
     </div>
   );
 };

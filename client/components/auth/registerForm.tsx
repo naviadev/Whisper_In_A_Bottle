@@ -1,40 +1,34 @@
 import React from "react";
 
-import useRegisterViewModel from "@client/hooks/registerViewModel";
+import useRegisterHooks from "../../hooks/authView/useRegisterHooks";
+import { registerForm, input, button } from "../../style/registerForm.css";
 
 const RegisterForm = () => {
   const { setId, setPassword, setPasswordCheck, handleRegister } =
-    useRegisterViewModel();
+    useRegisterHooks();
+
   return (
-    <div className="register-form">
+    <div className={registerForm}>
       <input
         type="text"
-        placeholder="id"
-        onChange={(e) => {
-          setId(e.target.value);
-        }}
+        placeholder="ID"
+        className={input}
+        onChange={(e) => setId(e.target.value)}
       />
       <input
         type="password"
-        placeholder="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+        placeholder="Password"
+        className={input}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <input
         type="password"
-        placeholder="passwordCheck"
-        onChange={(e) => {
-          setPasswordCheck(e.target.value);
-        }}
+        placeholder="Confirm Password"
+        className={input}
+        onChange={(e) => setPasswordCheck(e.target.value)}
       />
-      <button
-        type="button"
-        onClick={() => {
-          handleRegister();
-        }}
-      >
-        send
+      <button type="button" className={button} onClick={() => handleRegister()}>
+        Register
       </button>
     </div>
   );
