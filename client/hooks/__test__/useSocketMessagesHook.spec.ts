@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import { jwtDecode } from "jwt-decode";
-import { useSocket } from "components/SocketContext";
+import { useSocket } from "components/socket/SocketContext";
 import { getCookie } from "src/getCookie";
 import useSocketMessagesHook from "hooks/letterView/useSocketMessagesHook";
 

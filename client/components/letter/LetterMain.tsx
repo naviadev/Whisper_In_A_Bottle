@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // eslint-disable-next-line import/no-unresolved
 import useSocketMessagesHook from "hooks/letterView/useSocketMessagesHook";
 
-import { useSocket } from "../../components/SocketContext";
+import { useSocket } from "../socket/SocketContext";
 import useLetteContainerHooks from "../../hooks/letterView/useLetterHooks";
 import * as styles from "../../style/letterMain.css";
 
