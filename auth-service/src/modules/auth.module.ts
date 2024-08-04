@@ -9,7 +9,6 @@ import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthController } from './controllers/auth.controller';
 import { RegisterController } from './controllers/register.controller';
-import { ProtectedController } from './controllers/protected.controller';
 import { ValidationService } from './services/validation.service';
 import { configOptions } from '../config/env.config';
 
@@ -35,7 +34,7 @@ import { configOptions } from '../config/env.config';
     }),
     ConfigModule.forRoot(configOptions),
   ],
-  controllers: [AuthController, RegisterController, ProtectedController],
+  controllers: [AuthController, RegisterController],
   providers: [AuthService, RegisterService, ValidationService],
 })
 export class AuthModule {}

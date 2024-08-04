@@ -1,15 +1,39 @@
 import React from "react";
 import Link from "next/link";
+// eslint-disable-next-line import/no-unresolved
+import useLoginHooks from "hooks/authView/useLoginHooks";
 
 import { loginForm, input, button, link } from "../../style/loginForm.css";
+
 const LoginForm = () => {
+  const { id, password, setId, setPassword, handleLogin } = useLoginHooks();
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await handleLogin();
+  };
+
   return (
     <div className={loginForm}>
-      <input type="email" placeholder="id" className={input} />
-      <input type="password" placeholder="Password" className={input} />
-      <button type="submit" className={button}>
-        Send
-      </button>
+      <form onSubmit={onSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          className={input}
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className={input}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className={button}>
+          Send
+        </button>
+      </form>
       <Link href="/register" className={link}>
         처음이신가요? 회원가입
       </Link>

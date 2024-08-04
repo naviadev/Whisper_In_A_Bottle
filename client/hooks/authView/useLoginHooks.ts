@@ -35,6 +35,7 @@ const useLoginHooks = () => {
     if (success) {
       setIsLoggedIn(true);
       router.push(ROUTE_PATH.__LETTER_VIEW);
+
       return true;
     } else {
       console.error("로그인 실패");
