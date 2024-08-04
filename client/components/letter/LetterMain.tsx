@@ -1,6 +1,6 @@
-/* eslint-disable import/no-unresolved */
-import React, { useState, useEffect } from "react";
-// import { socketDTO } from "ts/DTOs/socketDTO";
+import React, { useState } from "react";
+// eslint-disable-next-line import/no-unresolved
+import useSocketMessagesHook from "hooks/letterView/useSocketMessagesHook";
 
 import { useSocket } from "../../components/SocketContext";
 import useLetteContainerHooks from "../../hooks/letterView/useLetterHooks";
@@ -8,22 +8,10 @@ import * as styles from "../../style/letterMain.css";
 
 import LetterListInnerContent from "./LetterContent";
 
-//저장된 이름의 쿠키를 가져오는 기능
-const getCookie = (name: string) => {
-  const cookies = document.cookie.split("; ");
-  for (const cookie of cookies) {
-    const [key, value] = cookie.split("=");
-    if (key === name) {
-      return value;
-    }
-  }
-  return null;
-};
-
 /**
  * @ReactComponent : LetterMain
  * 작성자 : @naviadev / 2024-07-23
- * 편집자 : @moonhr / 2024-08-02
+ * 편집자 : @moonhr / 2024-08-03
  * Issue : WIB-28
  * @return : React.FC
  * @description : Letter 화면에서 출력되는 content 영역. 임시 테스트 컴포넌트로,
@@ -33,29 +21,9 @@ const getCookie = (name: string) => {
 const LetterMain: React.FC = () => {
   const { isLetterContainerContentMode, isSetLetterContainerContentMode } =
     useLetteContainerHooks();
+  const { receivedMessage, setReceivedMessage } = useSocketMessagesHook();
   const [message, setMessage] = useState("");
-  const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
   const socket = useSocket();
-
-  //작성된 편지 보냄
-  useEffect(() => {
-    if (socket) {
-      //유저의 토큰을 initial_Data로 보냄
-      const userToken = getCookie("token");
-      socket.emit("initial_Data", userToken);
-
-      // 수신된 메시지 감지
-      socket.on("latte", (message) => {
-        setReceivedMessage(message);
-      });
-    }
-
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      socket?.off("latte");
-      socket?.disconnect();
-    };
-  }, [socket]);
 
   const handleSendMessage = () => {
     if (socket && message.trim()) {
@@ -70,7 +38,6 @@ const LetterMain: React.FC = () => {
       setReceivedMessage(null);
     }
   };
-
   return (
     <main className={styles.container}>
       <div className={styles.contentContainer}>
