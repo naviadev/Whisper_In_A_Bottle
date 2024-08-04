@@ -1,6 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
-import IPlayerDTO from "../../ts/DTOs/IPlayerDTO";
+import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
+import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
+
 /**
  * * Function : RegisterAxios
  * 작성자 : @naviadev / 2024-07-20
@@ -11,7 +13,7 @@ import IPlayerDTO from "../../ts/DTOs/IPlayerDTO";
 const RegisterAxios = async (registerData: IPlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
-      "http://localhost:3001/register",
+      REQUEST_PORT.__REGISTER_PORT,
       registerData,
     );
 
