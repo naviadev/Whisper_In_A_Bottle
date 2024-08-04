@@ -17,7 +17,7 @@ interface IAuth {
     id: string,
     pass: string,
   ): Promise<Omit<User, 'password'> | null>;
-  login(user: IPlayerDTO): Promise<{ access_token: string }>;
+  login(user: IPlayerDTO): Promise<{ token: string; cookieOptions: any }>;
   validateToken(token: string): Promise<boolean>;
 }
 export default IAuth;
