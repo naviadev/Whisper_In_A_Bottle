@@ -6,3 +6,4 @@
 .env
 **/*/*.pem
 ap-northeast-2-bundle.pem
+package-lock.json
