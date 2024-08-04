@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { LetterController } from './letter.controller';
-import { LetterService } from './letter.service';
+import { LetterLogicService } from './letter-logic.service';
 import { LetterGateway } from './letter.gateway';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LetterState } from './entities/letter-state.entity';
@@ -13,7 +12,6 @@ import { LetterDbService } from './letter-db.service';
     TypeOrmModule.forRoot(typeOrmConfig),
     TypeOrmModule.forFeature([LetterState, UserState, Letter]),
   ],
-  controllers: [LetterController],
-  providers: [LetterGateway, LetterService, LetterDbService],
+  providers: [LetterGateway, LetterDbService, LetterLogicService],
 })
 export class LetterModule {}
