@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import RegisterAxios from "../../models/services/registerAxios";
+import RegisterAxios from "../../models/services/auth/registerAxios";
 import ValidateId from "../../models/validators/ValidateId";
 import ValidatePassword from "../../models/validators/ValidatePassword";
 

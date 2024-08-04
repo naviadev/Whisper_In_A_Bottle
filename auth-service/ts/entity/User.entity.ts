@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
-
-@Entity('users')
+import TABLE from 'ts/enums/TABLE_NAME.enum';
+@Entity(TABLE.__USER)
 class User {
   @PrimaryColumn()
   id: string;

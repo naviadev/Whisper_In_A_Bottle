@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import ROUTE_PATH from "../../ts/enums/PATH.enum";
 import ValidateId from "../../models/validators/ValidateId";
-import LoginAxios from "../../models/services/loginAxios";
+import LoginAxios from "../../models/services/auth/loginAxios";
 
 /**
  * * Function : useLoginHooks

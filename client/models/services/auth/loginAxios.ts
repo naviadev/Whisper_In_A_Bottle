@@ -1,7 +1,8 @@
-import IPlayerDTO from "../../ts/DTOs/IPlayerDTO";
+import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
+import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
 
 const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
-  const response = await fetch("http://localhost:3001/login", {
+  const response = await fetch(REQUEST_PORT.__LOGIN_PORT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
