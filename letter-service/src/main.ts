@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CustomIoAdapter } from './letter/custom-io-adapter';
 
+import { setupSwagger } from './swagger.setup';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -13,6 +15,7 @@ async function bootstrap() {
   //WebSocket CORS 설정
   app.useWebSocketAdapter(new CustomIoAdapter(app));
 
+  setupSwagger(app);
   await app.listen(3002);
 }
 bootstrap();
