@@ -3,8 +3,8 @@ import { Socket } from "net";
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { Server as IOServer } from "socket.io";
-// eslint-disable-next-line import/no-unresolved
-import { initSocket } from "components/socket/socketInstance";
+
+import { initSocket } from "../../components/socket/socketInstance";
 
 interface SocketServer extends HttpServer {
   io?: IOServer;

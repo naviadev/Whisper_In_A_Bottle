@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
-// eslint-disable-next-line import/no-unresolved
-import useLoginHooks from "hooks/authView/useLoginHooks";
 
+import useLoginHooks from "../../hooks/authView/useLoginHooks";
 import { loginForm, input, button, link } from "../../style/loginForm.css";
 
 const LoginForm = () => {
@@ -17,7 +16,7 @@ const LoginForm = () => {
     <div className={loginForm}>
       <form onSubmit={onSubmit}>
         <input
-          type="email"
+          type="text"
           placeholder="Email"
           className={input}
           value={id}
