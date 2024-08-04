@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { LetterState } from './entities/letter-state.entity'; // 실제 경로로 변경
 import { UserState } from './entities/user-state.entity'; // 실제 경로로 변경
 import { Letter } from './entities/letter.entity';
-import { LetterDto } from './dto/letter.dto';
 
 @Injectable()
 export class LetterDbService {
@@ -18,70 +17,56 @@ export class LetterDbService {
   ) {}
 
   //* 편지를 받지 못하는 사용자 찾기.
-  async getUserWithLongestReceiveTime(
+  getUserWithLongestReceiveTime(
     excludeUserId: string,
-  ): Promise<UserState> {
+  ): Promise<UserState | null> {
     const subQuery = this.letterStateRepository
       .createQueryBuilder('letter_state')
       .select('receiverId');
 
-    const user = await this.userStateRepository
+    return this.userStateRepository
       .createQueryBuilder('user')
       .where(`user.userId NOT IN (${subQuery.getQuery()})`)
       .andWhere('user.userId != :excludeUserId', { excludeUserId })
       .orderBy('user.receiveTime', 'DESC')
       .getOne();
-
-    return user;
   }
 
   //* 편지 저장하기
-  async saveLetter(body: string): Promise<Letter> {
+  saveLetter(body: string): Promise<Letter> {
     const letter = new Letter();
     letter.content = body;
 
-    return await this.letterRepository.save(letter);
+    return this.letterRepository.save(letter);
   }
 
   //* 편지 상태 저장하기
-  async saveLetterState(
+  saveLetterState(
     letterId: number,
     senderId: string,
     receiverId: string,
     sendTime: number,
-  ) {
+  ): Promise<LetterState> {
     const letterState = new LetterState();
     letterState.letterId = letterId;
-    letterState.receiverId = senderId;
-    letterState.senderId = receiverId;
+    letterState.receiverId = receiverId;
+    letterState.senderId = senderId;
     letterState.sendTime = sendTime;
 
-    return await this.letterStateRepository.save(letterState);
+    return this.letterStateRepository.save(letterState);
   }
 
-  async deleteLetterState(letterId: number) {
-    return await this.letterStateRepository.delete({ letterId });
+  deleteLetterState(letterId: number) {
+    return this.letterStateRepository.delete({ letterId });
   }
 
-  async getLetterUsingUserId(receiverId: string) {
-    const letterStates = await this.letterStateRepository.findOne({
+  getLetter(letterId: number): Promise<Letter> {
+    return this.letterRepository.findOne({ where: { letterId } });
+  }
+
+  getLetterUsingUserId(receiverId: string): Promise<LetterState | null> {
+    return this.letterStateRepository.findOne({
       where: { receiverId },
     });
-
-    if (letterStates === null) {
-      return null;
-    }
-
-    const letter = await this.letterRepository.findOne({
-      where: { letterId: letterStates.letterId },
-    });
-
-    const letterDto: Omit<LetterDto, 'ip'> = {
-      id: letterStates.senderId,
-      body: letter.content,
-      time: letterStates.sendTime,
-    };
-
-    return letterDto;
   }
 }
