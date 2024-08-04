@@ -2,6 +2,8 @@
 import { Server as HttpServer } from "http";
 
 import { Server as IOServer } from "socket.io";
+// eslint-disable-next-line import/no-unresolved
+import REQUEST_PORT from "enums/REQUEST_PORT.enum";
 
 let io: IOServer | null = null;
 
@@ -9,7 +11,7 @@ export const initSocket = (server: HttpServer): IOServer => {
   if (!io) {
     io = new IOServer(server, {
       cors: {
-        origin: "http://localhost:3001",
+        origin: REQUEST_PORT.__LETTER_SERVER_PORT,
         methods: ["GET", "POST"],
       },
     });
