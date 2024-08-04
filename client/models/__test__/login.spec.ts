@@ -1,6 +1,6 @@
 import User from "@shared/DTO/user";
 
-import LoginAxios from "../services/loginAxios";
+import LoginAxios from "../services/auth/loginAxios";
 
 describe("login test", () => {
   const dummyUser: User = {

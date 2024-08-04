@@ -5,7 +5,7 @@ import { loginForm, input, button, link } from "../../style/loginForm.css";
 const LoginForm = () => {
   return (
     <div className={loginForm}>
-      <input type="email" placeholder="Email" className={input} />
+      <input type="email" placeholder="id" className={input} />
       <input type="password" placeholder="Password" className={input} />
       <button type="submit" className={button}>
         Send

@@ -2,7 +2,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import User from "@shared/DTO/user";
 
-import RegisterAxios from "../services/registerAxios";
+import RegisterAxios from "../services/auth/registerAxios";
 
 describe("RegisterModel", () => {
   let mock: MockAdapter;
