@@ -84,16 +84,34 @@ describe('letter-db.service 테스트', () => {
     expect(result.affected).toBe(0);
   });
 
-  it('getLetterUsingUserId 해당 userId에 등록된 편지 찾기', async () => {
-    await letterStateRepository.save(letterState);
-    const result = await service.getLetterUsingUserId('2');
+  describe('getLetter Test', () => {
+    it('getLetter 등록된 편지 찾기', async () => {
+      const result = await service.getLetter(1);
+      expect(result.letterId).toBe(letter.letterId);
+      expect(result.content).toBe('Test');
+    });
 
-    const expectData = {
-      id: letterState.senderId,
-      body: letter.content,
-      time: letterState.sendTime,
-    };
+    it('getLetter 잘못된 id로 편지 찾기', async () => {
+      const result = await service.getLetter(9999);
+      expect(result).toBeNull();
+    });
+  });
 
-    expect(result).toEqual(expectData);
+  describe('getLetterUserid', () => {
+    it('등록된 userId에 등록된 편지 찾기 ( 편지 존재 o )', async () => {
+      await letterStateRepository.save(letterState);
+      const result = await service.getLetterUsingUserId(user_2.userId);
+      expect(result).toEqual(letterState);
+    });
+
+    it('등록된 userId에 등록된 편지 찾기 ( 편지 존재 x )', async () => {
+      const result = await service.getLetterUsingUserId(user_4.userId);
+      expect(result).toBeNull();
+    });
+
+    it('존재하지 않는 id 접근', async () => {
+      const result = await service.getLetterUsingUserId('9999');
+      expect(result).toBeNull();
+    });
   });
 });
