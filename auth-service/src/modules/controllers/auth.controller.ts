@@ -41,6 +41,8 @@ export class AuthController {
 
       const { token, cookieOptions } = await this.authService.login(data);
 
+      //TODO user state 업데이트
+
       res.cookie('token', token, cookieOptions);
       res.status(HttpStatus.OK).json({ success: true, token });
     } catch (error) {
