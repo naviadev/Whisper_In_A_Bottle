@@ -15,10 +15,10 @@ const useSocketMessagesHook = () => {
 
   useEffect(() => {
     if (socket) {
-      const userToken = getCookie("token");
+      const userToken = getCookie("token")!;
       const decodedToken = jwtDecode<UserJwtPayload>(userToken);
-      const userId = decodedToken.id;
-      socket.emit("initial_Data", userId);
+      const userId = decodedToken.sub;
+      socket.emit("initial_data", userId);
 
       socket.on("latte", (message) => {
         setReceivedMessage(message);
