@@ -15,6 +15,7 @@ const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
+      credentials: "include",
     });
 
     //* response.ok인 경우는 다음과 같습니다
