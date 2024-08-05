@@ -36,6 +36,9 @@ export class RegisterService implements IRegister {
       }
       const entity = this.registerRepository.create(Data);
       await this.registerRepository.save(entity);
+
+      //TODO user state 제작
+
       return true;
     } catch (error) {
       console.error('Error inserting to database:', error);
