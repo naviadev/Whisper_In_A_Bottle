@@ -1,5 +1,5 @@
 enum ROUTE_PATH {
-  __LETTER_VIEW = "/letterView",
+  __LETTER_VIEW = "/letterPage",
 }
 
 export default ROUTE_PATH;
