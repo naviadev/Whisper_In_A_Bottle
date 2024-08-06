@@ -5,12 +5,13 @@ import {
   Res,
   UseGuards,
   HttpStatus,
+  Request,
 } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
-import { Request } from '@nestjs/common';
 import { Response } from 'express';
+import { IpAddress } from 'src/decorator/IpAddress.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -28,9 +29,11 @@ export class AuthController {
   async login(
     @Body() data: IPlayerDTO,
     @Res() res: Response,
+    @IpAddress() ip: string,
   ): Promise<VideoDecoderConfig> {
     try {
       const user = await this.authService.validateUser(data.id, data.password);
+
       if (!user) {
         // 사용자가 존재하지 않으면 에러 반환
         res
@@ -41,7 +44,7 @@ export class AuthController {
 
       const { token, cookieOptions } = await this.authService.login(data);
 
-      //TODO user state 업데이트
+      this.authService.updateUserState(data.id, ip);
 
       res.cookie('token', token, cookieOptions);
       res.status(HttpStatus.OK).json({ success: true, token });
