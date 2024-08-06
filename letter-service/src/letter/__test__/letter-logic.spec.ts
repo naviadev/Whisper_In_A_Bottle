@@ -61,8 +61,8 @@ describe('Letter Login Test', () => {
     });
 
     expect(result.letterId).toBe(2);
-    expect(result.receiverId).toBe(user_3.userId);
-    expect(result.senderId).toBe(user_1.userId);
+    expect(result.receiverId).toBe(user_3.id);
+    expect(result.senderId).toBe(user_1.id);
   });
 
   describe('searchLetter Test', () => {

@@ -148,7 +148,7 @@ describe('LetterGateway', () => {
         otherSocket.on(LETTER_MSG.INIT_MSG_RECEVIED, () => {
           gateway.readySendMassageToClient(letterState);
         });
-        otherSocket.emit(LETTER_MSG.INIT_MSG, user_2.userId);
+        otherSocket.emit(LETTER_MSG.INIT_MSG, user_2.id);
       });
     });
 
@@ -167,19 +167,19 @@ describe('LetterGateway', () => {
   describe('Subscribe Integration Test', () => {
     describe('Subscribe initial_data Test', () => {
       it('해당 유저가 편지가 존재하지 않을 때', (done) => {
-        const userId = 'testUser';
+        const id = 'testUser';
 
         clientSocket.on(LETTER_MSG.INIT_MSG_RECEVIED, (data) => {
           expect(data).toBe('success');
-          expect(gateway.userIdKeyMap.has(userId)).toBe(true);
+          expect(gateway.idKeyMap.has(id)).toBe(true);
           done();
         });
 
-        clientSocket.emit(LETTER_MSG.INIT_MSG, userId);
+        clientSocket.emit(LETTER_MSG.INIT_MSG, id);
       });
 
       it('해당 유저가 편지가 존재할 때', (done) => {
-        const userId = '2';
+        const id = '2';
 
         clientSocket.on(LETTER_MSG.SEND_MSG, (message: ReceiveLetterDto) => {
           expect(message.content).toBe('Test');
@@ -187,21 +187,21 @@ describe('LetterGateway', () => {
           done();
         });
 
-        clientSocket.emit(LETTER_MSG.INIT_MSG, userId);
+        clientSocket.emit(LETTER_MSG.INIT_MSG, id);
       });
     });
 
     describe('Subscribe espresso Test', () => {
       it('유저가 편지 보낸 후 다른 유저가 편지 받을 때', (done) => {
-        const userId = '1';
-        const userId_2 = '3';
+        const id = '1';
+        const id_2 = '3';
 
         clientSocket.on(LETTER_MSG.INIT_MSG_RECEVIED, () => {
           clientSocket.emit(LETTER_MSG.RECEIVE_MSG, { content: 'test' });
         });
 
         otherSocket.on(LETTER_MSG.INIT_MSG_RECEVIED, () => {
-          clientSocket.emit(LETTER_MSG.INIT_MSG, userId);
+          clientSocket.emit(LETTER_MSG.INIT_MSG, id);
         });
 
         clientSocket.on(
@@ -219,7 +219,7 @@ describe('LetterGateway', () => {
           done();
         });
 
-        otherSocket.emit(LETTER_MSG.INIT_MSG, userId_2);
+        otherSocket.emit(LETTER_MSG.INIT_MSG, id_2);
       });
     });
   });

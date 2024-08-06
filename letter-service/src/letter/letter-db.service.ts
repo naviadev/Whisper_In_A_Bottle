@@ -17,17 +17,15 @@ export class LetterDbService {
   ) {}
 
   //* 편지를 받지 못하는 사용자 찾기.
-  getUserWithLongestReceiveTime(
-    excludeUserId: string,
-  ): Promise<UserState | null> {
+  getUserWithLongestReceiveTime(excludeid: string): Promise<UserState | null> {
     const subQuery = this.letterStateRepository
       .createQueryBuilder('letter_state')
       .select('receiverId');
 
     return this.userStateRepository
       .createQueryBuilder('user')
-      .where(`user.userId NOT IN (${subQuery.getQuery()})`)
-      .andWhere('user.userId != :excludeUserId', { excludeUserId })
+      .where(`user.id NOT IN (${subQuery.getQuery()})`)
+      .andWhere('user.id != :excludeid', { excludeid })
       .orderBy('user.receiveTime', 'DESC')
       .getOne();
   }
@@ -64,7 +62,7 @@ export class LetterDbService {
     return this.letterRepository.findOne({ where: { letterId } });
   }
 
-  getLetterUsingUserId(receiverId: string): Promise<LetterState | null> {
+  getLetterUsingid(receiverId: string): Promise<LetterState | null> {
     return this.letterStateRepository.findOne({
       where: { receiverId },
     });

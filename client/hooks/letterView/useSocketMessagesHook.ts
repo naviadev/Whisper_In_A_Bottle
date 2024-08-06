@@ -17,8 +17,8 @@ const useSocketMessagesHook = () => {
     if (socket) {
       const userToken = getCookie("token")!;
       const decodedToken = jwtDecode<UserJwtPayload>(userToken);
-      const userId = decodedToken.sub;
-      socket.emit("initial_data", userId);
+      const id = decodedToken.sub;
+      socket.emit("initial_data", id);
 
       socket.on("latte", (message) => {
         setReceivedMessage(message);

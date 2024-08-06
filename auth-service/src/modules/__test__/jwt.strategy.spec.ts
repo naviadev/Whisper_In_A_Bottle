@@ -34,7 +34,7 @@ describe('JwtStrategy', () => {
     it('should return user object for valid payload', async () => {
       const payload: IJwt = { username: 'testuser', sub: '12345' };
       const result = await jwtStrategy.validate(payload);
-      expect(result).toEqual({ userId: 'testuser' });
+      expect(result).toEqual({ id: 'testuser' });
     });
 
     it('should throw UnauthorizedException for invalid payload', async () => {

@@ -19,7 +19,7 @@ describe("useSocketMessagesHook", () => {
   beforeEach(() => {
     (useSocket as jest.Mock).mockReturnValue(mockSocket);
     (getCookie as jest.Mock).mockReturnValue("mockToken");
-    (jwtDecode as jest.Mock).mockReturnValue({ id: "mockUserId" });
+    (jwtDecode as jest.Mock).mockReturnValue({ id: "mockid" });
   });
 
   afterEach(() => {
@@ -31,7 +31,7 @@ describe("useSocketMessagesHook", () => {
 
     expect(getCookie).toHaveBeenCalledWith("token");
     expect(jwtDecode).toHaveBeenCalledWith("mockToken");
-    expect(mockSocket.emit).toHaveBeenCalledWith("initial_Data", "mockUserId");
+    expect(mockSocket.emit).toHaveBeenCalledWith("initial_Data", "mockid");
     expect(mockSocket.on).toHaveBeenCalledWith("latte", expect.any(Function));
   });
 

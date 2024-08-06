@@ -6,7 +6,7 @@ import { BaseEntity, Entity, PrimaryColumn, Column } from 'typeorm'; // TypeORM 
 @Entity({ name: 'user_state' })
 export class UserState extends BaseEntity {
   @PrimaryColumn()
-  userId: string;
+  id: string;
 
   @Column('bigint')
   receiveTime: number;

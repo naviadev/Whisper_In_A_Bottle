@@ -10,6 +10,6 @@ export class User {
   password: string;
 
   @OneToOne(() => UserState, (userState) => userState.user)
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'id' })
   userState: UserState;
 }

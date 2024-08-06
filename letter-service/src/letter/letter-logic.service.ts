@@ -7,13 +7,13 @@ export class LetterLogicService {
   constructor(private readonly letterDbService: LetterDbService) {}
 
   //* 유저가 보낸 편지를 랜덤 유저를 선정 후, LetterState 형태로 저장한다.
-  async saveAndAssignLetter(userId: string, letter: SenderLetterDto) {
+  async saveAndAssignLetter(id: string, letter: SenderLetterDto) {
     // TODO: 편지 저장
     const letterEntity = await this.letterDbService.saveLetter(letter.content);
 
     // TODO: RandomPlayer 선정
     const selectUser =
-      await this.letterDbService.getUserWithLongestReceiveTime(userId);
+      await this.letterDbService.getUserWithLongestReceiveTime(id);
 
     if (selectUser === null) {
       return;
@@ -27,8 +27,8 @@ export class LetterLogicService {
     // TODO: LetterState에 저장
     return await this.letterDbService.saveLetterState(
       letterEntity.letterId,
-      userId,
-      selectUser.userId,
+      id,
+      selectUser.id,
       currentTime + addTime,
     );
   }
@@ -39,7 +39,7 @@ export class LetterLogicService {
   }
 
   //* 유저 Id를 이용하여 LetterState 값을 찾는다.
-  searchLetterState(userId: string) {
-    return this.letterDbService.getLetterUsingUserId(userId);
+  searchLetterState(id: string) {
+    return this.letterDbService.getLetterUsingid(id);
   }
 }
