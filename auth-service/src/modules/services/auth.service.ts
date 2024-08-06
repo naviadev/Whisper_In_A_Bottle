@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';
 import User from '../../../ts/entity/User.entity';
 import IAuth from 'ts/interfaces/auth/IAuth';
+import { UserState } from 'src/entity/User-state.entity';
 
 @Injectable()
 /**
@@ -22,6 +23,8 @@ export class AuthService implements IAuth {
     private readonly validationService: ValidationService,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(UserState)
+    private readonly userStateRepositroy: Repository<UserState>,
   ) {}
 
   /**
@@ -52,6 +55,15 @@ export class AuthService implements IAuth {
     return null;
   }
 
+  updateUserState(id: string, ip: string) {
+    const userState: Partial<UserState> = {
+      lastLoginIp: ip,
+      lastLoginTime: new Date().getTime(),
+    };
+
+    return this.userStateRepositroy.update(id, userState);
+  }
+
   /**
    * * 로그인 메서드
    * @param user PlayDTO타입
@@ -61,15 +73,18 @@ export class AuthService implements IAuth {
     user: IPlayerDTO,
   ): Promise<{ token: string; cookieOptions: any }> {
     const payload = { username: user.id, sub: user.id };
-    const token = this.jwtService.sign(payload);
-
-    const cookieOptions = {
-      // httpOnly: true,
-      // secure: process.env.NODE_ENV === 'production' || false,
-      maxAge: 3600000,
-    };
-    console.log('토큰 출력 직전');
-    return { token, cookieOptions };
+    try {
+      const token = this.jwtService.sign(payload);
+      const cookieOptions = {
+        // httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production' || false,
+        maxAge: 3600000,
+      };
+      console.log('토큰 출력 직전');
+      return { token, cookieOptions };
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**
