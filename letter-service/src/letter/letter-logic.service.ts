@@ -26,7 +26,7 @@ export class LetterLogicService {
 
     // TODO: LetterState에 저장
     return await this.letterDbService.saveLetterState(
-      letterEntity.letterId,
+      letterEntity.letter_id,
       id,
       selectUser.id,
       currentTime + addTime,
