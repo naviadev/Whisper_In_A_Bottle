@@ -1,5 +1,4 @@
-import { BaseEntity, Entity, PrimaryColumn, Column, OneToOne } from 'typeorm';
-import { User } from './User.entity';
+import { BaseEntity, Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity({ name: 'user_state' })
 export class UserState extends BaseEntity {
@@ -14,7 +13,4 @@ export class UserState extends BaseEntity {
 
   @Column()
   lastLoginIp: string;
-
-  @OneToOne(() => User, (user) => user.userState)
-  user: User;
 }
