@@ -11,6 +11,7 @@ import { AuthController } from './controllers/auth.controller';
 import { RegisterController } from './controllers/register.controller';
 import { ValidationService } from './services/validation.service';
 import { configOptions } from '../config/env.config';
+import { UserState } from 'src/entity/User-state.entity';
 
 /**
  * * Decorator : Module
@@ -22,7 +23,7 @@ import { configOptions } from '../config/env.config';
  */
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, UserState]),
     PassportModule.register({ defaultStrategy: 'jwt' }), // Passport 모듈을 'jwt' 기본 전략으로 설정
     JwtModule.registerAsync({
       imports: [ConfigModule.forRoot(configOptions)],
