@@ -1,7 +1,7 @@
-import { TPlayerID, TTime, TMessage, TIp } from 'ts/types/types';
+import { Tid, TTime, TMessage, TIp } from 'ts/types/types';
 
 export default interface ILetterReqDTO {
-  senderId: TPlayerID;
+  senderId: Tid;
   sendTime: TTime;
   message: TMessage;
   senderIp: TIp;

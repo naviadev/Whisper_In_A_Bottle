@@ -1,7 +1,7 @@
-import { TPlayerID, TLetterId, TTime } from 'ts/types/types';
+import { Tid, TLetterId, TTime } from 'ts/types/types';
 
 export default interface IPlayerStateDTO {
-  playerId: TPlayerID;
+  id: Tid;
   pendingLetterId: TLetterId | null;
   timeStamp: TTime;
   sendTime: TTime;

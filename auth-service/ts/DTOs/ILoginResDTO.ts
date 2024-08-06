@@ -1,7 +1,7 @@
-import { TPlayerID, TMessage } from 'ts/types/types';
+import { Tid, TMessage } from 'ts/types/types';
 
 export default interface ILoginResDTO {
   success: boolean;
-  playerId?: TPlayerID;
+  id?: Tid;
   message?: TMessage;
 }

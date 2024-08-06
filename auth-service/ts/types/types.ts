@@ -1,4 +1,4 @@
-export type TPlayerID = string;
+export type Tid = string;
 export type TPassword = string;
 export type TLetterId = string;
 export type TMessage = string;

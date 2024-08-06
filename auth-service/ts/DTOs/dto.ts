@@ -5,7 +5,7 @@ export interface PlayerDTO {
 }
 
 export interface PlayerStateDTO {
-  playerId: string;
+  id: string;
   letterId: string | null;
   timeStamp: number;
   sendTime: number;
@@ -23,7 +23,7 @@ export interface ILetterResDTO
   extends Omit<ILetterReqDTO, 'sendTime' | 'senderIp'> {}
 
 export interface IpDTO {
-  playerId: string;
+  id: string;
   ip: string;
 }
 
@@ -34,12 +34,12 @@ export interface LoginRequestDTO {
 
 export interface LoginResponseDTO {
   success: boolean;
-  playerId?: string;
+  id?: string;
   message?: string;
 }
 
 export interface LetterRequestDTO {
-  playerId: string;
+  id: string;
 }
 
 export interface LetterResponseDTO {

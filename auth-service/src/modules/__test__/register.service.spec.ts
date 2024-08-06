@@ -31,7 +31,7 @@ describe('RegisterService', () => {
   describe('validateDTO', () => {
     it('should return true for valid DTO', () => {
       const validDTO: IPlayerDTO = {
-        playerID: 'test@example.com',
+        id: 'test@example.com',
         password: 'password123',
       };
       expect(service.validateDTO(validDTO)).toBe(true);
@@ -39,7 +39,7 @@ describe('RegisterService', () => {
 
     it('should return false for invalid DTO', () => {
       const invalidDTO: IPlayerDTO = {
-        playerID: 'test@example.com',
+        id: 'test@example.com',
         password: '123',
       }; // Invalid password type
       expect(service.validateDTO(invalidDTO)).toBe(true);
@@ -49,11 +49,11 @@ describe('RegisterService', () => {
   describe('insertToDatabase', () => {
     it('should successfully insert data into the database', async () => {
       const dto: IPlayerDTO = {
-        playerID: 'test@example.com',
+        id: 'test@example.com',
         password: 'password123',
       };
       const entity = new User();
-      entity.id = dto.playerID;
+      entity.id = dto.id;
       entity.password = dto.password;
 
       repository.create = jest.fn().mockReturnValue(entity);
@@ -67,7 +67,7 @@ describe('RegisterService', () => {
 
     it('should handle errors when inserting data', async () => {
       const dto: IPlayerDTO = {
-        playerID: 'test@example.com',
+        id: 'test@example.com',
         password: 'password123',
       };
       repository.create = jest.fn().mockReturnValue(dto);

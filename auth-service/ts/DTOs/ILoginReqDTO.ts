@@ -1,6 +1,6 @@
-import { TPlayerID, TPassword } from 'ts/types/types';
+import { Tid, TPassword } from 'ts/types/types';
 
 export default interface ILoginReqDTO {
-  playerId: TPlayerID;
+  id: Tid;
   password: TPassword;
 }

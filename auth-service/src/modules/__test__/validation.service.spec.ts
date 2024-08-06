@@ -14,7 +14,7 @@ describe('ValidationService', () => {
 
   describe('validateDTO', () => {
     it('should return true for valid DTO', () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(true);
     });
@@ -26,7 +26,7 @@ describe('ValidationService', () => {
     });
 
     it('should return false for DTO missing password', () => {
-      const playerDTO = { playerID: 'test' } as IPlayerDTO;
+      const playerDTO = { id: 'test' } as IPlayerDTO;
       const result = validationService.validateDTO(playerDTO);
       expect(result).toBe(false);
     });
@@ -49,7 +49,7 @@ describe('ValidationService', () => {
 
   describe('isPlayerDTO', () => {
     it('should return true for object with id and password', () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       const result = (validationService as any).isPlayerDTO(playerDTO);
       expect(result).toBe(true);
     });
@@ -61,7 +61,7 @@ describe('ValidationService', () => {
     });
 
     it('should return false for object missing password', () => {
-      const playerDTO = { playerID: 'test' } as IPlayerDTO;
+      const playerDTO = { id: 'test' } as IPlayerDTO;
       const result = (validationService as any).isPlayerDTO(playerDTO);
       expect(result).toBe(false);
     });

@@ -47,7 +47,7 @@ describe('AuthController', () => {
 
   describe('login', () => {
     it('should return an access token for valid credentials', async () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       const token = { access_token: 'some-jwt-token' };
       jest.spyOn(authService, 'validateDTO').mockReturnValue(true);
       jest.spyOn(authService, 'validateUser').mockResolvedValue({ id: 'test' });
@@ -58,7 +58,7 @@ describe('AuthController', () => {
     });
 
     it('should throw an error for invalid DTO', async () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       jest.spyOn(authService, 'validateDTO').mockReturnValue(false);
 
       await expect(authController.login(playerDTO)).rejects.toThrow(
@@ -67,7 +67,7 @@ describe('AuthController', () => {
     });
 
     it('should throw an error for invalid credentials', async () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       jest.spyOn(authService, 'validateDTO').mockReturnValue(true);
       jest.spyOn(authService, 'validateUser').mockResolvedValue(null);
 
