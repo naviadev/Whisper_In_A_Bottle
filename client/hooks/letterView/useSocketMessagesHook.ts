@@ -20,8 +20,8 @@ const useSocketMessagesHook = () => {
       const id = decodedToken.sub;
       socket.emit("initial_data", id);
 
-      socket.on("latte", (message) => {
-        setReceivedMessage(message);
+      socket.on("latte", (message: { [key: string]: string }) => {
+        setReceivedMessage(message.content);
       });
     }
 

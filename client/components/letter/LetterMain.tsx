@@ -34,7 +34,7 @@ const LetterMain: React.FC = () => {
   const handleCheckReceivedMessage = () => {
     if (receivedMessage) {
       isSetLetterContainerContentMode("LetterList");
-      setReceivedMessage(null);
+      // setReceivedMessage(null);
     }
   };
   return (
