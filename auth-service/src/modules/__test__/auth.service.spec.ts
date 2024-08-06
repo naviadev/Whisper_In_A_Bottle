@@ -38,13 +38,13 @@ describe('AuthService', () => {
 
   describe('validateDTO', () => {
     it('should return true for valid DTO', () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       jest.spyOn(validationService, 'validateDTO').mockReturnValue(true);
       expect(authService.validateDTO(playerDTO)).toBe(true);
     });
 
     it('should return false for invalid DTO', () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       jest.spyOn(validationService, 'validateDTO').mockReturnValue(false);
       expect(authService.validateDTO(playerDTO)).toBe(false);
     });
@@ -69,7 +69,7 @@ describe('AuthService', () => {
 
   describe('login', () => {
     it('should return a valid JWT token', async () => {
-      const playerDTO: IPlayerDTO = { playerID: 'test', password: 'password' };
+      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
       const token = 'some-jwt-token';
       jest.spyOn(jwtService, 'sign').mockReturnValue(token);
 
