@@ -68,7 +68,7 @@ describe('letter-db.service 테스트', () => {
 
   it('saveLetterMethod Test', async () => {
     expect(await service.saveLetter('hello')).toEqual({
-      letterId: 2,
+      letter_id: 2,
       content: 'hello',
     });
   });
@@ -87,7 +87,7 @@ describe('letter-db.service 테스트', () => {
   describe('getLetter Test', () => {
     it('getLetter 등록된 편지 찾기', async () => {
       const result = await service.getLetter(1);
-      expect(result.letterId).toBe(letter.letterId);
+      expect(result.letter_id).toBe(letter.letter_id);
       expect(result.content).toBe('Test');
     });
 

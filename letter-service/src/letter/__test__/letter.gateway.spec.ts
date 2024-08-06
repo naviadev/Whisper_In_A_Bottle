@@ -90,6 +90,9 @@ describe('LetterGateway', () => {
   });
 
   afterAll(async () => {
+    await letterRepository.clear();
+    await userStateRepository.clear();
+    await letterRepository.clear();
     await app.close();
     jest.useRealTimers();
   });
@@ -207,9 +210,9 @@ describe('LetterGateway', () => {
         clientSocket.on(
           LETTER_MSG.RECEIVE_MSG_RECEVIED,
           (data: LetterState) => {
-            expect(data.letterId).toBe(2);
-            expect(data.receiverId).toBe('3');
-            expect(data.senderId).toBe('1');
+            expect(data.letter_id).toBe(2);
+            expect(data.receiver_id).toBe('3');
+            expect(data.sender_id).toBe('1');
           },
         );
 
