@@ -3,14 +3,14 @@ import { BaseEntity, Column, Entity, PrimaryColumn } from 'typeorm';
 @Entity('letter_state')
 export class LetterState extends BaseEntity {
   @PrimaryColumn()
-  letterId: number;
+  letter_id: number;
 
   @Column()
-  receiverId: string;
+  receiver_id: string;
 
   @Column()
-  senderId: string;
+  sender_id: string;
 
   @Column('bigint')
-  sendTime: number;
+  send_time: number;
 }

@@ -20,13 +20,13 @@ export class LetterDbService {
   getUserWithLongestReceiveTime(excludeid: string): Promise<UserState | null> {
     const subQuery = this.letterStateRepository
       .createQueryBuilder('letter_state')
-      .select('receiverId');
+      .select('receiver_id');
 
     return this.userStateRepository
       .createQueryBuilder('user')
       .where(`user.id NOT IN (${subQuery.getQuery()})`)
       .andWhere('user.id != :excludeid', { excludeid })
-      .orderBy('user.receiveTime', 'DESC')
+      .orderBy('user.receive_time', 'DESC')
       .getOne();
   }
 
@@ -46,25 +46,25 @@ export class LetterDbService {
     sendTime: number,
   ): Promise<LetterState> {
     const letterState = new LetterState();
-    letterState.letterId = letterId;
-    letterState.receiverId = receiverId;
-    letterState.senderId = senderId;
-    letterState.sendTime = sendTime;
+    letterState.letter_id = letterId;
+    letterState.receiver_id = receiverId;
+    letterState.sender_id = senderId;
+    letterState.send_time = sendTime;
 
     return this.letterStateRepository.save(letterState);
   }
 
   deleteLetterState(letterId: number) {
-    return this.letterStateRepository.delete({ letterId });
+    return this.letterStateRepository.delete({ letter_id: letterId });
   }
 
   getLetter(letterId: number): Promise<Letter> {
-    return this.letterRepository.findOne({ where: { letterId } });
+    return this.letterRepository.findOne({ where: { letter_id: letterId } });
   }
 
   getLetterUsingid(receiverId: string): Promise<LetterState | null> {
     return this.letterStateRepository.findOne({
-      where: { receiverId },
+      where: { receiver_id: receiverId },
     });
   }
 }

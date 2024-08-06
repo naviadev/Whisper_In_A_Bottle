@@ -103,27 +103,27 @@ export class LetterGateway
   }
 
   async readySendMassageToClient(letterState: LetterState) {
-    if (this.idKeyMap.has(letterState.receiverId) === false) return;
+    if (this.idKeyMap.has(letterState.receiver_id) === false) return;
 
     const letter = await this.letterLogicService.searchLetter(
-      letterState.letterId,
+      letterState.letter_id,
     );
 
     const receivedLetter: ReceiveLetterDto = {
-      id: letterState.senderId,
+      id: letterState.sender_id,
       content: letter.content,
     };
 
     //* 시간 계산
-    let calcTime = letterState.sendTime - new Date().getTime();
+    let calcTime = letterState.send_time - new Date().getTime();
     calcTime = calcTime > 0 ? calcTime : 0;
 
     const timeoutId = setTimeout(() => {
-      this.sendMessageToClient(letterState.receiverId, receivedLetter);
-      this.userSetTimeoutKeyMap.delete(letterState.receiverId);
+      this.sendMessageToClient(letterState.receiver_id, receivedLetter);
+      this.userSetTimeoutKeyMap.delete(letterState.receiver_id);
     }, calcTime);
 
-    this.saveTimeoutId(letterState.receiverId, timeoutId);
+    this.saveTimeoutId(letterState.receiver_id, timeoutId);
   }
 
   //* 메세지 보내는 Method

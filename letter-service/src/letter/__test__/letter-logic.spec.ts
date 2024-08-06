@@ -47,12 +47,18 @@ describe('Letter Login Test', () => {
       getRepositoryToken(Letter),
     );
 
-    letterStateRepository.save(letterState);
-    userStateRepository.save(user_1);
-    userStateRepository.save(user_2);
-    userStateRepository.save(user_3);
-    userStateRepository.save(user_4);
-    letterRepository.save(letter);
+    await letterStateRepository.save(letterState);
+    await userStateRepository.save(user_1);
+    await userStateRepository.save(user_2);
+    await userStateRepository.save(user_3);
+    await userStateRepository.save(user_4);
+    await letterRepository.save(letter);
+  });
+
+  afterAll(async () => {
+    await letterStateRepository.clear();
+    await userStateRepository.clear();
+    await letterRepository.clear();
   });
 
   it('saveAndAssignLetter Test', async () => {
@@ -60,15 +66,15 @@ describe('Letter Login Test', () => {
       content: '안녕하세요',
     });
 
-    expect(result.letterId).toBe(2);
-    expect(result.receiverId).toBe(user_3.id);
-    expect(result.senderId).toBe(user_1.id);
+    expect(result.letter_id).toBe(2);
+    expect(result.receiver_id).toBe(user_3.id);
+    expect(result.sender_id).toBe(user_1.id);
   });
 
   describe('searchLetter Test', () => {
     it('존재하는 id 값을 찾았을 때', async () => {
       const result = await letterLogicService.searchLetter(1);
-      expect(result.letterId).toBe(letter.letterId);
+      expect(result.letter_id).toBe(letter.letter_id);
       expect(result.content).toBe(letter.content);
     });
 

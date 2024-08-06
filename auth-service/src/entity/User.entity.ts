@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
-import { UserState } from './User-state.entity';
+// import { UserState } from './User-state.entity';
 
 @Entity('users')
 export class User {
@@ -11,5 +11,5 @@ export class User {
 
   // @OneToOne(() => UserState, (userState) => userState.user)
   // @JoinColumn({ name: 'id' })
-  user_state: UserState;
+  // user_state: UserState;
 }
