@@ -9,11 +9,11 @@ export class UserState extends BaseEntity {
   id: string;
 
   @Column('bigint')
-  receiveTime: number;
+  receive_time: number;
 
   @Column('bigint')
-  lastLoginTime: number;
+  last_login_time: number;
 
   @Column()
-  lastLoginIp: string;
+  last_login_ip: string;
 }
