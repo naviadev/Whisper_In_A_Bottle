@@ -5,6 +5,7 @@ import IRegister from 'ts/interfaces/auth/IRegister';
 import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
 import { ValidationService } from './validation.service';
 import User from '../../../ts/entity/User.entity';
+import { UserState } from 'src/entity/User-state.entity';
 /**
  * * Decorator : Injectable
  * 작성자 : @naviadev / 2024-07-16
@@ -17,32 +18,51 @@ import User from '../../../ts/entity/User.entity';
 export class RegisterService implements IRegister {
   constructor(
     @InjectRepository(User)
-    private readonly registerRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(UserState)
+    private readonly userStateRepository: Repository<UserState>,
     private readonly vaildationService: ValidationService,
   ) {}
-
-  validateDTO(Data: IPlayerDTO): boolean {
-    return this.vaildationService.validateDTO(Data);
-  }
-
-  async insertToDatabase(Data: IPlayerDTO): Promise<boolean> {
+  async insertToDatabase(data: IPlayerDTO): Promise<boolean> {
     try {
-      const existingUser = await this.registerRepository.findOneBy({
-        id: Data.id,
+      if (!this.validateDTO(data)) {
+        return false;
+      }
+      const existingUser = await this.userRepository.findOneBy({
+        id: data.id,
       });
 
       if (existingUser) {
         return false;
       }
-      const entity = this.registerRepository.create(Data);
-      await this.registerRepository.save(entity);
 
-      //TODO user state 제작
-
+      try {
+        const userEntity = await this.insertUser(data);
+        await this.insertUserState(userEntity.id);
+      } catch (error) {
+        console.error('Promise_Error : 데이터 삽입 실패', error);
+      }
       return true;
     } catch (error) {
-      console.error('Error inserting to database:', error);
-      return false;
+      console.error('데이터베이스 실행 오류', error);
     }
+  }
+
+  validateDTO(Data: IPlayerDTO): boolean {
+    return this.vaildationService.validateDTO(Data);
+  }
+
+  private async insertUser(data: IPlayerDTO): Promise<User> {
+    const userEntity = this.userRepository.create(data);
+    return this.userRepository.save(userEntity);
+  }
+
+  private async insertUserState(userId: string): Promise<UserState> {
+    const userStateEntity = new UserState();
+    userStateEntity.id = userId;
+    userStateEntity.receiveTime = 0;
+    userStateEntity.lastLoginTime = 0;
+    userStateEntity.lastLoginIp = '';
+    return this.userStateRepository.save(userStateEntity);
   }
 }
