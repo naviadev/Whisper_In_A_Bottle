@@ -60,9 +60,9 @@ export class RegisterService implements IRegister {
   private async insertUserState(id: string): Promise<UserState> {
     const userStateEntity = new UserState();
     userStateEntity.id = id;
-    userStateEntity.receiveTime = 0;
-    userStateEntity.lastLoginTime = 0;
-    userStateEntity.lastLoginIp = '';
+    userStateEntity.receive_time = 0;
+    userStateEntity.last_login_time = 0;
+    userStateEntity.last_login_ip = '';
     return this.userStateRepository.save(userStateEntity);
   }
 }

@@ -5,8 +5,8 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';
 import User from '../../../ts/entity/User.entity';
-import IAuth from 'ts/interfaces/auth/IAuth';
-import { UserState } from 'src/entity/User-state.entity';
+import IAuth from '../../../ts/interfaces/auth/IAuth';
+import { UserState } from '../../../src/entity/User-state.entity';
 
 @Injectable()
 /**
@@ -57,8 +57,8 @@ export class AuthService implements IAuth {
 
   updateUserState(id: string, ip: string) {
     const userState: Partial<UserState> = {
-      lastLoginIp: ip,
-      lastLoginTime: new Date().getTime(),
+      last_login_ip: ip,
+      last_login_time: new Date().getTime(),
     };
 
     return this.userStateRepositroy.update(id, userState);

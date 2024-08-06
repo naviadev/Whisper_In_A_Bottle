@@ -1,6 +1,6 @@
 // validation.service.ts
 import { Injectable } from '@nestjs/common';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
+import IPlayerDTO from '../../../ts/DTOs/IPlayerDTO';
 
 @Injectable()
 export class ValidationService {

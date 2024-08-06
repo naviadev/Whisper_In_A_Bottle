@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 import { UserState } from './User-state.entity';
 
 @Entity('users')
@@ -9,7 +9,7 @@ export class User {
   @Column()
   password: string;
 
-  @OneToOne(() => UserState, (userState) => userState.user)
-  @JoinColumn({ name: 'id' })
-  userState: UserState;
+  // @OneToOne(() => UserState, (userState) => userState.user)
+  // @JoinColumn({ name: 'id' })
+  user_state: UserState;
 }
