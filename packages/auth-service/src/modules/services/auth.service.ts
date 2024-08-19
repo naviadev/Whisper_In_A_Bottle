@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';
 import User from '../../../ts/entity/User.entity';
 import IAuth from '../../../ts/interfaces/auth/IAuth';
-import { UserState } from '../../../src/entity/User-state.entity';
+import { UserState } from '../../entity/User-state.entity';
 
 @Injectable()
 /**
