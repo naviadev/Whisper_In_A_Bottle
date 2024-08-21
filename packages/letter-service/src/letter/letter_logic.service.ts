@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { SenderLetterDTO } from '../../../../shared/DTOs/letter.dto';
-import { LetterDbService } from './letter-db.service';
+import { SenderLetterDTO } from '../../../../shared/dtos/letter.dto';
+import { LetterDbService } from './letter_db.service';
 
 @Injectable()
 export class LetterLogicService {

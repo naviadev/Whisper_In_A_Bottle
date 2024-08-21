@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
+import REQUEST_PORT from "../../../ts/enums/request_port.enum";
 import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
 
 /**
@@ -14,7 +14,7 @@ const RegisterAxios = async (registerData: IPlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__REGISTER_PORT,
-      registerData,
+      registerData
     );
 
     console.log(response.data.message);

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { CustomIoAdapter } from './letter/custom-io-adapter';
+import { CustomIoAdapter } from './letter/custom_io_adapter';
 
 import { setupSwagger } from './swagger.setup';
 

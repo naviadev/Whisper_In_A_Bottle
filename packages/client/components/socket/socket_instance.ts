@@ -3,7 +3,7 @@ import { Server as HttpServer } from "http";
 
 import { Server as IOServer } from "socket.io";
 
-import REQUEST_PORT from "../../ts/enums/REQUEST_PORT.enum";
+import REQUEST_PORT from "../../ts/enums/request_port.enum";
 
 let io: IOServer | null = null;
 

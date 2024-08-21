@@ -1,5 +1,5 @@
-import { UserState } from '../../../../../shared/entities/user-state.entity';
-import { LetterState } from '../../../../../shared/entities/letter-state.entity';
+import { UserState } from '../../../../../shared/entities/user_state.entity';
+import { LetterState } from '../../../../../shared/entities/letter_state.entity';
 import { Letter } from '../../../../../shared/entities/letter.entity';
 
 const user_1 = new UserState();

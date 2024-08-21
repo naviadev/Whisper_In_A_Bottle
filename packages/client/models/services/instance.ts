@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
 
-import REQUEST_PORT from "../../ts/enums/REQUEST_PORT.enum";
+import REQUEST_PORT from "../../ts/enums/request_port.enum";
 
 const SERVER_URL = process.env.SERVER_URL || REQUEST_PORT.__NEXT_SERVER_PORT;
 

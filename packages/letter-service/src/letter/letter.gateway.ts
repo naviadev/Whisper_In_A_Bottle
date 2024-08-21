@@ -10,9 +10,9 @@ import { Server, Socket } from 'socket.io';
 import {
   ReceiveLetterDTO,
   SenderLetterDTO,
-} from '../../../../shared/DTOs/letter.dto';
-import { LetterLogicService } from './letter-logic.service';
-import { LetterState } from '../../../../shared/entities/letter-state.entity';
+} from '../../../../shared/dtos/letter.dto';
+import { LetterLogicService } from './letter_logic.service';
+import { LetterState } from '../../../../shared/entities/letter_state.entity';
 
 export enum LETTER_MSG {
   INIT_MSG = 'initial_data',

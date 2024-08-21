@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
+import REQUEST_PORT from "../../../ts/enums/request_port.enum";
 import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
 
 const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
@@ -10,7 +10,7 @@ const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
       user,
       {
         withCredentials: true, // 요청에 쿠키를 포함하여 서버가 클라이언트를 인증
-      },
+      }
     );
 
     const data = response.data;

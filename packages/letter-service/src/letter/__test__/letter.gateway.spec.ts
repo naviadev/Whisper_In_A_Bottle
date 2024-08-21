@@ -2,11 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import io, { Socket } from 'socket.io-client';
 import { LETTER_MSG, LetterGateway } from '../letter.gateway';
-import { LetterLogicService } from '../letter-logic.service';
-import { LetterDbService } from '../letter-db.service';
+import { LetterLogicService } from '../letter_logic.service';
+import { LetterDbService } from '../letter_db.service';
 import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
-import { LetterState } from '../../../../../shared/entities/letter-state.entity';
-import { UserState } from '../../../../../shared/entities/user-state.entity';
+import { LetterState } from '../../../../../shared/entities/letter_state.entity';
+import { UserState } from '../../../../../shared/entities/user_state.entity';
 import { Letter } from '../../../../../shared/entities/letter.entity';
 import { Repository } from 'typeorm';
 import {
@@ -17,7 +17,7 @@ import {
   user_3,
   user_4,
 } from './letter-dummyData';
-import { ReceiveLetterDTO } from '../../../../../shared/DTOs/letter.dto';
+import { ReceiveLetterDTO } from '../../../../../shared/dtos/letter.dto';
 
 describe('LetterGateway', () => {
   let app: INestApplication;
