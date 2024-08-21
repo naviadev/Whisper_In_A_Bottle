@@ -1,18 +1,23 @@
+// 테스트대상
+// validateDTO, validateUser, updateUserState, login
+
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from '../services/auth.service';
 import { JwtService } from '@nestjs/jwt';
-import { ValidationService } from '../services/validation.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { AuthService } from '../services/auth.service';
+import { ValidationService } from '../services/validation.service';
+import { User } from '@shared/entities/user.entity';
+import { UserState } from '@shared/entities/user-state.entity';
 import { Repository } from 'typeorm';
-import User from '../../../ts/entity/User.entity';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
+import PlayerDTO from '@shared/DTOs/player.dto';
 
 describe('AuthService', () => {
-  let authService: AuthService;
+  let service: AuthService;
   let jwtService: JwtService;
   let validationService: ValidationService;
   let userRepository: Repository<User>;
-  //초기화
+  let userStateRepositroy: Repository<UserState>;
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -23,78 +28,108 @@ describe('AuthService', () => {
           provide: getRepositoryToken(User),
           useClass: Repository,
         },
+        {
+          provide: getRepositoryToken(UserState),
+          useClass: Repository,
+        },
       ],
     }).compile();
 
-    authService = module.get<AuthService>(AuthService);
+    service = module.get<AuthService>(AuthService);
     jwtService = module.get<JwtService>(JwtService);
     validationService = module.get<ValidationService>(ValidationService);
     userRepository = module.get<Repository<User>>(getRepositoryToken(User));
+    userStateRepositroy = module.get<Repository<UserState>>(
+      getRepositoryToken(UserState),
+    );
   });
 
-  it('should be defined', () => {
-    expect(authService).toBeDefined();
-  });
-
+  //validateDTO테스트
   describe('validateDTO', () => {
-    it('should return true for valid DTO', () => {
-      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
+    it('PlayerDTO가 유효하면 true반환', () => {
+      const validDTO: PlayerDTO = { id: 'player1', password: 'secret' };
       jest.spyOn(validationService, 'validateDTO').mockReturnValue(true);
-      expect(authService.validateDTO(playerDTO)).toBe(true);
+      expect(service.validateDTO(validDTO)).toBe(true);
     });
-
-    it('should return false for invalid DTO', () => {
-      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
+    it('PlayerDTO가 유효하지 않으면 false반환', () => {
+      const invalidDTO: PlayerDTO = { id: 'player1', password: 1234 as any };
       jest.spyOn(validationService, 'validateDTO').mockReturnValue(false);
-      expect(authService.validateDTO(playerDTO)).toBe(false);
+      expect(service.validateDTO(invalidDTO)).toBe(false);
     });
   });
 
+  //validateUser테스트
   describe('validateUser', () => {
-    it('should return user data without password for valid credentials', async () => {
-      const user = { id: 'test', password: 'password' };
-      jest.spyOn(userRepository, 'findOne').mockResolvedValue(user as User);
+    it('유효한 사용자 ID와 일치하는 비밀번호가 입력되었을 때, 비밀번호를 제외한 사용자 정보를 반환', async () => {
+      const user = { id: 'player1', password: 'secret' } as User;
+      jest.spyOn(userRepository, 'findOne').mockResolvedValue(user);
 
-      const result = await authService.validateUser('test', 'password');
-      expect(result).toEqual({ id: 'test' });
+      const result = await service.validateUser('player1', 'secret');
+      expect(result).toEqual({ id: 'player1' });
     });
+    it('유효한 사용자 ID가 입력되었지만 비밀번호가 일치하지 않을 때, null을 반환', async () => {
+      const user = { id: 'player1', password: 'secret' } as User;
+      jest.spyOn(userRepository, 'findOne').mockResolvedValue(user);
 
-    it('should return null for invalid credentials', async () => {
+      const result = await service.validateUser('player1', 'wrongpassword');
+      expect(result).toBeNull();
+    });
+    it('존재하지 않는 사용자 ID가 입력되었을 때, null을 반환', async () => {
       jest.spyOn(userRepository, 'findOne').mockResolvedValue(null);
 
-      const result = await authService.validateUser('test', 'password');
+      const result = await service.validateUser('unknown', 'password');
       expect(result).toBeNull();
     });
   });
 
-  describe('login', () => {
-    it('should return a valid JWT token', async () => {
-      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
-      const token = 'some-jwt-token';
-      jest.spyOn(jwtService, 'sign').mockReturnValue(token);
+  //updateUserState테스트
+  describe('updateUserState', () => {
+    it('주어진 사용자 ID로 사용자 상태가 업데이트 성공', async () => {
+      const id = 'player1';
+      const ip = '127.0.0.1';
 
-      const result = await authService.login(playerDTO);
-      expect(result).toEqual({ access_token: token });
+      const updateSpy = jest
+        .spyOn(userStateRepositroy, 'update')
+        .mockResolvedValue({} as any);
+
+      await service.updateUserState(id, ip);
+
+      expect(updateSpy).toHaveBeenCalledWith(id, {
+        last_login_ip: ip,
+        last_login_time: expect.any(Number),
+      });
     });
   });
 
-  describe('validateToken', () => {
-    it('should return true for a valid token', async () => {
-      const token = 'some-jwt-token';
-      jest.spyOn(jwtService, 'verify').mockReturnValue({});
+  //login테스트
+  describe('login', () => {
+    it('유효한 PlayerDTO 객체로 로그인 시, JWT 토큰을 생성하고 이를 반환', async () => {
+      const user: PlayerDTO = { id: 'player1', password: 'secret' };
+      const token = 'jwt-token';
+      jest.spyOn(jwtService, 'sign').mockReturnValue(token);
 
-      const result = await authService.validateToken(token);
-      expect(result).toBe(true);
+      const result = await service.login(user);
+
+      expect(result).toEqual({
+        token,
+        cookieOptions: {
+          maxAge: 3600000,
+        },
+      });
     });
 
-    it('should return false for an invalid token', async () => {
-      const token = 'some-jwt-token';
-      jest.spyOn(jwtService, 'verify').mockImplementation(() => {
-        throw new Error('Invalid token');
+    it('토큰 생성중 오류 발생시 처리', async () => {
+      const user: PlayerDTO = { id: 'player1', password: 'secret' };
+      jest.spyOn(jwtService, 'sign').mockImplementation(() => {
+        throw new Error('JWT generation error');
       });
 
-      const result = await authService.validateToken(token);
-      expect(result).toBe(false);
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+
+      const result = await service.login(user);
+
+      expect(result).toBeUndefined();
+      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
     });
   });
 });

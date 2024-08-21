@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
+import PlayerDTO from '@shared/DTOs/player.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';
-import User from '../../../ts/entity/User.entity';
+import { User } from '@shared/entities/user.entity';
 import IAuth from '../../../ts/interfaces/auth/IAuth';
-import { UserState } from '../../entity/User-state.entity';
+import { UserState } from '../../../../../shared/entities/user-state.entity';
 
 @Injectable()
 /**
@@ -32,7 +32,7 @@ export class AuthService implements IAuth {
    * @param user PlayDTO타입
    * @returns 유효하면 true, 아니면 false
    */
-  validateDTO(user: IPlayerDTO): boolean {
+  validateDTO(user: PlayerDTO): boolean {
     return this.validationService.validateDTO(user);
   }
 
@@ -69,9 +69,7 @@ export class AuthService implements IAuth {
    * @param user PlayDTO타입
    * @returns JWT access_token
    */
-  async login(
-    user: IPlayerDTO,
-  ): Promise<{ token: string; cookieOptions: any }> {
+  async login(user: PlayerDTO): Promise<{ token: string; cookieOptions: any }> {
     const payload = { username: user.id, sub: user.id };
     try {
       const token = this.jwtService.sign(payload);
@@ -84,20 +82,6 @@ export class AuthService implements IAuth {
       return { token, cookieOptions };
     } catch (error) {
       console.error(error);
-    }
-  }
-
-  /**
-   * * 토큰 검증 메서드
-   * @param token
-   * @returns 토큰이 유효하면 true, 아니면 false
-   */
-  async validateToken(token: string): Promise<boolean> {
-    try {
-      const decoded = this.jwtService.verify(token);
-      return !!decoded;
-    } catch (error) {
-      return false;
     }
   }
 }

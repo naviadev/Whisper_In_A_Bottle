@@ -1,4 +1,4 @@
-import ValidateId from "../validators/ValidateId";
+import ValidateId from "../validators/validateId";
 
 describe("ValidateId Test", () => {
   it("Email Correct (1)", () => {

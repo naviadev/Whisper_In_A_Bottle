@@ -5,9 +5,9 @@ import { LETTER_MSG, LetterGateway } from '../letter.gateway';
 import { LetterLogicService } from '../letter-logic.service';
 import { LetterDbService } from '../letter-db.service';
 import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
-import { LetterState } from '../entities/letter-state.entity';
-import { UserState } from '../entities/user-state.entity';
-import { Letter } from '../entities/letter.entity';
+import { LetterState } from '../../../../../shared/entities/letter-state.entity';
+import { UserState } from '../../../../../shared/entities/user-state.entity';
+import { Letter } from '../../../../../shared/entities/letter.entity';
 import { Repository } from 'typeorm';
 import {
   letter,
@@ -17,7 +17,7 @@ import {
   user_3,
   user_4,
 } from './letter-dummyData';
-import { ReceiveLetterDto } from '../dto/letter.dto';
+import { ReceiveLetterDTO } from '../../../../../shared/DTOs/letter.dto';
 
 describe('LetterGateway', () => {
   let app: INestApplication;
@@ -118,7 +118,7 @@ describe('LetterGateway', () => {
       });
 
       const promise_1 = new Promise<void>((res) => {
-        otherSocket.on(LETTER_MSG.SEND_MSG, (data: ReceiveLetterDto) => {
+        otherSocket.on(LETTER_MSG.SEND_MSG, (data: ReceiveLetterDTO) => {
           expect(data.id).toBe('sender');
           expect(data.content).toBe('TEST');
           res();
@@ -126,7 +126,7 @@ describe('LetterGateway', () => {
       });
 
       const promise_2 = new Promise<void>((res) => {
-        otherSocket_2.on(LETTER_MSG.SEND_MSG, (data: ReceiveLetterDto) => {
+        otherSocket_2.on(LETTER_MSG.SEND_MSG, (data: ReceiveLetterDTO) => {
           expect(data.id).toBe('sender');
           expect(data.content).toBe('TEST');
           res();
@@ -184,7 +184,7 @@ describe('LetterGateway', () => {
       it('해당 유저가 편지가 존재할 때', (done) => {
         const id = '2';
 
-        clientSocket.on(LETTER_MSG.SEND_MSG, (message: ReceiveLetterDto) => {
+        clientSocket.on(LETTER_MSG.SEND_MSG, (message: ReceiveLetterDTO) => {
           expect(message.content).toBe('Test');
           expect(message.id).toBe('1');
           done();
@@ -216,7 +216,7 @@ describe('LetterGateway', () => {
           },
         );
 
-        otherSocket.on(LETTER_MSG.SEND_MSG, (data: ReceiveLetterDto) => {
+        otherSocket.on(LETTER_MSG.SEND_MSG, (data: ReceiveLetterDTO) => {
           expect(data.id).toBe('1');
           expect(data.content).toBe('test');
           done();

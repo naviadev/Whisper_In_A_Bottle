@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import useLoginHooks from "../../hooks/authView/useLoginHooks";
-import { loginForm, input, button, link } from "../../style/loginForm.css";
+import useLoginHooks from "../../hooks/authView/use_login_hooks";
+import { loginForm, input, button, link } from "../../style/login_form.css";
 
 const LoginForm = () => {
   const { id, password, setId, setPassword, handleLogin } = useLoginHooks();

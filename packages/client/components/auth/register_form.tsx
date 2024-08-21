@@ -1,7 +1,7 @@
 import React from "react";
 
-import useRegisterHooks from "../../hooks/authView/useRegisterHooks";
-import { registerForm, input, button } from "../../style/registerForm.css";
+import useRegisterHooks from "../../hooks/authView/use_register_hooks";
+import { registerForm, input, button } from "../../style/register_form.css";
 
 const RegisterForm = () => {
   const { setId, setPassword, setPasswordCheck, handleRegister } =

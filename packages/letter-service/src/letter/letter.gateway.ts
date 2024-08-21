@@ -7,9 +7,12 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { ReceiveLetterDto, SenderLetterDto } from './dto/letter.dto';
+import {
+  ReceiveLetterDTO,
+  SenderLetterDTO,
+} from '../../../../shared/DTOs/letter.dto';
 import { LetterLogicService } from './letter-logic.service';
-import { LetterState } from './entities/letter-state.entity';
+import { LetterState } from '../../../../shared/entities/letter-state.entity';
 
 export enum LETTER_MSG {
   INIT_MSG = 'initial_data',
@@ -87,7 +90,7 @@ export class LetterGateway
   }
 
   @SubscribeMessage(LETTER_MSG.RECEIVE_MSG)
-  async receiveLetter(client: Socket, letter: SenderLetterDto) {
+  async receiveLetter(client: Socket, letter: SenderLetterDTO) {
     if (this.clientIdKeyMap.has(client.id) === false) {
       return;
     }
@@ -109,7 +112,7 @@ export class LetterGateway
       letterState.letter_id,
     );
 
-    const receivedLetter: ReceiveLetterDto = {
+    const receivedLetter: ReceiveLetterDTO = {
       id: letterState.sender_id,
       content: letter.content,
     };
@@ -127,7 +130,7 @@ export class LetterGateway
   }
 
   //* 메세지 보내는 Method
-  sendMessageToClient(id: string, letter: ReceiveLetterDto) {
+  sendMessageToClient(id: string, letter: ReceiveLetterDTO) {
     const clientIds = this.idKeyMap.get(id);
 
     if (!clientIds) {

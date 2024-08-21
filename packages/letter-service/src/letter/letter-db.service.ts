@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LetterState } from './entities/letter-state.entity'; // 실제 경로로 변경
-import { UserState } from './entities/user-state.entity'; // 실제 경로로 변경
-import { Letter } from './entities/letter.entity';
+import { LetterState } from '../../../../shared/entities/letter-state.entity'; // 실제 경로로 변경
+import { UserState } from '../../../../shared/entities/user-state.entity'; // 실제 경로로 변경
+import { Letter } from '../../../../shared/entities/letter.entity';
 
 @Injectable()
 export class LetterDbService {

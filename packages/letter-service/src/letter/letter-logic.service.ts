@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SenderLetterDto } from './dto/letter.dto';
+import { SenderLetterDTO } from '../../../../shared/DTOs/letter.dto';
 import { LetterDbService } from './letter-db.service';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class LetterLogicService {
   constructor(private readonly letterDbService: LetterDbService) {}
 
   //* 유저가 보낸 편지를 랜덤 유저를 선정 후, LetterState 형태로 저장한다.
-  async saveAndAssignLetter(id: string, letter: SenderLetterDto) {
+  async saveAndAssignLetter(id: string, letter: SenderLetterDTO) {
     // TODO: 편지 저장
     const letterEntity = await this.letterDbService.saveLetter(letter.content);
 

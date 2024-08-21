@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import RegisterAxios from "../../models/services/auth/registerAxios";
-import ValidateId from "../../models/validators/ValidateId";
-import ValidatePassword from "../../models/validators/ValidatePassword";
+import ValidateId from "../../models/validators/validateId";
+import ValidatePassword from "../../models/validators/validate_password";
 
 const useRegisterHooks = () => {
   const [id, setId] = useState<string>("");

@@ -4,7 +4,7 @@ import { Socket } from "net";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Server as IOServer } from "socket.io";
 
-import { initSocket } from "../../components/socket/socketInstance";
+import { initSocket } from "../../components/socket/socket_instance";
 
 interface SocketServer extends HttpServer {
   io?: IOServer;

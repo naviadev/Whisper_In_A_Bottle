@@ -2,8 +2,8 @@
 // src/hooks/useSocketMessages.ts
 import { useEffect, useState } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { useSocket } from "components/socket/SocketContext";
-import { getCookie } from "src/getCookie";
+import { useSocket } from "components/socket/socket_context";
+import { getCookie } from "src/get_cookie";
 
 interface UserJwtPayload extends JwtPayload {
   id?: string;

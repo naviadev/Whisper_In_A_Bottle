@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
-import { LetterState } from '../entities/letter-state.entity';
-import { UserState } from '../entities/user-state.entity';
-import { Letter } from '../entities/letter.entity';
+import { LetterState } from '../../../../../shared/entities/letter-state.entity';
+import { UserState } from '../../../../../shared/entities/user-state.entity';
+import { Letter } from '../../../../../shared/entities/letter.entity';
 import { LetterLogicService } from '../letter-logic.service';
 import { LetterDbService } from '../letter-db.service';
 import { Repository } from 'typeorm';

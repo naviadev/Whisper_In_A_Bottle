@@ -6,7 +6,7 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
+import PlayerDTO from '@shared/DTOs/player.dto';
 import { RegisterService } from '../services/register.service';
 
 /**
@@ -23,7 +23,7 @@ export class RegisterController {
   constructor(private readonly registerService: RegisterService) {}
   @Post()
   @HttpCode(200)
-  async registerUser(@Body() registerData: IPlayerDTO) {
+  async registerUser(@Body() registerData: PlayerDTO) {
     if (this.registerService.validateDTO(registerData)) {
       const result = await this.registerService.insertToDatabase(registerData);
 

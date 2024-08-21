@@ -1,73 +1,86 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RegisterController } from '../controllers/register.controller';
 import { RegisterService } from '../services/register.service';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
-
-// Mocking RegisterService
-const mockRegisterService = () => ({
-  validateDTO: jest.fn(),
-  insertToDatabase: jest.fn(),
-});
+import { INestApplication, HttpStatus } from '@nestjs/common';
+import request = require('supertest');
+import PlayerDTO from '@shared/DTOs/player.dto';
 
 describe('RegisterController', () => {
-  let controller: RegisterController;
+  let app: INestApplication;
   let registerService: RegisterService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [RegisterController],
       providers: [
-        { provide: RegisterService, useValue: mockRegisterService() },
+        {
+          provide: RegisterService,
+          useValue: {
+            validateDTO: jest.fn(),
+            insertToDatabase: jest.fn(),
+          },
+        },
       ],
     }).compile();
 
-    controller = module.get<RegisterController>(RegisterController);
-    registerService = module.get<RegisterService>(RegisterService);
+    app = moduleRef.createNestApplication();
+    await app.init();
+
+    registerService = moduleRef.get<RegisterService>(RegisterService);
   });
 
-  describe('registerUser', () => {
-    it('should return true when DTO is valid and data is inserted successfully', async () => {
-      const dto: IPlayerDTO = {
-        id: 'test@example.com',
-        password: 'password123',
-      };
-      (registerService.validateDTO as jest.Mock).mockReturnValue(true);
-      (registerService.insertToDatabase as jest.Mock).mockResolvedValue(true);
+  afterEach(async () => {
+    await app.close();
+    jest.clearAllMocks();
+  });
 
-      const result = await controller.registerUser(dto);
+  it('should return 400 if DTO is invalid', async () => {
+    const invalidDTO: PlayerDTO = { id: '', password: '' };
 
-      expect(registerService.validateDTO).toHaveBeenCalledWith(dto);
-      expect(registerService.insertToDatabase).toHaveBeenCalledWith(dto);
-      expect(result).toBe(true);
+    jest.spyOn(registerService, 'validateDTO').mockReturnValue(false);
+
+    const response = await request(app.getHttpServer())
+      .post('/register')
+      .send(invalidDTO);
+
+    expect(response.status).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toEqual({
+      success: false,
+      message: '유효성 검사 실패',
     });
+  });
 
-    it('should return false when DTO is valid but data insertion fails', async () => {
-      const dto: IPlayerDTO = {
-        id: 'test@example.com',
-        password: 'password123',
-      };
-      (registerService.validateDTO as jest.Mock).mockReturnValue(true);
-      (registerService.insertToDatabase as jest.Mock).mockResolvedValue(false);
+  it('should return 500 if user already exists', async () => {
+    const validDTO: PlayerDTO = { id: 'existingUser', password: 'password' };
 
-      const result = await controller.registerUser(dto);
+    jest.spyOn(registerService, 'validateDTO').mockReturnValue(true);
+    jest.spyOn(registerService, 'insertToDatabase').mockResolvedValue(false);
 
-      expect(registerService.validateDTO).toHaveBeenCalledWith(dto);
-      expect(registerService.insertToDatabase).toHaveBeenCalledWith(dto);
-      expect(result).toBe(false);
+    const response = await request(app.getHttpServer())
+      .post('/register')
+      .send(validDTO);
+
+    expect(response.status).toBe(HttpStatus.INTERNAL_SERVER_ERROR);
+    expect(response.body).toEqual({
+      success: false,
+      message: '이미 존재하는 아이디',
     });
+  });
 
-    it('should return false when DTO is invalid', async () => {
-      const dto: IPlayerDTO = {
-        id: 'test@example.com',
-        password: 'password123',
-      };
-      (registerService.validateDTO as jest.Mock).mockReturnValue(false);
+  it('should return 200 and success message if registration is successful', async () => {
+    const validDTO: PlayerDTO = { id: 'newUser', password: 'password' };
 
-      const result = await controller.registerUser(dto);
+    jest.spyOn(registerService, 'validateDTO').mockReturnValue(true);
+    jest.spyOn(registerService, 'insertToDatabase').mockResolvedValue(true);
 
-      expect(registerService.validateDTO).toHaveBeenCalledWith(dto);
-      expect(registerService.insertToDatabase).not.toHaveBeenCalled();
-      expect(result).toBe(false);
+    const response = await request(app.getHttpServer())
+      .post('/register')
+      .send(validDTO);
+
+    expect(response.status).toBe(HttpStatus.OK);
+    expect(response.body).toEqual({
+      success: true,
+      message: '가입 완료',
     });
   });
 });

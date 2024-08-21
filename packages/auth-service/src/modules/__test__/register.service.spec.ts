@@ -1,82 +1,77 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { Repository } from 'typeorm';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { RegisterService } from '../services/register.service';
-import User from '../../../ts/entity/User.entity';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
-
-// Mocking Repository
-const mockRepository = () => ({
-  create: jest.fn(),
-  save: jest.fn(),
-  findOne: jest.fn(),
-});
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from '@shared/entities/user.entity';
+import { UserState } from '@shared/entities/user-state.entity';
+import PlayerDTO from '@shared/DTOs/player.dto';
+import { ValidationService } from '../services/validation.service';
 
 describe('RegisterService', () => {
   let service: RegisterService;
-  let repository: Repository<User>;
+  let userRepository: Repository<User>;
+  let userStateRepository: Repository<UserState>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         RegisterService,
-        { provide: getRepositoryToken(User), useValue: mockRepository() },
+        ValidationService,
+        {
+          provide: getRepositoryToken(User),
+          useValue: {
+            findOneBy: jest.fn(),
+            create: jest.fn(),
+            save: jest.fn(),
+          },
+        },
+        {
+          provide: getRepositoryToken(UserState),
+          useValue: {
+            save: jest.fn(),
+          },
+        },
       ],
     }).compile();
 
     service = module.get<RegisterService>(RegisterService);
-    repository = module.get<Repository<User>>(getRepositoryToken(User));
+    userRepository = module.get<Repository<User>>(getRepositoryToken(User));
+    userStateRepository = module.get<Repository<UserState>>(
+      getRepositoryToken(UserState),
+    );
   });
 
-  describe('validateDTO', () => {
-    it('should return true for valid DTO', () => {
-      const validDTO: IPlayerDTO = {
-        id: 'test@example.com',
-        password: 'password123',
-      };
-      expect(service.validateDTO(validDTO)).toBe(true);
-    });
+  it('should return true and insert user if DTO is valid and user does not exist', async () => {
+    const validDTO: PlayerDTO = { id: 'user1', password: 'password' };
 
-    it('should return false for invalid DTO', () => {
-      const invalidDTO: IPlayerDTO = {
-        id: 'test@example.com',
-        password: '123',
-      }; // Invalid password type
-      expect(service.validateDTO(invalidDTO)).toBe(true);
-    });
-  });
+    const mockUserEntity = { id: 'user1', password: 'hashedPassword' } as User;
+    const mockUserStateEntity = {
+      id: 'user1',
+      receive_time: 0,
+      last_login_time: 0,
+      last_login_ip: '',
+    } as UserState;
 
-  describe('insertToDatabase', () => {
-    it('should successfully insert data into the database', async () => {
-      const dto: IPlayerDTO = {
-        id: 'test@example.com',
-        password: 'password123',
-      };
-      const entity = new User();
-      entity.id = dto.id;
-      entity.password = dto.password;
+    jest.spyOn(service, 'validateDTO').mockReturnValue(true);
+    jest.spyOn(userRepository, 'findOneBy').mockResolvedValue(null);
+    jest.spyOn(userRepository, 'create').mockReturnValue(mockUserEntity);
+    jest.spyOn(userRepository, 'save').mockResolvedValue(mockUserEntity);
+    jest
+      .spyOn(userStateRepository, 'save')
+      .mockResolvedValue(mockUserStateEntity);
 
-      repository.create = jest.fn().mockReturnValue(entity);
-      repository.save = jest.fn().mockResolvedValue(entity);
+    const result = await service.insertToDatabase(validDTO);
 
-      const result = await service.insertToDatabase(dto);
-      expect(result).toBe(true);
-      expect(repository.create).toHaveBeenCalledWith(dto);
-      expect(repository.save).toHaveBeenCalledWith(entity);
-    });
-
-    it('should handle errors when inserting data', async () => {
-      const dto: IPlayerDTO = {
-        id: 'test@example.com',
-        password: 'password123',
-      };
-      repository.create = jest.fn().mockReturnValue(dto);
-      repository.save = jest
-        .fn()
-        .mockRejectedValue(new Error('Database error'));
-
-      const result = await service.insertToDatabase(dto);
-      expect(result).toBe(false);
-    });
+    expect(result).toBe(true);
+    expect(userRepository.create).toHaveBeenCalledWith(validDTO);
+    expect(userRepository.save).toHaveBeenCalledWith(mockUserEntity);
+    expect(userStateRepository.save).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: 'user1',
+        receive_time: 0,
+        last_login_time: 0,
+        last_login_ip: '',
+      }),
+    );
   });
 });

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import useSocketMessagesHook from "../../hooks/letterView/useSocketMessagesHook";
-import { useSocket } from "../socket/SocketContext";
-import useLetteContainerHooks from "../../hooks/letterView/useLetterHooks";
-import * as styles from "../../style/letterMain.css";
+import useSocketMessagesHook from "../../hooks/letterView/use_socket_messages_hook";
+import { useSocket } from "../socket/socket_context";
+import useLetteContainerHooks from "../../hooks/letterView/use_letter_hooks";
+import * as styles from "../../style/letter_main.css";
 
-import LetterListInnerContent from "./LetterContent";
+import LetterListInnerContent from "./letter_content";
 
 /**
  * @ReactComponent : LetterMain

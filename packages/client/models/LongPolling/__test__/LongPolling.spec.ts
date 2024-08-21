@@ -1,4 +1,4 @@
-import { LongPolling } from "../LongPolling";
+import { LongPolling } from "../long_polling";
 
 describe("LongPolling", () => {
   let longPolling: LongPolling;

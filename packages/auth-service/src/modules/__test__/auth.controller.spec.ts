@@ -1,105 +1,102 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from '../controllers/auth.controller';
 import { AuthService } from '../services/auth.service';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
-import { ExecutionContext } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
+import request = require('supertest');
+import { INestApplication } from '@nestjs/common';
+import PlayerDTO from '@shared/DTOs/player.dto';
 
+//사전설정
 describe('AuthController', () => {
-  let authController: AuthController;
+  let app: INestApplication;
   let authService: AuthService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
         {
           provide: AuthService,
           useValue: {
-            validateDTO: jest.fn(),
             validateUser: jest.fn(),
             login: jest.fn(),
-            validateToken: jest.fn(),
-          },
-        },
-        {
-          provide: JwtAuthGuard,
-          useValue: {
-            canActivate: jest
-              .fn()
-              .mockImplementation((context: ExecutionContext) => {
-                const request = context.switchToHttp().getRequest();
-                request.user = { id: 'test-user' };
-                return true;
-              }),
+            updateUserState: jest.fn(),
           },
         },
       ],
     }).compile();
 
-    authController = module.get<AuthController>(AuthController);
-    authService = module.get<AuthService>(AuthService);
+    app = moduleRef.createNestApplication();
+    await app.init();
+
+    authService = moduleRef.get<AuthService>(AuthService);
   });
 
-  it('should be defined', () => {
-    expect(authController).toBeDefined();
+  afterEach(async () => {
+    await app.close();
   });
 
-  describe('login', () => {
-    it('should return an access token for valid credentials', async () => {
-      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
-      const token = { access_token: 'some-jwt-token' };
-      jest.spyOn(authService, 'validateDTO').mockReturnValue(true);
-      jest.spyOn(authService, 'validateUser').mockResolvedValue({ id: 'test' });
-      jest.spyOn(authService, 'login').mockResolvedValue(token);
+  it('사용자 검증과 jwt 토큰 반환, 응답에 토큰 포함되었는지 확인', async () => {
+    const validDTO: PlayerDTO = { id: 'player1', password: 'secret' };
+    const mockToken = 'mock-jwt-token';
+    const mockCookieOptions = { maxAge: 3600000 };
 
-      const result = await authController.login(playerDTO);
-      expect(result).toEqual(token);
+    jest
+      .spyOn(authService, 'validateUser')
+      .mockResolvedValue({ id: 'player1' });
+    jest.spyOn(authService, 'login').mockResolvedValue({
+      token: mockToken,
+      cookieOptions: mockCookieOptions,
     });
 
-    it('should throw an error for invalid DTO', async () => {
-      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
-      jest.spyOn(authService, 'validateDTO').mockReturnValue(false);
+    const response = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send(validDTO)
+      .expect(HttpStatus.OK);
 
-      await expect(authController.login(playerDTO)).rejects.toThrow(
-        '유효하지 않음.',
-      );
+    expect(response.body).toEqual({
+      success: true,
+      token: mockToken,
     });
 
-    it('should throw an error for invalid credentials', async () => {
-      const playerDTO: IPlayerDTO = { id: 'test', password: 'password' };
-      jest.spyOn(authService, 'validateDTO').mockReturnValue(true);
-      jest.spyOn(authService, 'validateUser').mockResolvedValue(null);
+    expect(response.headers['set-cookie']).toBeDefined();
+    expect(authService.updateUserState).toHaveBeenCalledWith(
+      validDTO.id,
+      expect.any(String),
+    );
+  });
 
-      await expect(authController.login(playerDTO)).rejects.toThrow(
-        'Invalid credentials',
-      );
+  it('유효성 실패시, null과 401반환', async () => {
+    const invalidDTO: PlayerDTO = { id: 'player1', password: 'wrongpassword' };
+
+    jest.spyOn(authService, 'validateUser').mockResolvedValue(null);
+
+    const response = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send(invalidDTO)
+      .expect(HttpStatus.UNAUTHORIZED);
+
+    expect(response.body).toEqual({
+      success: false,
+      message: 'Invalid credentials',
     });
   });
 
-  describe('validateToken', () => {
-    it('should return true for a valid token', async () => {
-      const request = {
-        headers: {
-          authorization: 'Bearer some-jwt-token',
-        },
-      };
-      jest.spyOn(authService, 'validateToken').mockResolvedValue(true);
+  it('에러처리', async () => {
+    const validDTO: PlayerDTO = { id: 'player1', password: 'secret' };
 
-      const result = await authController.validateToken(request as any);
-      expect(result).toBe(true);
+    jest.spyOn(authService, 'validateUser').mockImplementation(() => {
+      throw new Error('Unexpected error');
     });
 
-    it('should return false for an invalid token', async () => {
-      const request = {
-        headers: {
-          authorization: 'Bearer some-jwt-token',
-        },
-      };
-      jest.spyOn(authService, 'validateToken').mockResolvedValue(false);
+    const response = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send(validDTO)
+      .expect(HttpStatus.UNAUTHORIZED);
 
-      const result = await authController.validateToken(request as any);
-      expect(result).toBe(false);
+    expect(response.body).toEqual({
+      success: false,
+      message: 'Invalid credentials',
     });
   });
 });

@@ -1,17 +1,8 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Res,
-  UseGuards,
-  HttpStatus,
-  Request,
-} from '@nestjs/common';
+import { Controller, Post, Body, Res, HttpStatus } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import PlayerDTO from '@shared/DTOs/player.dto';
 import { Response } from 'express';
-import { IpAddress } from 'src/decorator/IpAddress.decorator';
+import { IpAddress } from '../../decorator/IpAddress.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -27,7 +18,7 @@ export class AuthController {
    */
   @Post('login')
   async login(
-    @Body() data: IPlayerDTO,
+    @Body() data: PlayerDTO,
     @Res() res: Response,
     @IpAddress() ip: string,
   ): Promise<VideoDecoderConfig> {
@@ -53,17 +44,5 @@ export class AuthController {
         .status(HttpStatus.UNAUTHORIZED)
         .json({ success: false, message: 'Invalid credentials' });
     }
-  }
-
-  /**
-   * 토큰 검증 엔드포인트 JwtAuthGuard를 거쳐 검증
-   * @param request Request 객체
-   * @returns 토큰이 유효하면 true, 그렇지 않으면 false
-   */
-  @Post('validate-token')
-  @UseGuards(JwtAuthGuard)
-  async validateToken(@Request() request): Promise<boolean> {
-    const token = request.headers.authorization.split(' ')[1];
-    return this.authService.validateToken(token);
   }
 }

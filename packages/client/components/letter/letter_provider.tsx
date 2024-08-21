@@ -2,7 +2,7 @@
 import { useEffect, useState, ReactNode } from "react";
 import { io, Socket } from "socket.io-client";
 
-import { SocketContext } from "../socket/SocketContext";
+import { SocketContext } from "../socket/socket_context";
 
 interface SocketProviderProps {
   children: ReactNode;

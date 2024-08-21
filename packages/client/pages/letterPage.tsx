@@ -1,6 +1,6 @@
-import SocketProvider from "../components/letter/LetterProvider";
-import LetterHeader from "../components/letter/LetterHeader";
-import LetterMain from "../components/letter/LetterMain";
+import SocketProvider from "../components/letter/letter_provider";
+import LetterHeader from "../components/letter/letter_header";
+import LetterMain from "../components/letter/letter_main";
 
 const LettersPage: React.FC = () => {
   return (

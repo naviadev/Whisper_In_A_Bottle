@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import IRegister from 'ts/interfaces/auth/IRegister';
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
+import IRegister from '../../../ts/interfaces/auth/IRegister';
+import PlayerDTO from '@shared/DTOs/player.dto';
 import { ValidationService } from './validation.service';
-import User from '../../../ts/entity/User.entity';
-import { UserState } from 'src/entity/User-state.entity';
+import { User } from '@shared/entities/user.entity';
+import { UserState } from '@shared/entities/user-state.entity';
 /**
  * * Decorator : Injectable
  * 작성자 : @naviadev / 2024-07-16
@@ -23,7 +23,7 @@ export class RegisterService implements IRegister {
     private readonly userStateRepository: Repository<UserState>,
     private readonly vaildationService: ValidationService,
   ) {}
-  async insertToDatabase(data: IPlayerDTO): Promise<boolean> {
+  async insertToDatabase(data: PlayerDTO): Promise<boolean> {
     try {
       if (!this.validateDTO(data)) {
         return false;
@@ -48,11 +48,11 @@ export class RegisterService implements IRegister {
     }
   }
 
-  validateDTO(Data: IPlayerDTO): boolean {
+  validateDTO(Data: PlayerDTO): boolean {
     return this.vaildationService.validateDTO(Data);
   }
 
-  private async insertUser(data: IPlayerDTO): Promise<User> {
+  private async insertUser(data: PlayerDTO): Promise<User> {
     const userEntity = this.userRepository.create(data);
     return this.userRepository.save(userEntity);
   }

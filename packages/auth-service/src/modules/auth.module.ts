@@ -4,14 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import User from '../../ts/entity/User.entity';
+import { User } from '@shared/entities/user.entity';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthController } from './controllers/auth.controller';
 import { RegisterController } from './controllers/register.controller';
 import { ValidationService } from './services/validation.service';
 import { configOptions } from '../config/env.config';
-import { UserState } from 'src/entity/User-state.entity';
+import { UserState } from '../../../../shared/entities/user-state.entity';
 
 /**
  * * Decorator : Module

@@ -1,5 +1,5 @@
-import IPlayerDTO from 'ts/DTOs/IPlayerDTO';
-import User from 'ts/entity/User.entity';
+import PlayerDTO from '@shared/DTOs/player.dto';
+import { User } from '@shared/entities/user.entity';
 /**
  * * Interface : AuthService
  * 작성자 : @naviadev
@@ -12,12 +12,11 @@ import User from 'ts/entity/User.entity';
  */
 
 interface IAuth {
-  validateDTO(Data: IPlayerDTO): boolean;
+  validateDTO(Data: PlayerDTO): boolean;
   validateUser(
     id: string,
     pass: string,
   ): Promise<Omit<User, 'password'> | null>;
-  login(user: IPlayerDTO): Promise<{ token: string; cookieOptions: any }>;
-  validateToken(token: string): Promise<boolean>;
+  login(user: PlayerDTO): Promise<{ token: string; cookieOptions: any }>;
 }
 export default IAuth;
