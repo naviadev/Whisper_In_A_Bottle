@@ -7,7 +7,7 @@ const customJestConfig = {
   testEnvironment: "jsdom",
   globals: {
     "ts-jest": {
-      tsconfig: "<rootDir>/client/tsconfig.json",
+      tsconfig: "<rootDir>/tsconfig.json",
     },
   },
   testRegex: ".*\\.spec\\.(ts|tsx)$",
