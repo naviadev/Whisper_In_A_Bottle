@@ -63,6 +63,7 @@
         "newlines-between": "always"
       }
     ],
+    "comma-dangle": "off",
     "prettier/prettier": [
       "error",
       {
