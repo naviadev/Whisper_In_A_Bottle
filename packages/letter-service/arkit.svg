@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="314px" preserveAspectRatio="none" style="width:597px;height:314px;" version="1.1" viewBox="0 0 597 314" width="597px" zoomAndPan="magnify"><defs/><g><!--MD5=[a2785d03199c592de6063576bb7e3eae]
+entity _app_module--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="87" x="342" y="33"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="67" x="352" y="55.0059">app.module</text><!--MD5=[faed622019d961a4f0e66ecc9268985a]
+entity _custom_io_adapter--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="132" x="197.5" y="33"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="112" x="207.5" y="55.0059">custom_io_adapter</text><!--MD5=[53140783d0399ab095715cad6fd3d57b]
+entity _letter_db_service--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="114" x="343.5" y="269"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="94" x="353.5" y="291.0059">letter_db.service</text><!--MD5=[5b4454f7ce105f96fa07a3c37933a421]
+entity _letter_logic_service--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="128" x="378.5" y="210"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="108" x="388.5" y="232.0059">letter_logic.service</text><ellipse cx="513.6526" cy="49.9305" fill="#F8F8F8" rx="72.6526" ry="16.9305" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="454.1526" y="53.6727">letter-dummyData</text><!--MD5=[3f9d2ce3274f896d1f737bf4cce93d54]
+entity _letter_gateway--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="99" x="405" y="151"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="79" x="415" y="173.0059">letter.gateway</text><!--MD5=[1882e4ebaa6c45ff3f9b96efb0c98191]
+entity _letter_module--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="95" x="338" y="92"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="75" x="348" y="114.0059">letter.module</text><ellipse cx="31.6274" cy="50.242" fill="#F8F8F8" rx="25.6274" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="15.6274" y="53.9842">main</text><ellipse cx="127.5771" cy="50.0154" fill="#F8F8F8" rx="58.0771" ry="14.0154" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="83" x="86.0771" y="53.7576">swagger.setup</text><!--MD5=[9f4abdce61e6be237c33c6a8cfe234e2]
+link _app_module to _letter_module--><path d="M385.5,67.181 C385.5,73.25 385.5,80.241 385.5,86.703 " fill="none" id="_app_module-&gt;_letter_module" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="385.5,91.975,389.5,82.975,385.5,86.975,381.5,82.975,385.5,91.975" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[541efc6f035cb8dcaa9cebfcb0fe6311]
+link _letter_logic_service to _letter_db_service--><path d="M430.577,244.1814 C425.837,250.614 420.333,258.0832 415.34,264.8605 " fill="none" id="_letter_logic_service-&gt;_letter_db_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="412.308,268.9754,420.8668,264.1023,415.2738,264.95,414.4261,259.357,412.308,268.9754" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[ed77ca5a202045ad2a63df22a1f0d9f7]
+link _letter_gateway to _letter_logic_service--><path d="M451.093,185.181 C449.816,191.25 448.344,198.241 446.984,204.7033 " fill="none" id="_letter_gateway-&gt;_letter_logic_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="445.874,209.9754,451.6424,201.9926,446.9041,205.0827,443.814,200.3444,445.874,209.9754" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[c08ab4b498c08ac196b9b6634a55c5c9]
+link _letter_module to _letter_db_service--><path d="M379.982,126.085 C372.076,151.662 359.808,202.909 372.5,244 C374.732,251.2268 378.724,258.3165 383.007,264.514 " fill="none" id="_letter_module-&gt;_letter_db_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="386,268.6528,383.9667,259.0161,383.0698,264.6014,377.4845,263.7045,386,268.6528" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[43dd3d5d2155e6b4ede70e8b9f146560]
+link _letter_module to _letter_logic_service--><path d="M385.683,126.169 C386.492,142.038 389.461,166.486 399.5,185 C403.735,192.809 409.987,200.005 416.42,206.1153 " fill="none" id="_letter_module-&gt;_letter_logic_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="420.432,209.7756,416.479,200.7549,416.7382,206.4058,411.0873,206.665,420.432,209.7756" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8e04cc0d8423b0ed672a58e07c718b42]
+link _letter_module to _letter_gateway--><path d="M405.088,126.181 C413.169,132.857 422.601,140.648 431.046,147.625 " fill="none" id="_letter_module-&gt;_letter_gateway" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="435.102,150.975,430.7132,142.158,431.248,147.7896,425.6165,148.3244,435.102,150.975" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[49d82cc179279774c0f16d837713b4e0]
+link <b>main</b> to _app_module--><path d="M42.5901,38.153 C49.59,31.571 59.2287,24.019 69.5,20.5 C124.159,1.774 273.412,6.63 329.5,20.5 C338.069,22.619 346.774,26.313 354.686,30.384 " fill="none" id="&lt;b&gt;main&lt;/b&gt;-&gt;_app_module" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="359.502,32.958,353.4502,25.1878,355.0924,30.6011,349.6791,32.2432,359.502,32.958" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[ebe97043cb8021e2e9b9a7695c670c0e]
+link <b>main</b> to _custom_io_adapter--><path d="M42.5901,38.153 C49.59,31.571 59.2287,24.019 69.5,20.5 C118.273,3.791 134.785,11.23 185.5,20.5 C197.588,22.709 210.234,26.697 221.74,31.04 " fill="none" id="&lt;b&gt;main&lt;/b&gt;-&gt;_custom_io_adapter" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="226.596,32.919,219.646,25.9407,221.9329,31.1146,216.759,33.4016,226.596,32.919" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[cb7860aead597c626d34ca15215bb621]
+link <b>main</b> to swagger.setup--><path d="M57,50 C59.4527,50 61.9054,50 64.3581,50 " fill="none" id="&lt;b&gt;main&lt;/b&gt;-&gt;swagger.setup" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="69.3926,50,60.3926,46,64.3926,50,60.3926,54,69.3926,50" style="stroke: #000000; stroke-width: 1.0;"/><script type="text/plantuml"><![CDATA[MD5=[57f97b7e04250688f1b2198474f1d413]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 12
+skinparam ranksep 25
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+rectangle "app.module" as _app_module
+rectangle "custom_io_adapter" as _custom_io_adapter
+rectangle "letter_db.service" as _letter_db_service
+rectangle "letter_logic.service" as _letter_logic_service
+(<b>letter-dummyData</b>)
+rectangle "letter.gateway" as _letter_gateway
+rectangle "letter.module" as _letter_module
+(<b>main</b>)
+(swagger.setup)
+
+
+_app_module --> _letter_module
+_letter_logic_service --> _letter_db_service
+_letter_gateway --> _letter_logic_service
+_letter_module --> _letter_db_service
+_letter_module --> _letter_logic_service
+_letter_module --> _letter_gateway
+(<b>main</b>) -[thickness=1]> _app_module
+(<b>main</b>) -[thickness=1]> _custom_io_adapter
+(<b>main</b>) -[thickness=1]> (swagger.setup)
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
