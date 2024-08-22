@@ -23,7 +23,7 @@ const useRegisterHooks = () => {
 
     const success: boolean = await RegisterAxios({
       id: id,
-      password: password,
+      password: password
     });
 
     setIsRegister(success);
@@ -38,7 +38,7 @@ const useRegisterHooks = () => {
     setId,
     setPassword,
     setPasswordCheck,
-    handleRegister,
+    handleRegister
   };
 };
 

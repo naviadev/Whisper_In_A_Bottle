@@ -9,8 +9,8 @@ const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {
       REQUEST_PORT.__LOGIN_PORT,
       user,
       {
-        withCredentials: true, // 요청에 쿠키를 포함하여 서버가 클라이언트를 인증
-      },
+        withCredentials: true // 요청에 쿠키를 포함하여 서버가 클라이언트를 인증
+      }
     );
 
     const data = response.data;

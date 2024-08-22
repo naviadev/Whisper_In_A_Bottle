@@ -5,7 +5,7 @@ import LoginAxios from "../services/auth/loginAxios";
 describe("login test", () => {
   const dummyUser: PlayerDTO = {
     id: "dummy",
-    password: "1111",
+    password: "1111"
   };
 
   const originalFetch = global.fetch;
@@ -18,7 +18,7 @@ describe("login test", () => {
   //* 네트워크 통신 에러 상황일 떄 테스트
   it("login Error test", async () => {
     const mockFetch = jest.fn().mockResolvedValue({
-      ok: false,
+      ok: false
     });
     global.fetch = mockFetch;
     await expect(LoginAxios(dummyUser)).rejects.toThrow();
@@ -28,7 +28,7 @@ describe("login test", () => {
   it("login Success test", async () => {
     const mockFetch = jest.fn().mockResolvedValue({
       ok: true,
-      status: 200,
+      status: 200
     });
 
     global.fetch = mockFetch;
@@ -39,7 +39,7 @@ describe("login test", () => {
   it("login Filed test", async () => {
     const mockFetch = jest.fn().mockResolvedValue({
       ok: true,
-      status: 400,
+      status: 400
     });
 
     global.fetch = mockFetch;

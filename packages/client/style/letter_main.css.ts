@@ -9,7 +9,7 @@ export const container = style({
   margin: "auto",
   border: "1px solid #ddd",
   borderRadius: "8px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
 });
 
 export const textarea = style({
@@ -21,7 +21,7 @@ export const textarea = style({
   boxSizing: "border-box",
   fontSize: "16px",
   resize: "vertical",
-  marginBottom: "10px",
+  marginBottom: "10px"
 });
 
 export const buttonContainer = style({
@@ -29,7 +29,7 @@ export const buttonContainer = style({
   height: "100px",
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "center"
 });
 
 export const button = style({
@@ -43,11 +43,11 @@ export const button = style({
   transition: "background-color 0.3s",
   margin: "0px 10px 0px 10px",
   ":hover": {
-    backgroundColor: "#0056b3",
+    backgroundColor: "#0056b3"
   },
   ":focus": {
-    outline: "none",
-  },
+    outline: "none"
+  }
 });
 
 export const contentContainer = style({
@@ -63,7 +63,7 @@ export const contentContainer = style({
   display: "flex",
   flexDirection: "column",
   alignContent: "center",
-  justifyContent: "center",
+  justifyContent: "center"
 });
 
 export const Content = style({
@@ -73,5 +73,5 @@ export const Content = style({
   border: "1px solid #ccc",
   borderRadius: "4px",
   margin: "10px",
-  textAlign: "center",
+  textAlign: "center"
 });

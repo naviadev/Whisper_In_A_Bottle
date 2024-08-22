@@ -8,7 +8,7 @@ const useLetteContainerHooks = () => {
 
   return {
     isLetterContainerContentMode,
-    isSetLetterContainerContentMode,
+    isSetLetterContainerContentMode
   };
 };
 

@@ -8,14 +8,14 @@ export const registerForm = style({
   padding: "20px",
   border: "1px solid #ddd",
   borderRadius: "8px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
 });
 
 export const input = style({
   padding: "10px",
   margin: "5px 0",
   borderRadius: "4px",
-  border: "1px solid #ccc",
+  border: "1px solid #ccc"
 });
 
 export const button = style({
@@ -26,5 +26,5 @@ export const button = style({
   backgroundColor: "#28a745",
   color: "white",
   cursor: "pointer",
-  fontSize: "16px",
+  fontSize: "16px"
 });

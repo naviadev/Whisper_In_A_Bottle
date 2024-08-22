@@ -12,8 +12,8 @@ export const initSocket = (server: HttpServer): IOServer => {
     io = new IOServer(server, {
       cors: {
         origin: REQUEST_PORT.__LETTER_SERVER_PORT,
-        methods: ["GET", "POST"],
-      },
+        methods: ["GET", "POST"]
+      }
     });
 
     io.on("connection", (socket) => {

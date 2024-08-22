@@ -13,7 +13,7 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const socketInstance = io("http://localhost:3002", {
-      withCredentials: true,
+      withCredentials: true
     });
     setSocket(socketInstance);
 

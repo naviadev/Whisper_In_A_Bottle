@@ -50,7 +50,7 @@ const useLoginHooks = () => {
     isLoggedIn,
     setId,
     setPassword,
-    handleLogin,
+    handleLogin
   };
 };
 

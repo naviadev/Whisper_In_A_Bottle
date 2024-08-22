@@ -9,7 +9,7 @@ const SERVER_URL = process.env.SERVER_URL || REQUEST_PORT.__NEXT_SERVER_PORT;
 const returnInstance = (headers?: AxiosRequestHeaders): AxiosInstance =>
   axios.create({
     baseURL: SERVER_URL,
-    headers: headers,
+    headers: headers
   });
 
 export default returnInstance;

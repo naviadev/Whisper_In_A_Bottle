@@ -21,10 +21,10 @@ jest.mock("socket.io-client", () => {
     emit: jest.fn(),
     off: jest.fn(),
     connect: jest.fn(),
-    disconnect: jest.fn(),
+    disconnect: jest.fn()
   };
   return {
-    io: jest.fn(() => mSocket),
+    io: jest.fn(() => mSocket)
   };
 });
 
@@ -48,7 +48,7 @@ describe("Socket Component", () => {
     render(<Socket />);
 
     const input = screen.getByPlaceholderText(
-      "Type your message here",
+      "Type your message here"
     ) as HTMLInputElement;
     const button = screen.getByText("Send");
 
@@ -68,7 +68,7 @@ describe("Socket Component", () => {
 
     await act(async () => {
       const onCall = mockSocket.on.mock.calls.find(
-        (call) => call[0] === "send-letter",
+        (call) => call[0] === "send-letter"
       );
       if (onCall && typeof onCall[1] === "function") {
         onCall[1]("Hello");

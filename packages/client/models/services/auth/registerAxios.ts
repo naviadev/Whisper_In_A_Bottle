@@ -14,7 +14,7 @@ const RegisterAxios = async (registerData: PlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__REGISTER_PORT,
-      registerData,
+      registerData
     );
 
     console.log(response.data.message);

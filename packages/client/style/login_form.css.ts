@@ -8,14 +8,14 @@ export const loginForm = style({
   padding: "20px",
   border: "1px solid #ddd",
   borderRadius: "8px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
 });
 
 export const input = style({
   padding: "10px",
   margin: "5px 0",
   borderRadius: "4px",
-  border: "1px solid #ccc",
+  border: "1px solid #ccc"
 });
 
 export const button = style({
@@ -26,7 +26,7 @@ export const button = style({
   backgroundColor: "#007BFF",
   color: "white",
   cursor: "pointer",
-  fontSize: "16px",
+  fontSize: "16px"
 });
 
 export const link = style({
@@ -34,5 +34,5 @@ export const link = style({
   marginTop: "10px",
   color: "#007BFF",
   textDecoration: "none",
-  cursor: "pointer",
+  cursor: "pointer"
 });

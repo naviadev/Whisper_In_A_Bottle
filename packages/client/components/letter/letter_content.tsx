@@ -7,7 +7,7 @@ interface InnerContentInterface {
 
 const LetterListInnerContent: React.FC<InnerContentInterface> = ({
   letterHeader,
-  className,
+  className
 }) => {
   return <div className={className}>{letterHeader}</div>;
 };
