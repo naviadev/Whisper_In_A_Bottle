@@ -1,4 +1,4 @@
-import PlayerDTO from "@shared/dtos/player.dto";
+import { PlayerDTO } from "@shared/dtos/player.dto";
 
 import LoginAxios from "../services/auth/loginAxios";
 

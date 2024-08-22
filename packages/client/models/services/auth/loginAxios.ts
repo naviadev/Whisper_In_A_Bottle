@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import PlayerDTO from "../../../../../shared/dtos/player.dto";
+import { PlayerDTO } from "../../../../../shared/dtos/player.dto";
 import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
 
 const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 // eslint-disable-next-line import/no-unresolved
-import PlayerDTO from "../../../../../shared/dtos/player.dto";
+import { PlayerDTO } from "../../../../../shared/dtos/player.dto";
 import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
 /**
  * * Function : RegisterAxios
