@@ -1,7 +1,8 @@
 import { io } from "socket.io-client";
 import { render, screen, fireEvent, act } from "@testing-library/react";
+
 // eslint-disable-next-line import/no-unresolved
-import Socket from "components/socket/socket";
+import Socket from "@client/components/socket/socket";
 import "@testing-library/jest-dom";
 
 // Define a mock socket interface

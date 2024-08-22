@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 import PlayerDTO from "../../../../../shared/dtos/player.dto";
-import REQUEST_PORT from "../../../ts/enums/request_port.enum";
+import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
 
 const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {
   try {
@@ -10,7 +10,7 @@ const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {
       user,
       {
         withCredentials: true, // 요청에 쿠키를 포함하여 서버가 클라이언트를 인증
-      }
+      },
     );
 
     const data = response.data;
