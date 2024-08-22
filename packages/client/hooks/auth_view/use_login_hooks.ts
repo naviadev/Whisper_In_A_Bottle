@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import ROUTE_PATH from "../../ts/enums/path.enum";
+import ROUTE_PATH from "../../ts/enums/PATH.enum";
 import ValidateId from "../../models/validators/validate_id";
 import LoginAxios from "../../models/services/auth/loginAxios";
 
