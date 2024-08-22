@@ -5,9 +5,17 @@ export interface SenderLetterDTO {
   content: string;
 }
 
-export interface ReceiveLetterDTO extends SenderLetterDTO {
+export class SenderLetterDTO implements SenderLetterDTO {
+  @IsString()
+  content: string;
+}
+
+export class ReceiveLetterDTO extends SenderLetterDTO {
+  @IsString()
   id: string;
 }
+
+
 export interface LetterInterface {
   body: string;
   time: number;
@@ -15,7 +23,7 @@ export interface LetterInterface {
   ip: string;
 }
 
-export class LetterDTO {
+export class LetterDTO implements LetterInterface {
   @ApiProperty({ description: "편지 본문" })
   @IsString()
   body: string;
