@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="392px" preserveAspectRatio="none" style="width:624px;height:392px;" version="1.1" viewBox="0 0 624 392" width="624px" zoomAndPan="magnify"><defs/><g><!--MD5=[a2785d03199c592de6063576bb7e3eae]
+entity _app_module--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="87" x="283.5" y="8"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="67" x="293.5" y="30.0059">app.module</text><!--MD5=[d06a8b9102defe736655824e5da7ce2d]
+entity _auth_controller--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="103" x="103.5" y="132"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="83" x="113.5" y="154.0059">auth.controller</text><ellipse cx="62.2187" cy="364.1437" fill="#F8F8F8" rx="56.2187" ry="13.6437" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="78" x="23.2187" y="367.8859">auth.interface</text><!--MD5=[20b4a1a3e10464ed0ad4cd0abc9eac0b]
+entity _auth_module--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="91" x="198.5" y="70"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="71" x="208.5" y="92.0059">auth.module</text><!--MD5=[e2b932e41919c0199308f833dd59d992]
+entity _auth_service--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="89" x="39.5" y="194"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="69" x="49.5" y="216.0059">auth.service</text><ellipse cx="461.2193" cy="149.242" fill="#F8F8F8" rx="44.7193" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="59" x="431.7193" y="152.9842">env.config</text><!--MD5=[2dfe4d2ebe18697bd4c3daf7c43a2f80]
+entity _IpAddress_decorator--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="137" x="84.5" y="256"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="117" x="94.5" y="278.0059">IpAddress.decorator</text><!--MD5=[cbb9e16afa9a6a59b916feca617c85ba]
+entity _jwt_auth_guard--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="116" x="385" y="8"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="96" x="395" y="30.0059">jwt-auth.guard</text><!--MD5=[83771382ad652ac9e0e615fcbb2c52b6]
+entity _jwt_interface--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="90" x="519" y="194"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="70" x="529" y="216.0059">jwt.interface</text><!--MD5=[905c43164d90a6e21c7bbf563c0c5480]
+entity _jwt_strategy--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="98" x="515" y="8"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="78" x="525" y="30.0059">jwt.strategy</text><ellipse cx="244.1274" cy="25.242" fill="#F8F8F8" rx="25.6274" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="228.1274" y="28.9842">main</text><!--MD5=[ab3860c743c26302a1234b60b6b737fb]
+entity _register_controller--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="121" x="281.5" y="132"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="101" x="291.5" y="154.0059">register.controller</text><!--MD5=[1892183b7afb188a61218ad24ca33f2f]
+entity _register_interface--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="116" x="319" y="347"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="96" x="329" y="369.0059">register.interface</text><!--MD5=[ce8ba8915d7cc6f23ef940d7bf6f62da]
+entity _register_service--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="107" x="269.5" y="194"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="279.5" y="216.0059">register.service</text><ellipse cx="363.2159" cy="87.2432" fill="#F8F8F8" rx="59.2159" ry="14.2432" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="86" x="320.2159" y="90.9854">typeorm.config</text><!--MD5=[8955c4594542e1d99e2f946a2cf2d49b]
+entity _validation_service--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="119" x="235.5" y="256"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="99" x="245.5" y="278.0059">validation.service</text><!--MD5=[0dc7ede2abf42a1a0fad0ac7d5f23cd6]
+link _app_module to _auth_module--><path d="M304.758,42.079 C294.244,49.679 281.613,58.81 270.597,66.773 " fill="none" id="_app_module-&gt;_auth_module" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="266.304,69.877,275.9416,67.8479,270.3567,66.9486,271.2561,61.3637,266.304,69.877" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[184a2d5b53ef4909371a9fedde1bd140]
+link _app_module to typeorm.config--><path d="M336.647,42.079 C341.568,50.28 347.558,60.264 352.584,68.639 " fill="none" id="_app_module-&gt;typeorm.config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="355.263,73.105,354.0639,63.3294,352.6912,68.8172,347.2034,67.4444,355.263,73.105" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[80a6eb0b4acb08d9ca843842c08c8a77]
+link _auth_controller to _auth_service--><path d="M135.973,166.079 C127.06,173.611 116.366,182.649 107.002,190.562 " fill="none" id="_auth_controller-&gt;_auth_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="103.0792,193.877,112.5349,191.122,106.8978,190.6493,107.3705,185.0122,103.0792,193.877" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f0525d6770e323c56f46883edc8ead06]
+link _auth_controller to _IpAddress_decorator--><path d="M154.734,166.201 C154.379,187.894 153.747,226.435 153.352,250.527 " fill="none" id="_auth_controller-&gt;_IpAddress_decorator" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="153.267,255.732,157.4156,246.7995,153.3499,250.7327,149.4167,246.6669,153.267,255.732" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[32a00e8b6955f4b539b7875572f2eb52]
+link _auth_module to _auth_controller--><path d="M220.15,104.079 C208.777,111.746 195.092,120.972 183.206,128.985 " fill="none" id="_auth_module-&gt;_auth_controller" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="178.916,131.877,188.6147,130.1637,183.0621,129.0824,184.1434,123.5299,178.916,131.877" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0ad10f6159924d16e704b56fb672f1ed]
+link _auth_module to _auth_service--><path d="M198.372,89.192 C165.029,92.624 121.372,102.91 96,132 C82.5337,147.44 80.7047,171.455 81.5126,188.759 " fill="none" id="_auth_module-&gt;_auth_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="81.8381,193.897,85.2618,184.6624,81.5224,188.907,77.2778,185.1675,81.8381,193.897" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[647473562d001c067d0f978036037a9b]
+link _auth_module to env.config--><path d="M289.636,101.936 C292.123,102.646 294.59,103.338 297,104 C346.893,117.703 360.181,118.027 410,132 C415.794,133.625 421.924,135.453 427.85,137.278 " fill="none" id="_auth_module-&gt;env.config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="432.767,138.805,425.3579,132.3161,427.9919,137.3223,422.9857,139.9563,432.767,138.805" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[653ae38feea6c4685a8dfb111e9e3b2b]
+link _auth_module to _register_controller--><path d="M270.262,104.079 C282.895,111.813 298.119,121.134 311.286,129.195 " fill="none" id="_auth_module-&gt;_register_controller" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="315.665,131.877,310.0788,123.7656,311.401,129.2658,305.9009,130.588,315.665,131.877" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[346cae5c3907189cc61c36bf9506a978]
+link _auth_module to _register_service--><path d="M247.854,104.304 C252.3,120.871 260.75,146.762 274,166 C280.242,175.063 288.717,183.531 296.863,190.57 " fill="none" id="_auth_module-&gt;_register_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="300.825,193.907,296.5187,185.0495,297.0009,190.6857,291.3647,191.168,300.825,193.907" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[483f47ecf4503072f2b3a6c5162991b4]
+link _auth_module to _validation_service--><path d="M243.455,104.205 C243.121,130.999 244.853,185.768 262,228 C265.391,236.352 270.769,244.528 276.207,251.522 " fill="none" id="_auth_module-&gt;_validation_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="279.584,255.715,277.0533,246.1968,276.4475,251.8211,270.8232,251.2153,279.584,255.715" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f73cff2120e4bc66fe44ce72efd0f3df]
+link _auth_service to auth.interface--><path d="M81.3352,228.288 C79.9975,236.579 78.3735,246.82 77,256 C72.2916,287.468 67.2372,324.2116 64.3625,345.424 " fill="none" id="_auth_service-&gt;auth.interface" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="63.6801,350.4697,68.8503,342.087,64.3502,345.5148,60.9225,341.0148,63.6801,350.4697" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[084902f6536783a25eca233bfbba9e74]
+link _auth_service to _validation_service--><path d="M128.748,224.724 C159.302,233.413 200.17,245.034 233.74,254.58 " fill="none" id="_auth_service-&gt;_validation_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="238.638,255.973,231.075,249.6642,233.8286,254.6056,228.8872,257.3592,238.638,255.973" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[a62fed0172e74445de58a6d30ef195c7]
+link _jwt_strategy to _jwt_interface--><path d="M564,42.007 C564,75.174 564,151.412 564,188.691 " fill="none" id="_jwt_strategy-&gt;_jwt_interface" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="564,193.899,568,184.899,564,188.899,560,184.899,564,193.899" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[49d82cc179279774c0f16d837713b4e0]
+link <b>main</b> to _app_module--><path d="M269.613,25 C272.415,25 275.217,25 278.02,25 " fill="none" id="&lt;b&gt;main&lt;/b&gt;-&gt;_app_module" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="283.063,25,274.063,21,278.063,25,274.063,29,283.063,25" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[bdb62aeec56fddb39caafbb07d120ee4]
+link _register_controller to _register_service--><path d="M336.908,166.079 C334.693,173.073 332.068,181.365 329.698,188.85 " fill="none" id="_register_controller-&gt;_register_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="328.106,193.877,334.635,186.5032,329.6145,189.11,327.0077,184.0896,328.106,193.877" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[3b909f4ad1e69e787b2ad72b8268521b]
+link _register_service to _register_interface--><path d="M341.067,228.352 C348.42,236.02 356.283,245.726 361,256 C373.769,283.8133 376.765,319.5674 377.256,341.8869 " fill="none" id="_register_service-&gt;_register_interface" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="377.33,346.9848,381.1995,337.9279,377.2577,341.9853,373.2003,338.0436,377.33,346.9848" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[04e0a5cb5291f8be59e4602f82a48d02]
+link _register_service to _validation_service--><path d="M315.497,228.079 C312.17,235.208 308.214,243.685 304.669,251.281 " fill="none" id="_register_service-&gt;_validation_service" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="302.524,255.877,309.9543,249.4124,304.6381,251.3459,302.7046,246.0298,302.524,255.877" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[4d1af82f61f0d3a53955880d032a4e2b]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 14
+skinparam ranksep 28
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+rectangle "app.module" as _app_module
+rectangle "auth.controller" as _auth_controller
+(auth.interface)
+rectangle "auth.module" as _auth_module
+rectangle "auth.service" as _auth_service
+(env.config)
+rectangle "IpAddress.decorator" as _IpAddress_decorator
+rectangle "<b>jwt-auth.guard</b>" as _jwt_auth_guard
+rectangle "jwt.interface" as _jwt_interface
+rectangle "<b>jwt.strategy</b>" as _jwt_strategy
+(<b>main</b>)
+rectangle "register.controller" as _register_controller
+rectangle "register.interface" as _register_interface
+rectangle "register.service" as _register_service
+(typeorm.config)
+rectangle "validation.service" as _validation_service
+
+
+_app_module --> _auth_module
+_app_module --> (typeorm.config)
+_auth_controller --> _auth_service
+_auth_controller ---> _IpAddress_decorator
+_auth_module --> _auth_controller
+_auth_module --> _auth_service
+_auth_module --> (env.config)
+_auth_module --> _register_controller
+_auth_module --> _register_service
+_auth_module --> _validation_service
+_auth_service ----> (auth.interface)
+_auth_service --> _validation_service
+_jwt_strategy ----[thickness=1]> _jwt_interface
+(<b>main</b>) -[thickness=1]> _app_module
+_register_controller --> _register_service
+_register_service ----> _register_interface
+_register_service --> _validation_service
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
