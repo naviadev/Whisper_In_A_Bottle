@@ -24,6 +24,7 @@ export class RegisterController {
   @Post()
   @HttpCode(200)
   async registerUser(@Body() registerData: PlayerDTO) {
+    console.log(registerData);
     if (this.registerService.validateDTO(registerData)) {
       const result = await this.registerService.insertToDatabase(registerData);
 
