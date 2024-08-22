@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
+// eslint-disable-next-line import/no-unresolved
+import PlayerDTO from "../../../../../shared/dtos/player.dto";
 import REQUEST_PORT from "../../../ts/enums/request_port.enum";
-import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
-
 /**
  * * Function : RegisterAxios
  * 작성자 : @naviadev / 2024-07-20
@@ -10,7 +10,7 @@ import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
  * Issue : WIB-14
  * @description : 'RESTful API 서버로 요청을 보내는 Axios 모듈'
  */
-const RegisterAxios = async (registerData: IPlayerDTO): Promise<boolean> => {
+const RegisterAxios = async (registerData: PlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__REGISTER_PORT,

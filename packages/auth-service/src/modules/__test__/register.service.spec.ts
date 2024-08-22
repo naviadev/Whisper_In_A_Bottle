@@ -3,7 +3,7 @@ import { RegisterService } from '../services/register.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '@shared/entities/user.entity';
-import { UserState } from '@shared/entities/user-state.entity';
+import { UserState } from '@shared/entities/user_state.entity';
 import PlayerDTO from '@shared/DTOs/player.dto';
 import { ValidationService } from '../services/validation.service';
 

@@ -1,9 +1,8 @@
-import User from "@shared/DTO/user";
-
+import PlayerDTO from "../../../../shared/dtos/player.dto";
 import LoginAxios from "../services/auth/loginAxios";
 
 describe("login test", () => {
-  const dummyUser: User = {
+  const dummyUser: PlayerDTO = {
     id: "dummy",
     password: "1111",
   };
@@ -21,7 +20,7 @@ describe("login test", () => {
       ok: false,
     });
     global.fetch = mockFetch;
-    await expect(LoginAxios(dummyUser)).rejects.toThrow(Error);
+    await expect(LoginAxios(dummyUser)).rejects.toThrow();
   });
 
   //* 로그인 성공일때 테스트

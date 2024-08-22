@@ -7,7 +7,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { AuthService } from '../services/auth.service';
 import { ValidationService } from '../services/validation.service';
 import { User } from '@shared/entities/user.entity';
-import { UserState } from '@shared/entities/user-state.entity';
+import { UserState } from '@shared/entities/user_state.entity';
 import { Repository } from 'typeorm';
 import PlayerDTO from '@shared/DTOs/player.dto';
 

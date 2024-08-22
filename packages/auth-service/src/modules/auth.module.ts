@@ -11,7 +11,7 @@ import { AuthController } from './controllers/auth.controller';
 import { RegisterController } from './controllers/register.controller';
 import { ValidationService } from './services/validation.service';
 import { configOptions } from '../config/env.config';
-import { UserState } from '../../../../shared/entities/user-state.entity';
+import { UserState } from '@shared/entities/user_state.entity';
 
 /**
  * * Decorator : Module

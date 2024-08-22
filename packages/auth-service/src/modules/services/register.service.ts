@@ -5,7 +5,7 @@ import IRegister from '../../../ts/interfaces/auth/register.interface';
 import PlayerDTO from '@shared/DTOs/player.dto';
 import { ValidationService } from './validation.service';
 import { User } from '@shared/entities/user.entity';
-import { UserState } from '@shared/entities/user-state.entity';
+import { UserState } from '@shared/entities/user_state.entity';
 /**
  * * Decorator : Injectable
  * 작성자 : @naviadev / 2024-07-16

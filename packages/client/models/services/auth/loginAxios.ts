@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 
+import PlayerDTO from "../../../../../shared/dtos/player.dto";
 import REQUEST_PORT from "../../../ts/enums/request_port.enum";
-import IPlayerDTO from "../../../ts/DTOs/IPlayerDTO";
 
-const LoginAxios = async (user: IPlayerDTO): Promise<boolean> => {
+const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__LOGIN_PORT,
