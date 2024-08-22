@@ -24,15 +24,13 @@
       "version": "detect"
     },
     "import/resolver": {
-      "typescript":{},
+      "typescript": {},
       "node": {
         "paths": ["src"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       },
       "alias": {
-        "map": [
-          ["@", "./src"]
-        ],
+        "map": [["@", "./src"]],
         "extensions": [".js", ".jsx", ".ts", ".tsx", ".css"]
       }
     }
@@ -51,11 +49,27 @@
     "indent": ["error", 2],
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "@typescript-eslint/no-unused-vars": "warn",
-    "import/order": ["error", {
-      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-      "newlines-between": "always"
-    }],
-    "prettier/prettier": ["error"]
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "comma-dangle": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "none"
+      }
+    ]
   },
   "env": {
     "browser": true,
