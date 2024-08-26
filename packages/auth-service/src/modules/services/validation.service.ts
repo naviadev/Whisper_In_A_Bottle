@@ -1,6 +1,6 @@
 // validation.service.ts
 import { Injectable } from '@nestjs/common';
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 
 @Injectable()
 export class ValidationService {

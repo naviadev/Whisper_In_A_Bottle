@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import IRegister from '../../../ts/interfaces/auth/register.interface';
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 import { ValidationService } from './validation.service';
 import { User } from '@shared/entities/user.entity';
 import { UserState } from '@shared/entities/user_state.entity';

@@ -1,4 +1,4 @@
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 
 /**
  * * Interface : Auth
