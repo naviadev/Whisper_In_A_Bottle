@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
 // eslint-disable-next-line import/no-unresolved
-import { PlayerDTO } from "../../../../../shared/dtos/player.dto";
+import { Player } from "@client/ts/interface/player.interface";
+
 import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
 /**
  * * Function : RegisterAxios
@@ -10,7 +11,7 @@ import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
  * Issue : WIB-14
  * @description : 'RESTful API 서버로 요청을 보내는 Axios 모듈'
  */
-const RegisterAxios = async (registerData: PlayerDTO): Promise<boolean> => {
+const RegisterAxios = async (registerData: Player): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__REGISTER_PORT,

@@ -1,9 +1,9 @@
-import { PlayerDTO } from "@shared/dtos/player.dto";
+import { Player } from "@client/ts/interface/player.interface";
 
 import LoginAxios from "../services/auth/loginAxios";
 
 describe("login test", () => {
-  const dummyUser: PlayerDTO = {
+  const dummyUser: Player = {
     id: "dummy",
     password: "1111"
   };

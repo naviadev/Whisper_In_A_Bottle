@@ -1,9 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 
-import { PlayerDTO } from "../../../../../shared/dtos/player.dto";
+import { Player } from "@client/ts/interface/player.interface";
+
 import REQUEST_PORT from "../../../ts/enums/REQUEST_PORT.enum";
 
-const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {
+const LoginAxios = async (user: Player): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__LOGIN_PORT,

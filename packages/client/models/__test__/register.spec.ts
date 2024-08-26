@@ -1,7 +1,8 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
-import { PlayerDTO } from "../../../../shared/dtos/player.dto";
+import { Player } from "@client/ts/interface/player.interface";
+
 import RegisterAxios from "../services/auth/registerAxios";
 
 describe("RegisterModel", () => {
@@ -20,7 +21,7 @@ describe("RegisterModel", () => {
   });
 
   it("should return true when the server responds with status 200", async () => {
-    const registerData: PlayerDTO = {
+    const registerData: Player = {
       id: "test@example.com",
       password: "password123"
     };
@@ -31,7 +32,7 @@ describe("RegisterModel", () => {
   });
 
   it("should return false when the server responds with a status other than 200", async () => {
-    const registerData: PlayerDTO = {
+    const registerData: Player = {
       id: "test@example.com",
       password: "password123"
     };
@@ -42,7 +43,7 @@ describe("RegisterModel", () => {
   });
 
   it("should return false when an error occurs during the request", async () => {
-    const registerData: PlayerDTO = {
+    const registerData: Player = {
       id: "test@example.com",
       password: "password123"
     };
