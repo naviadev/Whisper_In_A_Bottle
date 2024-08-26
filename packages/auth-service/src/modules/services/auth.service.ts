@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ValidationService } from './validation.service';

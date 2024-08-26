@@ -1,4 +1,4 @@
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 import { User } from '@shared/entities/user.entity';
 /**
  * * Interface : AuthService
