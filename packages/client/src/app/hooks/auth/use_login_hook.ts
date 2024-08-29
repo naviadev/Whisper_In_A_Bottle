@@ -6,11 +6,11 @@ import { useAll } from "@client/src/app/context/all_context";
 
 import { REQUEST_PORT } from "@client/src/ts/enum/REQUEST_PORT";
 
-import { PlayerDTO } from "@shared/DTOs/player.dto";
+import { Player } from "@client/src/ts/interface/player.interface";
 
 import { ValidateId } from "../../utils/validate_id";
 
-const LoginAxios = async (user: PlayerDTO): Promise<boolean> => {
+const LoginAxios = async (user: Player): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__LOGIN_PORT,
