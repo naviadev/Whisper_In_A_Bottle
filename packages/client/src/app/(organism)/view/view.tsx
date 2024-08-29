@@ -6,6 +6,7 @@ import { WriteLetterButton } from "@client/src/components/view/write_letter/writ
 import { WirteLetterView } from "@client/src/components/view/write_letter/write_letter_view";
 import { ReceivedLetterButton } from "@client/src/components/view/received_letter/received_letter_button";
 import { ReceivedLetterView } from "@client/src/components/view/received_letter/received_letter_view";
+import { useAll } from "../../context/all_context";
 
 const View: React.FC = () => {
   const socket = useSocket();
@@ -19,6 +20,8 @@ const View: React.FC = () => {
   } = useView();
 
   const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
+
+  const { getToken } = useAll();
 
   useEffect(() => {
     if (socket) {
@@ -41,20 +44,23 @@ const View: React.FC = () => {
   return (
     <main className="w-[692px] h-[494px] bg-sky-200">
       <h2>Welcome to the Letter Page</h2>
-      {/* 소켓으로 메세지가 도착하면 버튼이 활성화됨. 버튼을 클릭하면
-      receivedLetter가 true로 전환되며 onLetterView가 다시 false로 전환된다. */}
-      {onLetterView ? <ReceivedLetterButton /> : null}
-      {/* ReceivedLetterButton을 클릭하면 receivedLetter가 true로 전환되며
-      ReceivedLetterView가 활성화되고 receivedMessage가 내부로 전달됨. */}
-      {receivedLetter ? (
-        <ReceivedLetterView letterMessage={receivedMessage!} />
+      {getToken ? (
+        <>
+          {/* 소켓으로 메세지가 도착하면 버튼이 활성화됨. 버튼을 클릭하면
+receivedLetter가 true로 전환되며 onLetterView가 다시 false로 전환된다. */}
+          {onLetterView ? <ReceivedLetterButton /> : null}
+          {/* ReceivedLetterButton을 클릭하면 receivedLetter가 true로 전환되며
+ReceivedLetterView가 활성화되고 receivedMessage가 내부로 전달됨. */}
+          {receivedLetter ? (
+            <ReceivedLetterView letterMessage={receivedMessage!} />
+          ) : null}
+          {/* 편지 작성 버튼 */}
+          <WriteLetterButton />
+          {/* 작성 버튼 클릭 시 sendLetter가 true로 전환되며 WirteLetterView활성화
+WirteLetterView내부의 보내기 버튼이나 닫기를 클릭하면 sendLetter는 다시 false로 전환. */}
+          {sendLetter ? <WirteLetterView /> : null}
+        </>
       ) : null}
-      {/* 편지 작성 버튼 */}
-      <WriteLetterButton />
-      {/* 작성 버튼 클릭 시 sendLetter가 true로 전환되며 WirteLetterView활성화
-      WirteLetterView내부의 보내기 버튼이나 닫기를 클릭하면 sendLetter는 다시
-      false로 전환. */}
-      {sendLetter ? <WirteLetterView /> : null}
     </main>
   );
 };
