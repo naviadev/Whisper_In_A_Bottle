@@ -14,6 +14,7 @@ import {
   user_3,
   user_4,
 } from './letter-dummyData';
+import { LetterInfo } from '../../../../../shared/entities/letter_info.entity';
 
 describe('Letter Login Test', () => {
   let letterStateRepository: Repository<LetterState>;
@@ -27,10 +28,10 @@ describe('Letter Login Test', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [LetterState, UserState, Letter],
+          entities: [LetterState, UserState, Letter, LetterInfo],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([LetterState, UserState, Letter]),
+        TypeOrmModule.forFeature([LetterState, UserState, Letter, LetterInfo]),
       ],
       providers: [LetterLogicService, LetterDbService],
     }).compile();
@@ -62,7 +63,7 @@ describe('Letter Login Test', () => {
   });
 
   it('saveAndAssignLetter Test', async () => {
-    const result = await letterLogicService.saveAndAssignLetter('1', {
+    const result = await letterLogicService.saveAndAssignLetter(user_1.id, {
       content: '안녕하세요',
     });
 
@@ -86,12 +87,12 @@ describe('Letter Login Test', () => {
 
   describe('searchLetterState Test', () => {
     it('존재하는 유저 id로 LetterState를 찾을 때 ( LetterState 존재 )', async () => {
-      const result = await letterLogicService.searchLetterState('2');
+      const result = await letterLogicService.searchLetterState(user_2.id);
       expect(result).toEqual(letterState);
     });
 
     it('존재하는 유저 id로 LetterState를 찾을 때 ( LetterState 존재 X )', async () => {
-      const result = await letterLogicService.searchLetterState('4');
+      const result = await letterLogicService.searchLetterState(user_4.id);
       expect(result).toBeNull();
     });
 
