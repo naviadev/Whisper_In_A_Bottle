@@ -2,28 +2,18 @@ import { useState } from "react";
 
 import axios, { AxiosResponse } from "axios";
 
-export interface Player {
-  id: string;
-  password: string;
-}
+import { REQUEST_PORT } from "@client/src/ts/enum/REQUEST_PORT";
 
-enum REQUEST_PORT {
-  __LOGIN_PORT = "http://localhost:3001/auth/login",
-  __NEXT_SERVER_PORT = "http://localhost:3000",
-  __REGISTER_PORT = "http://localhost:3001/register",
-  __LETTER_SERVER_PORT = "http://localhost:3002",
-}
+import { PlayerDTO } from "@shared/DTOs/player.dto";
 
-const RegisterAxios = async (registerData: Player): Promise<boolean> => {
+import { ValidateId } from "../../utils/validate_id";
+
+const RegisterAxios = async (registerData: PlayerDTO): Promise<boolean> => {
   try {
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__REGISTER_PORT,
       registerData
     );
-
-    console.log(response.data.message);
-    console.log(response.status);
-
     if (response.status === 200) {
       return true;
     } else {
@@ -36,18 +26,11 @@ const RegisterAxios = async (registerData: Player): Promise<boolean> => {
   }
 };
 
-const ValidateId = (id: string): boolean => {
-  const regex = /^[a-zA-Z0-9]{5,12}$/;
-  return regex.test(id);
-};
-
-
 const ValidatePassword = (pw: string): boolean => {
   const regex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,18}$/;
   return regex.test(pw);
 };
-
 
 const useRegisterHooks = () => {
   const [id, setId] = useState<string>("");
@@ -63,12 +46,13 @@ const useRegisterHooks = () => {
       !ValidateId(id) ||
       password !== passwordCheck
     ) {
+      //TODO 각 상황에 맞는 에러처리 추가
       return false;
     }
 
     const success: boolean = await RegisterAxios({
       id: id,
-      password: password
+      password: password,
     });
 
     setIsRegister(success);
@@ -83,7 +67,7 @@ const useRegisterHooks = () => {
     setId,
     setPassword,
     setPasswordCheck,
-    handleRegister
+    handleRegister,
   };
 };
 

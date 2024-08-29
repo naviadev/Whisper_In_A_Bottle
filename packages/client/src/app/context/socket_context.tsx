@@ -11,9 +11,7 @@ import { io, Socket } from "socket.io-client";
 
 import { useAll } from "./all_context";
 
-enum REQUEST_PORT {
-  __SOCKET = "http://localhost:3002",
-}
+import { REQUEST_PORT } from "@client/src/ts/enum/REQUEST_PORT";
 
 type SocketContextType = Socket | null;
 
