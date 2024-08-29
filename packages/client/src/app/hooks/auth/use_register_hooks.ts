@@ -4,12 +4,13 @@ import axios, { AxiosResponse } from "axios";
 
 import { REQUEST_PORT } from "@client/src/ts/enum/REQUEST_PORT";
 
-import { PlayerDTO } from "@shared/DTOs/player.dto";
+import { Player } from "@client/src/ts/interface/player.interface";
 
 import { ValidateId } from "../../utils/validate_id";
 
-const RegisterAxios = async (registerData: PlayerDTO): Promise<boolean> => {
+const RegisterAxios = async (registerData: Player): Promise<boolean> => {
   try {
+    console.log("회원가입 요청");
     const response: AxiosResponse = await axios.post(
       REQUEST_PORT.__REGISTER_PORT,
       registerData
@@ -47,6 +48,7 @@ const useRegisterHooks = () => {
       password !== passwordCheck
     ) {
       //TODO 각 상황에 맞는 에러처리 추가
+      console.log("유효성검사 탈락");
       return false;
     }
 
