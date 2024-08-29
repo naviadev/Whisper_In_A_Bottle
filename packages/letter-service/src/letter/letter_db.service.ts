@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { LetterState } from '../../../../shared/entities/letter_state.entity'; // 실제 경로로 변경
 import { UserState } from '../../../../shared/entities/user_state.entity'; // 실제 경로로 변경
 import { Letter } from '../../../../shared/entities/letter.entity';
+import { LetterInfo } from '../../../../shared/entities/letter_info.entity';
 
 @Injectable()
 export class LetterDbService {
@@ -14,6 +15,8 @@ export class LetterDbService {
     private readonly userStateRepository: Repository<UserState>,
     @InjectRepository(Letter)
     private readonly letterRepository: Repository<Letter>,
+    @InjectRepository(LetterInfo)
+    private readonly letterInfoRepository: Repository<LetterInfo>,
   ) {}
 
   //* 편지를 받지 못하는 사용자 찾기.
@@ -34,8 +37,39 @@ export class LetterDbService {
   saveLetter(body: string): Promise<Letter> {
     const letter = new Letter();
     letter.content = body;
-
     return this.letterRepository.save(letter);
+  }
+
+  saveLetterInfo(user_id: string, letter: Letter): Promise<LetterInfo> {
+    const letterInfo = this.letterInfoRepository.create({
+      letter_id: letter.letter_id,
+      user_id: user_id,
+      time: new Date(),
+      is_send: false,
+    });
+
+    return this.letterInfoRepository.save(letterInfo);
+  }
+
+  //* 가장 오래된 편지를 반환받는다.
+  getOlderUnsentLetter() {
+    const letterInfo = this.letterInfoRepository
+      .createQueryBuilder('letterinfo')
+      .where('letterinfo.is_send = :isSend', { isSend: false })
+      .orderBy('letterinfo.time', 'ASC')
+      .getOne();
+
+    return letterInfo;
+  }
+
+  //* 편지 Id를 통해 is_send를 true로 업데이트한다.
+  letterUpdateIsSendIntoTrue(letterId: number) {
+    return this.letterInfoRepository
+      .createQueryBuilder()
+      .update(LetterInfo)
+      .set({ is_send: true })
+      .where('letter_id = :letterId', { letterId })
+      .execute();
   }
 
   //* 편지 상태 저장하기
