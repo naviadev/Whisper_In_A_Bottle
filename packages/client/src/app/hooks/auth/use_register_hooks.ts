@@ -6,7 +6,7 @@ import { REQUEST_PORT } from "@client/src/ts/enum/REQUEST_PORT";
 
 import { Player } from "@client/src/ts/interface/player.interface";
 
-import { ValidateId } from "../../utils/validate_id";
+import { ValidateId } from "../../../utils/validate_id";
 
 const RegisterAxios = async (registerData: Player): Promise<boolean> => {
   try {
