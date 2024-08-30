@@ -42,7 +42,7 @@ const View: React.FC = () => {
   }, [socket]);
 
   return (
-    <main className="w-[692px] h-[494px] bg-sky-200">
+    <main className="">
       <h2>Welcome to the Letter Page</h2>
       {getToken ? (
         <>
