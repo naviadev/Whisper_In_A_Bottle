@@ -18,8 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="w-screen h-screen flex justify-center items-center bg-[#3A3A3A]">
-          <div className="w-[1053px] h-[652px] bg-[#D9D9D9] rounded-[52px] flex justify-center items-center">
-            <div className="bg-[#727272] w-[1024px] h-[628px] rounded-[48px] flex flex-row">
+          <div className="w-[1053px] h-[652px] gameboy-container1 flex justify-center items-center">
+            <div className=" w-[1024px] h-[628px] gameboy-container2 flex flex-row">
               {children}
             </div>
           </div>
