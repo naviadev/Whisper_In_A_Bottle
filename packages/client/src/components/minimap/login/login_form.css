@@ -1,0 +1,116 @@
+.login-text {
+  position: absolute;
+  left: 41.58%;
+  right: 42.08%;
+  top: 29.03%;
+  bottom: 64.92%;
+
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 729;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #000000;
+  font-variation-settings: "slnt" -10;
+}
+
+.email-input {
+  position: absolute;
+  top: 44.76%;
+
+  width: 138px;
+  height: 29px;
+
+  background: rgba(217, 217, 217, 0.5);
+  border: 2px solid #000000;
+  border-radius: 7px;
+}
+
+.email-input::placeholder {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 729;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  letter-spacing: -0.01em;
+
+  color: rgba(0, 0, 0, 0.4);
+  font-variation-settings: "slnt" -10;
+
+  padding-left: 4px;
+}
+
+.email-text {
+  position: absolute;
+  top: 47.58%;
+
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 729;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: rgba(0, 0, 0, 0.4);
+  font-variation-settings: "slnt" -10;
+}
+
+/* password-input */
+.password-input {
+  position: absolute;
+  top: 67.34%;
+
+  width: 138px;
+  height: 29px;
+
+  background: rgba(217, 217, 217, 0.5);
+  border: 2px solid #000000;
+  border-radius: 7px;
+}
+
+.password-input::placeholder {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 729;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  letter-spacing: -0.01em;
+
+  color: rgba(0, 0, 0, 0.4);
+  font-variation-settings: "slnt" -10;
+  padding-left: 4px;
+}
+
+/* Password */
+.password-text {
+  position: absolute;
+  top: 70.16%;
+
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 729;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  letter-spacing: -0.01em;
+
+  color: rgba(0, 0, 0, 0.4);
+  font-variation-settings: "slnt" -10;
+}
+
+/* Sing up */
+.sign-up {
+  position: absolute;
+  top: 86.29%;
+
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: -0.01em;
+
+  color: #000000;
+}
