@@ -11,19 +11,23 @@ import { MinimapProvider } from "./(organism)/minimap/context/minimap_context";
 
 const Home: React.FC = () => {
   return (
-    <div className="">
+    <div className="w-full h-full flex flex-row relative">
       <AllProvider>
         <SocketProvider>
-          <div className="">
+          <div className="view-container">
             <ViewProvider>
               <View />
             </ViewProvider>
           </div>
           <div>
-            <MinimapProvider>
-              <Minimap />
-            </MinimapProvider>
-            <Joystick />
+            <div className="minimap-container">
+              <MinimapProvider>
+                <Minimap />
+              </MinimapProvider>
+            </div>
+            <div className="w-60 h-40 bg-zinc-200 absolute left-[77%] top-[55%] rounded-xl">
+              <Joystick />
+            </div>
           </div>
         </SocketProvider>
       </AllProvider>
