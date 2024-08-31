@@ -2,7 +2,7 @@ import React from "react";
 
 import View from "./(organism)/view/view";
 import Minimap from "./(organism)/minimap/minimap";
-import Joystick from "./(organism)/joystick";
+import Joystick from "./(organism)/joystick/joystick";
 
 import { AllProvider } from "./context/all_context";
 import { SocketProvider } from "./context/socket_context";
