@@ -6,7 +6,7 @@ import { useAll } from "@client/src/app/context/all_context";
 
 import { PowerButton } from "@client/src/components/joystick/power_button/power_button";
 
-import { LogoutModalContent } from "@client/src/components/joystick/logout_modal/logout_modal";
+import { LogoutModalContent } from "@client/src/components/joystick/logout_modal/logout_modal_content";
 
 import Modal from "@client/components/modal/modal";
 
