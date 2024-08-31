@@ -22,6 +22,7 @@ export class AuthController {
     @Res() res: Response,
     @IpAddress() ip: string,
   ): Promise<VideoDecoderConfig> {
+    console.log('ㅇㅇ');
     try {
       const user = await this.authService.validateUser(data.id, data.password);
 
