@@ -16,9 +16,9 @@ const Joystick: React.FC = () => {
 
   const clickPowerButton = () => (getToken ? setShowModal(!showModal) : null);
 
-  const closeModal = () => {
+  const closeModal= ()=>{
     setShowModal(!showModal);
-  };
+  }
   return (
     <div className="">
       <p>Joystick Component</p>
