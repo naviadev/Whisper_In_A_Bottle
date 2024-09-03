@@ -1,6 +1,7 @@
 import { UserState } from '../../../../../shared/entities/user_state.entity';
 import { LetterState } from '../../../../../shared/entities/letter_state.entity';
 import { Letter } from '../../../../../shared/entities/letter.entity';
+import { LetterSaveDTO } from '@shared/dtos/letter.dto';
 
 const user_1 = new UserState();
 user_1.id = 'user1';
@@ -53,6 +54,11 @@ const userToken_3 = {
   sub: 'user3',
 };
 
+const saveLetterDto: LetterSaveDTO = {
+  userId: 'user1',
+  letterId: 1,
+};
+
 export {
   user_1,
   user_2,
@@ -64,4 +70,5 @@ export {
   userToken_1,
   userToken_2,
   userToken_3,
+  saveLetterDto,
 };
