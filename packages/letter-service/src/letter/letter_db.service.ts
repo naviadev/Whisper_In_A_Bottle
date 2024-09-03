@@ -1,12 +1,12 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DeleteResult } from 'typeorm';
 import { LetterState } from '../../../../shared/entities/letter_state.entity'; // 실제 경로로 변경
 import { UserState } from '../../../../shared/entities/user_state.entity'; // 실제 경로로 변경
 import { Letter } from '../../../../shared/entities/letter.entity';
 import { LetterInfo } from '../../../../shared/entities/letter_info.entity';
 import { LetterSave } from '../../../../shared/entities/letter_save.entitiy';
-import { LETTER_CONFIG, LETTER_ERR } from './config/letter.config';
+import { LETTER_CONFIG, LETTER_ERR } from './config/letter.enum';
 
 @Injectable()
 export class LetterDbService {
@@ -70,7 +70,7 @@ export class LetterDbService {
     }
   }
 
-  async checkMaxLetterSaveCount(user_id: string): Promise<void> {
+  async checkMaxLetterSaveCount(user_id: string): Promise<DeleteResult | void> {
     //* 생성된 수로 데이터를 찾아 정렬한다.
 
     try {
@@ -86,7 +86,7 @@ export class LetterDbService {
           records.length - LETTER_CONFIG.MAX_SAVE_COUNT,
         );
         const idsToDelete = recordsToDelete.map((record) => record.id);
-        await this.letterSaveRepository.delete(idsToDelete);
+        return await this.letterSaveRepository.delete(idsToDelete);
       }
     } catch (error) {
       throw new InternalServerErrorException(
