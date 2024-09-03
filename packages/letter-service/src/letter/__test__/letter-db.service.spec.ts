@@ -4,17 +4,20 @@ import { LetterState } from '../../../../../shared/entities/letter_state.entity'
 import { UserState } from '../../../../../shared/entities/user_state.entity';
 import { Letter } from '../../../../../shared/entities/letter.entity';
 import { LetterDbService } from '../letter_db.service';
-import { Repository } from 'typeorm';
+import { Repository, DeleteResult } from 'typeorm';
 import {
   letter,
   letter_2,
   letterState,
+  saveLetterDto,
   user_1,
   user_2,
   user_3,
   user_4,
 } from './letter-dummyData';
 import { LetterInfo } from '../../../../../shared/entities/letter_info.entity';
+import { LetterSave } from '@shared/entities/letter_save.entitiy';
+import { LETTER_CONFIG } from '../config/letter.enum';
 
 describe('letter-db.service 테스트', () => {
   let service: LetterDbService;
@@ -31,10 +34,16 @@ describe('letter-db.service 테스트', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [LetterState, UserState, Letter, LetterInfo],
+          entities: [LetterState, UserState, Letter, LetterInfo, LetterSave],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([LetterState, UserState, Letter, LetterInfo]),
+        TypeOrmModule.forFeature([
+          LetterState,
+          UserState,
+          Letter,
+          LetterInfo,
+          LetterSave,
+        ]),
       ],
       providers: [LetterDbService],
     }).compile();
@@ -161,6 +170,50 @@ describe('letter-db.service 테스트', () => {
       const result = await service.letterUpdateIsSendIntoTrue(letter.letter_id);
 
       expect(result.affected).toBe(0);
+    });
+  });
+
+  it('saveLetterSave Method Test', async () => {
+    const result = await service.saveLetterSave(
+      saveLetterDto.userId,
+      saveLetterDto.letterId,
+    );
+
+    expect(result.id).toBe(1);
+    expect(result.user_id).toBe(saveLetterDto.userId);
+    expect(result.letter_id).toBe(saveLetterDto.letterId);
+    expect(result.created_at).toBeTruthy();
+  });
+
+  describe('checkMaxLetterSaveCount Method Test', () => {
+    it('데이터가 10개 넘지 않았을 때', async () => {
+      await service.saveLetterSave(
+        saveLetterDto.userId,
+        saveLetterDto.letterId,
+      );
+
+      const result = await service.checkMaxLetterSaveCount(
+        saveLetterDto.userId,
+      );
+
+      expect(result).toBeUndefined();
+    });
+
+    it('데이터가 10개 넘었을 때', async () => {
+      const ADD_NUM = 5;
+
+      for (let num = 0; num < LETTER_CONFIG.MAX_SAVE_COUNT + ADD_NUM; num++) {
+        await service.saveLetterSave(
+          saveLetterDto.userId,
+          saveLetterDto.letterId,
+        );
+      }
+
+      const result = await service.checkMaxLetterSaveCount(
+        saveLetterDto.userId,
+      );
+
+      expect((result as DeleteResult).affected).toBe(ADD_NUM);
     });
   });
 });
