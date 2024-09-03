@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LetterState } from '../../../../shared/entities/letter_state.entity'; // 실제 경로로 변경
 import { UserState } from '../../../../shared/entities/user_state.entity'; // 실제 경로로 변경
 import { Letter } from '../../../../shared/entities/letter.entity';
 import { LetterInfo } from '../../../../shared/entities/letter_info.entity';
+import { LetterSave } from '../../../../shared/entities/letter_save.entitiy';
+import { LETTER_CONFIG, LETTER_ERR } from './config/letter.config';
 
 @Injectable()
 export class LetterDbService {
@@ -17,6 +19,8 @@ export class LetterDbService {
     private readonly letterRepository: Repository<Letter>,
     @InjectRepository(LetterInfo)
     private readonly letterInfoRepository: Repository<LetterInfo>,
+    @InjectRepository(LetterSave)
+    private readonly letterSaveRepository: Repository<LetterSave>,
   ) {}
 
   //* 편지를 받지 못하는 사용자 찾기.
@@ -49,6 +53,46 @@ export class LetterDbService {
     });
 
     return this.letterInfoRepository.save(letterInfo);
+  }
+
+  //* LetterSave Enitity 저장
+  saveLetterSave(user_id: string, letter_id: number): Promise<LetterSave> {
+    try {
+      const letterSave = this.letterSaveRepository.create({
+        user_id,
+        letter_id,
+      });
+      return this.letterSaveRepository.save(letterSave);
+    } catch (error) {
+      throw new InternalServerErrorException(
+        LETTER_ERR.SAVE_FAIL_LETTERSAVE_ERR_MSG,
+      );
+    }
+  }
+
+  async checkMaxLetterSaveCount(user_id: string): Promise<void> {
+    //* 생성된 수로 데이터를 찾아 정렬한다.
+
+    try {
+      const records = await this.letterSaveRepository.find({
+        where: { user_id },
+        order: { created_at: 'ASC' },
+      });
+
+      //* 데이터가 최대 10개 되도록 오래된 데이터부터 삭제한다. (이미 정렬이된 상태)
+      if (records.length > LETTER_CONFIG.MAX_SAVE_COUNT) {
+        const recordsToDelete = records.slice(
+          0,
+          records.length - LETTER_CONFIG.MAX_SAVE_COUNT,
+        );
+        const idsToDelete = recordsToDelete.map((record) => record.id);
+        await this.letterSaveRepository.delete(idsToDelete);
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(
+        LETTER_ERR.CHECK_FAIL_COUNT_LETTERSAVE_ERR_MSG,
+      );
+    }
   }
 
   //* 가장 오래된 편지를 반환받는다.
