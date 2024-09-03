@@ -15,6 +15,10 @@ export class ReceiveLetterDTO extends SenderLetterDTO {
   id: string;
 }
 
+export class LetterSaveDTO {
+  userId : string;
+  letterId : number;
+}
 
 export interface LetterInterface {
   body: string;
