@@ -11,10 +11,12 @@ export class LetterController {
     @Body(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
     letterSave: LetterSaveDTO,
   ) {
-    await this.letterDBService.checkMaxLetterSaveCount(letterSave.userId);
     await this.letterDBService.saveLetterSave(
       letterSave.userId,
       letterSave.letterId,
+    );
+    return await this.letterDBService.checkMaxLetterSaveCount(
+      letterSave.userId,
     );
   }
 }
