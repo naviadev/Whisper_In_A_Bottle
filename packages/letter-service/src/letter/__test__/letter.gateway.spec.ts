@@ -23,6 +23,7 @@ import {
 import { ReceiveLetterDTO } from '../../../../../shared/dtos/letter.dto';
 import { JwtService } from '@nestjs/jwt';
 import { LetterInfo } from '../../../../../shared/entities/letter_info.entity';
+import { LetterSave } from '@shared/entities/letter_save.entitiy';
 
 describe('LetterGateway', () => {
   let app: INestApplication;
@@ -40,10 +41,16 @@ describe('LetterGateway', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [LetterState, UserState, Letter, LetterInfo],
+          entities: [LetterState, UserState, Letter, LetterInfo, LetterSave],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([LetterState, UserState, Letter, LetterInfo]),
+        TypeOrmModule.forFeature([
+          LetterState,
+          UserState,
+          Letter,
+          LetterInfo,
+          LetterSave,
+        ]),
       ],
       providers: [
         LetterGateway,
