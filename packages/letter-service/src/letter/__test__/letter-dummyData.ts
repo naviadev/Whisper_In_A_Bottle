@@ -59,6 +59,11 @@ const saveLetterDto: LetterSaveDTO = {
   letterId: 1,
 };
 
+const saveLetterDto_2: LetterSaveDTO = {
+  userId: 'user2',
+  letterId: 2,
+};
+
 export {
   user_1,
   user_2,
@@ -71,4 +76,5 @@ export {
   userToken_2,
   userToken_3,
   saveLetterDto,
+  saveLetterDto_2,
 };
