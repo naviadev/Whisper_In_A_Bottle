@@ -25,6 +25,7 @@ describe('letter-db.service 테스트', () => {
   let userStateRepository: Repository<UserState>;
   let letterRepository: Repository<Letter>;
   let letterInfoRepository: Repository<LetterInfo>;
+  let letterSaveRepository: Repository<LetterSave>;
 
   //* TypeORM의 메서드를 사용하면, 일반적으로 데이터베이스의 종류에 관계없이 반환되는 결과는 동일
   //* 테스트는 실제 데이터베이스를 말고, 인메모리 데이터베이스를 이용하여 테스트한다.
@@ -59,6 +60,9 @@ describe('letter-db.service 테스트', () => {
     );
     letterInfoRepository = module.get<Repository<LetterInfo>>(
       getRepositoryToken(LetterInfo),
+    );
+    letterSaveRepository = module.get<Repository<LetterSave>>(
+      getRepositoryToken(LetterSave),
     );
 
     service = module.get<LetterDbService>(LetterDbService);
@@ -214,6 +218,34 @@ describe('letter-db.service 테스트', () => {
       );
 
       expect((result as DeleteResult).affected).toBe(ADD_NUM);
+    });
+
+    it('데이터를 옳바르게 삭제 했는지 확인', async () => {
+      const ADD_NUM = 5;
+
+      for (let num = 0; num < LETTER_CONFIG.MAX_SAVE_COUNT + ADD_NUM; num++) {
+        await service.saveLetterSave(
+          saveLetterDto.userId,
+          saveLetterDto.letterId,
+        );
+      }
+
+      const arrData = await letterSaveRepository.find();
+      const expectRemoveDatas = arrData
+        .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
+        .slice(0, ADD_NUM);
+
+      const result = await service.checkMaxLetterSaveCount(
+        saveLetterDto.userId,
+      );
+
+      const afterArrData = await letterSaveRepository.find();
+      const removeCorrect = afterArrData.every(
+        (data) => !expectRemoveDatas.includes(data),
+      );
+
+      expect((result as DeleteResult).affected).toBe(ADD_NUM);
+      expect(removeCorrect).toBe(true);
     });
   });
 });
