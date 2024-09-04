@@ -70,6 +70,13 @@ export class LetterDbService {
     }
   }
 
+  /**
+   * * LetterSave의 데이터를 정렬하여 삭제하는 로직입니다.
+   * * 데이터 생성 시 자동으로 생성된 날짜가 저장되는 create_at을 이용해 데이터를 정렬 후,
+   * * 오래된 날짜부터 삭제합니다.
+   * @param user_id : 검색할 유저 ID
+   * @returns : void | 삭제 결과
+   */
   async checkMaxLetterSaveCount(user_id: string): Promise<DeleteResult | void> {
     //* 생성된 수로 데이터를 찾아 정렬한다.
 
