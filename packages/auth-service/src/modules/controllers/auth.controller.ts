@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Body, Res, HttpStatus } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { PlayerDTO } from '@shared/DTOs/player.dto';
 import { Response } from 'express';
@@ -46,4 +46,9 @@ export class AuthController {
         .json({ success: false, message: 'Invalid credentials' });
     }
   }
+  /**
+   * * 로그아웃 엔드포인트
+   */
+  @Get('logout')
+  async logout() {} //TODO 로그아웃 시 처리 로직
 }
