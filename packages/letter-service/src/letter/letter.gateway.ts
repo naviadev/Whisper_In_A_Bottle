@@ -13,10 +13,11 @@ import {
 } from '../../../../shared/dtos/letter.dto';
 import { LetterLogicService } from './letter_logic.service';
 import { LetterState } from '../../../../shared/entities/letter_state.entity';
+import { JwtService } from '@nestjs/jwt';
 
 export enum LETTER_MSG {
   INIT_MSG = 'initial_data',
-  INIT_MSG_RECEVIED = 'initial_data.received',
+  INIT_MSG_RECEVIED = 'initial_data_received',
   RECEIVE_MSG = 'espresso',
   RECEIVE_MSG_RECEVIED = 'espresspo_received',
   SEND_MSG = 'latte',
@@ -26,7 +27,10 @@ export enum LETTER_MSG {
 export class LetterGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
-  constructor(private readonly letterLogicService: LetterLogicService) {}
+  constructor(
+    private readonly letterLogicService: LetterLogicService,
+    private readonly jwtService: JwtService,
+  ) {}
   @WebSocketServer() server: Server;
 
   //! clientid는 고유한 값을 생성하기 때문에, 중복되는 일이 없다.
@@ -41,8 +45,36 @@ export class LetterGateway
     console.log('Init');
   }
 
-  handleConnection(client: Socket) {
-    console.log(`Client connected: ${client.id}`);
+  async handleConnection(client: Socket) {
+    const token = client.handshake.auth.token; // 클라이언트의 JWT 토큰
+
+    if (token) {
+      try {
+        const payload: { username: string; sub: string } =
+          await this.jwtService.verifyAsync(token);
+        //* JWT 검증 성공
+
+        const id = payload.username;
+
+        if (this.idKeyMap.has(id) === false) {
+          this.idKeyMap.set(id, new Set());
+        }
+
+        const clientIds = this.idKeyMap.get(id);
+        clientIds.add(client.id);
+        this.clientIdKeyMap.set(client.id, id);
+
+        console.log('Client connected:', client.id, 'with payload:', payload);
+      } catch (e) {
+        //* JWT 검증 실패
+        client.disconnect();
+        console.log('Client disconnected due to invalid token:', client.id);
+      }
+    } else {
+      // 토큰이 없으면 연결 종료
+      client.disconnect();
+      console.log('Client disconnected due to missing token:', client.id);
+    }
   }
 
   //* disconnect 했을 때. Map에서 정보를 지운다.
@@ -70,16 +102,8 @@ export class LetterGateway
 
   //* 처음에 접속했을 떄, 사용자 정보 저장
   @SubscribeMessage(LETTER_MSG.INIT_MSG)
-  async handleInitialData(client: Socket, id: string) {
-    if (this.idKeyMap.has(id) === false) {
-      this.idKeyMap.set(id, new Set());
-    }
-
-    const clientIds = this.idKeyMap.get(id);
-    clientIds.add(client.id);
-    this.clientIdKeyMap.set(client.id, id);
-
-    client.emit('initial_data_received', 'success');
+  async handleInitialData(client: Socket) {
+    const id = this.clientIdKeyMap.get(client.id);
 
     //* 받아야하는 편지 찾는 과정
     this.letterLogicService.searchLetterState(id).then((res) => {
