@@ -1,13 +1,16 @@
+'use client'
+
 import React from "react";
 
 import View from "./(organism)/view/view";
 import Minimap from "./(organism)/minimap/minimap";
-// import Joystick from "./(organism)/joystick/joystick";
+import Joystick from "./(organism)/joystick/joystick";
 
 import { AllProvider } from "./context/all_context";
 import { SocketProvider } from "./context/socket_context";
 import { ViewProvider } from "./(organism)/view/context/view.context";
 import { MinimapProvider } from "./(organism)/minimap/context/minimap_context";
+import { JoysitckProvider } from "./(organism)/joystick/context/joystick_context";
 
 const Home: React.FC = () => {
   return (
@@ -25,9 +28,11 @@ const Home: React.FC = () => {
                 <Minimap />
               </MinimapProvider>
             </div>
-            <div className="w-60 h-40 bg-zinc-200 absolute left-[77%] top-[55%] rounded-xl">
-              {/* <Joystick /> */}
-            </div>
+            <JoysitckProvider>
+              <div className="w-60 h-40 bg-zinc-200 absolute left-[77%] top-[55%] rounded-xl">
+                <Joystick />
+              </div>
+            </JoysitckProvider>
           </div>
         </SocketProvider>
       </AllProvider>
