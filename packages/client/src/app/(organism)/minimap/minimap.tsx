@@ -8,13 +8,6 @@ import LoginForm from "@client/src/components/minimap/login/login_form";
 import RegisterForm from "@client/src/components/minimap/register/register_form";
 import MyForm from "@client/src/components/minimap/user/my_form";
 
-import { Press_Start_2P } from "next/font/google";
-
-const pressStart2P = Press_Start_2P({
-  subsets: ["latin"],
-  weight: ["400"],
-});
-
 const getCurrentDate = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -38,7 +31,7 @@ const Minimap: React.FC = () => {
     <div className="relative w-full h-full flex justify-center">
       <line className="absolute w-[151px] border-dashed border-[1px] border-black top-[21%]" />
       {/* 날짜 기본 로그인시 사용자 아이디 */}
-      <div className={`${pressStart2P.className} text-xs absolute top-[10%]`}>
+      <div className={` text-xs absolute top-[10%]`}>
         {!getToken ? date : id}
       </div>
       {!getToken ? !isLogin ? <RegisterForm /> : <LoginForm /> : <MyForm />}
