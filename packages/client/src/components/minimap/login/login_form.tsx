@@ -1,7 +1,7 @@
 import React from "react";
 // import Link from "next/link";
 import "./login_form.css";
-import useLoginHooks from "@client/src/app/hooks/auth/use_login_hook";
+import useLoginHooks from "@client/src/hooks/auth/use_login_hook";
 import { useMinimap } from "@client/src/app/(organism)/minimap/context/minimap_context";
 
 const LoginForm = () => {
