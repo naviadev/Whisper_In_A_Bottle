@@ -3,7 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Title } from "./styles/title";
-
+import { Sound } from "./styles/sound";
+import { CopyRight } from "./styles/copyright";
+import { CoolongFan } from "./styles/cooling_fan";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +25,9 @@ export default function RootLayout({
           <div className="w-[1053px] h-[652px] gameboy-container1 flex justify-center items-center">
             <div className=" w-[1024px] h-[628px] gameboy-container2 flex flex-row relative">
               <Title />
+              <Sound />
+              <CopyRight />
+              <CoolongFan />
               {children}
             </div>
           </div>
