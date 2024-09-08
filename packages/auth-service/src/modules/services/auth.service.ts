@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PlayerDTO } from '@shared/DTOs/player.dto';
 import { Repository } from 'typeorm';
@@ -24,7 +24,7 @@ export class AuthService implements IAuth {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     @InjectRepository(UserState)
-    private readonly userStateRepositroy: Repository<UserState>,
+    private readonly userStateRepository: Repository<UserState>,
   ) {}
 
   /**
@@ -61,7 +61,7 @@ export class AuthService implements IAuth {
       last_login_time: new Date().getTime(),
     };
 
-    return this.userStateRepositroy.update(id, userState);
+    return this.userStateRepository.update(id, userState);
   }
 
   /**
@@ -82,6 +82,61 @@ export class AuthService implements IAuth {
       return { token, cookieOptions };
     } catch (error) {
       console.error(error);
+    }
+  }
+  /**
+   * * 리프레시 토큰 생성 메서드
+   * @param user 사용자 객체
+   * @returns 생성된 리프레시 토큰
+   */
+  async generateRefreshToken(user: User): Promise<string> {
+    const payload = { username: user.id, sub: user.id };
+    const refreshToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_REFRESH_SECRET_KEY,
+      expiresIn: '7d',
+    });
+    await this.userStateRepository.update(user.id, { refreshToken });
+    return refreshToken;
+  }
+  /**
+   * * 리프레시 토큰 검증 및 새로운 엑세스 토큰 발급
+   * @param refreshToken 리프레시 토큰
+   * @returns 새로운 JWT 엑세스 토큰
+   */
+  async refreshAccessToken(refreshToken: string): Promise<string> {
+    try {
+      const payload = this.jwtService.verify(refreshToken, {
+        secret: process.env.JWT_REFRESH_SECRET_KEY,
+      });
+
+      const userState = await this.userStateRepository.findOne({
+        where: { refreshToken },
+      });
+      if (!userState) {
+        throw new UnauthorizedException('토큰 재생성 실패');
+      }
+
+      const newAccessToken = this.jwtService.sign({
+        username: payload.username,
+        sub: payload.sub,
+      });
+      return newAccessToken;
+    } catch (error) {
+      throw new UnauthorizedException('토큰 재생성 실패');
+    }
+  }
+  async invalidateRefreshToken(refreshToken: string) {
+    await this.userStateRepository.update(
+      { refreshToken },
+      { refreshToken: null },
+    );
+  }
+  private async validateRefreshTokenInDB(refreshToken: string): Promise<void> {
+    const userState = await this.userStateRepository.findOne({
+      where: { refreshToken },
+    });
+    if (!userState) {
+      throw new UnauthorizedException('토큰 재생성 실패');
     }
   }
 }
