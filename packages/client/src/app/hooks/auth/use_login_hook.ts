@@ -33,7 +33,7 @@ const LoginAxios = async (user: Player): Promise<boolean> => {
 const useLoginHooks = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { getToken, setGetToken } = useAll();
+  const { getToken, setGetToken, userId, setUserId } = useAll();
 
   const handleLogin = async (): Promise<boolean> => {
     //* 공백이 있으면 안됨
@@ -49,6 +49,7 @@ const useLoginHooks = () => {
     if (success) {
       //로그인 성공시 getToken상태 true로 전환
       setGetToken(true);
+      setUserId(id);
       return true;
     } else {
       console.error("로그인 실패");

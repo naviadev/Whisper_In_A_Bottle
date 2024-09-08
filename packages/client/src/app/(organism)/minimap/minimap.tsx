@@ -1,6 +1,6 @@
 // src/client/minimap/minimap.tsx
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useMinimap } from "./context/minimap_context";
 import { useAll } from "../../context/all_context";
@@ -8,11 +8,12 @@ import LoginForm from "@client/src/components/minimap/login/login_form";
 import RegisterForm from "@client/src/components/minimap/register/register_form";
 import MyForm from "@client/src/components/minimap/user/my_form";
 
-//최상단은 토큰이 없으면 날짜 있으면 사용자 아이디가 띄워진다.
-//TODO 사용자 아이디 받아와야함.
-//axios로 사용자 이름을 받아온다.
-//메모이제이션하여 최상단에 저장해둔다.
-//페이지 리로드가 없기 때문에 이 방법이 더 적합하다고 판단함.
+import { Press_Start_2P } from "next/font/google";
+
+const pressStart2P = Press_Start_2P({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const getCurrentDate = () => {
   const today = new Date();
@@ -24,11 +25,22 @@ const getCurrentDate = () => {
 
 const Minimap: React.FC = () => {
   const { isLogin, setIsLogin } = useMinimap();
-  const { getToken, setGetToken } = useAll();
+  const { getToken, setGetToken, userId, setUserId } = useAll();
+  const [id, setId] = useState<string>("");
+  const [date, setDate] = useState<string>("null");
+
+  useEffect(() => {
+    setDate(getCurrentDate());
+    setId(userId);
+  }, [userId]);
 
   return (
-    <div className="relative w-full h-full">
-      <line className="absolute w-[151px] border-dashed border-[1px] border-black left-[12%] top-[21%]" />
+    <div className="relative w-full h-full flex justify-center">
+      <line className="absolute w-[151px] border-dashed border-[1px] border-black top-[21%]" />
+      {/* 날짜 기본 로그인시 사용자 아이디 */}
+      <div className={`${pressStart2P.className} text-xs absolute top-[10%]`}>
+        {!getToken ? date : id}
+      </div>
       {!getToken ? !isLogin ? <RegisterForm /> : <LoginForm /> : <MyForm />}
     </div>
   );
