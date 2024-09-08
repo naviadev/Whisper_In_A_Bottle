@@ -2,7 +2,7 @@ import React from "react";
 
 import View from "./(organism)/view/view";
 import Minimap from "./(organism)/minimap/minimap";
-import Joystick from "./(organism)/joystick/joystick";
+// import Joystick from "./(organism)/joystick/joystick";
 
 import { AllProvider } from "./context/all_context";
 import { SocketProvider } from "./context/socket_context";
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
               </MinimapProvider>
             </div>
             <div className="w-60 h-40 bg-zinc-200 absolute left-[77%] top-[55%] rounded-xl">
-              <Joystick />
+              {/* <Joystick /> */}
             </div>
           </div>
         </SocketProvider>

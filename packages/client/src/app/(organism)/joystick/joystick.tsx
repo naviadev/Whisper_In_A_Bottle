@@ -1,9 +1,7 @@
 // src/client/joystick/joystick.tsx
 import React from "react";
+import { useAll } from "../../context/all_context";
 import { useJoystick } from "./context/joystick_context";
-
-import { useAll } from "@client/src/app/context/all_context";
-
 import { PowerButton } from "@client/src/components/joystick/power_button/power_button";
 
 import { LogoutModalContent } from "@client/src/components/joystick/logout_modal/logout_modal_content";
@@ -11,14 +9,14 @@ import { LogoutModalContent } from "@client/src/components/joystick/logout_modal
 import Modal from "@client/components/modal/modal";
 
 const Joystick: React.FC = () => {
+  const { getToken, setGetToken } = useAll();
   const { showModal, setShowModal } = useJoystick();
-  const { getToken } = useAll();
 
   const clickPowerButton = () => (getToken ? setShowModal(!showModal) : null);
 
-  const closeModal= ()=>{
+  const closeModal = () => {
     setShowModal(!showModal);
-  }
+  };
   return (
     <div className="">
       <p>Joystick Component</p>
