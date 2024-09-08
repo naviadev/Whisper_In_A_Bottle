@@ -14,7 +14,7 @@ export const Title: React.FC<titleProps> = ({ className }) => {
           <div className="w-[43px] border border-[#f9e05f]" />
         </div>
         <div className="">
-          <h1 className="Whisper-In-A-Bottle1 relative">
+          <h1 className="Whisper-In-A-Bottle1 relative mx-3">
             Whisper In A Bottle
             <h1 className="Whisper-In-A-Bottle2 absolute left-0 top-0">
               Whisper In A Bottle
