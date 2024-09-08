@@ -16,4 +16,7 @@ export class UserState extends BaseEntity {
 
   @Column()
   last_login_ip: string;
+
+  @Column({ nullable: true }) 
+  refreshToken: string;
 }
