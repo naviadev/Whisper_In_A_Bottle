@@ -5,6 +5,8 @@ import React, { createContext, useState, useContext } from "react";
 type AllContextType = {
   getToken: boolean;
   setGetToken: (value: boolean) => void;
+  userId: string;
+  setUserId: (value: string) => void;
 };
 
 const AllContext = createContext<AllContextType | undefined>(undefined);
@@ -16,12 +18,15 @@ export const AllProvider: React.FC<{ children: React.ReactNode }> = ({
   //로그인성공 시 true로 전환되며 소켓이 연결됨.
   //로그아웃 시 false로 전환되며 소켓 연결이 취소됨.
   const [getToken, setGetToken] = useState(false);
+  const [userId, setUserId] = useState<string>("");
 
   return (
     <AllContext.Provider
       value={{
         getToken,
         setGetToken,
+        userId,
+        setUserId,
       }}
     >
       {children}
