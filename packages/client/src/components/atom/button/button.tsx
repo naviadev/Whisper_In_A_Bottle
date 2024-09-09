@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`${className} ${sizeClass[size]} inline-flex items-center justify-center border border-transparent rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed`}
+      className={`${className} ${sizeClass[size]} `}
       type={type}
       disabled={disabled}
       aria-label={ariaLabel}
