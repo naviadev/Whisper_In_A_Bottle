@@ -1,10 +1,11 @@
 import React from "react";
-import "./login_form.css";
 import useLoginHooks from "@client/src/hooks/auth/use_login_hook";
 import { useMinimap } from "@client/src/app/(organism)/minimap/context/minimap_context";
 import Form from "../atom/form/form";
 import Input from "../atom/input/input";
 import Button from "../atom/button/button";
+import P from "../atom/p/p";
+import LoginInput from "../atom_static/login_input";
 
 const LoginForm = () => {
   const { id, password, setId, setPassword, handleLogin } = useLoginHooks();
@@ -14,31 +15,36 @@ const LoginForm = () => {
     e.preventDefault();
     await handleLogin();
   };
+
   const handleSignUpClick = () => {
     setIsLogin(false);
   };
+
   return (
-    <div className="w-full h-full">
+    <div className="h-full">
       <Form
         onSubmit={onSubmit}
-        className="w-full h-full flex flex-col items-center relative"
+        className="h-full flex flex-col items-center justify-evenly"
       >
-        <Input
+        <P className="text-[14px]  text-minimap-text " text="Login" />
+        <LoginInput
+          changeEvent={setId}
           type="text"
           value={id}
-          onChange={(e) => setId(e.target.value)}
           id="email-input"
+          placeholder="Email"
         />
-        <Input
+        <LoginInput
+          changeEvent={setPassword}
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
           id="password-input"
+          placeholder="Password"
         />
         <Button
           onClick={handleSignUpClick}
-          className="sign-up"
-          text="sign up"
+          className=" text-[10px]"
+          text="Sign up"
         />
       </Form>
     </div>
