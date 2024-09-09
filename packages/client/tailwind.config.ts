@@ -8,6 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        title: {
+          yellow: "#f9e05f",
+          text: "#f5f5f5",
+        },
+        copyright: {
+          yellow: "#F9E05F",
+          text: "#FFFFFF",
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
