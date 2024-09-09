@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 
@@ -14,22 +14,22 @@ import { JoysitckProvider } from "./(organism)/joystick/context/joystick_context
 
 const Home: React.FC = () => {
   return (
-    <div className="w-full h-full flex flex-row relative">
+    <div className="w-full h-full grid grid-cols-[3fr_1fr]">
       <AllProvider>
         <SocketProvider>
-          <div className="view-container">
+          <div className="view-container h-full">
             <ViewProvider>
               <View />
             </ViewProvider>
           </div>
-          <div>
+          <div className="grid grid-rows-2">
             <div className="minimap-container">
               <MinimapProvider>
                 <Minimap />
               </MinimapProvider>
             </div>
             <JoysitckProvider>
-              <div className="w-60 h-40 bg-zinc-200 absolute left-[77%] top-[55%] rounded-xl">
+              <div className=" bg-zinc-200">
                 <Joystick />
               </div>
             </JoysitckProvider>

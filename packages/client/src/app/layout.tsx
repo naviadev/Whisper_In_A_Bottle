@@ -3,7 +3,7 @@ import { Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
 import { Title } from "../components/background/title";
-// import { Sound } from "../components/background/sound";
+import { Sound } from "../components/background/sound";
 // import { CopyRight } from "../components/background/copyright";
 // import { CoolongFan } from "../components/background/cooling_fan";
 const PressStart2P = Press_Start_2P({ subsets: ["latin"], weight: ["400"] });
@@ -27,9 +27,11 @@ export default function RootLayout({
               <header className="h-[12%] flex justify-center items-center">
                 <Title className="h-full w-fit" />
               </header>
-              <main className="h-[79%]">
-                {/* <Sound /> */}
-                {children}
+              <main className="h-[79%] flex flex-row">
+                <div className="w-[70px] bg-slate-300">
+                  <Sound />
+                </div>
+                <div className="w-[954px] bg-slate-950">{children}</div>
               </main>
               <footer className="h-[9%]">
                 {/* <CopyRight /> */}

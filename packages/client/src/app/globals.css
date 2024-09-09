@@ -48,18 +48,12 @@ body {
 }
 
 .view-container {
-  width: 670px;
-  height: 490px;
   background-color: #bae6fd;
   border-radius: 30px;
-  position: absolute;
-  left: 8%;
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 .minimap-container {
-  position: absolute;
-  left: 77%;
   width: 202px;
   height: 248px;
   background: linear-gradient(
