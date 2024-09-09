@@ -5,4 +5,5 @@ export default interface InputProps {
   placeholder?: string;
   className?: string;
   disabled?: boolean;
+  id: string;
 }
