@@ -1,6 +1,7 @@
 // src/client/minimap/minimap.tsx
 "use client";
 import React, { useEffect, useState } from "react";
+import "./minimap.css"
 
 import { useMinimap } from "./context/minimap_context";
 import { useAll } from "../../context/all_context";
@@ -30,7 +31,7 @@ const Minimap: React.FC = () => {
   }, [userId]);
 
   return (
-    <div className=" w-full h-full flex flex-col items-center">
+    <div className="minimap w-[202px] h-[248px] flex flex-col items-center">
       <div className="h-[6px]" />
       <div
         className={` text-xs h-[49px] flex justify-center items-center text-minimap-text`}

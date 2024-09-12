@@ -49,17 +49,11 @@ body {
 }
 
 .minimap-container {
-  width: 202px;
-  height: 248px;
-  background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 13.5%,
-      rgba(40, 40, 40, 0.4) 100%
-    ),
-    #a4ae9f;
-  border: 5px solid #303030;
-  box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.4);
-  border-radius: 28px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #cross-container {

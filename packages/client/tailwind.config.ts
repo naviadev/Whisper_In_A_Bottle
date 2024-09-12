@@ -16,10 +16,10 @@ const config: Config = {
         copyright: {
           yellow: "#F9E05F",
           text: "#FFFFFF",
-          minimap:{
-            text: "#000000",
-            borderColor: "#000000"
-          }
+        },
+        minimap: {
+          text: "#000000",
+          borderColor: "#000000"
         }
       },
       backgroundImage: {
