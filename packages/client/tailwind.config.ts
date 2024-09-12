@@ -8,9 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors:{
-        minimap:{
-          text: "#000000",
+      colors: {
+        title: {
+          yellow: "#f9e05f",
+          text: "#f5f5f5",
+        },
+        copyright: {
+          yellow: "#F9E05F",
+          text: "#FFFFFF",
         },
       },
       backgroundImage: {

@@ -1,34 +1,52 @@
 // src/client/joystick/joystick.tsx
 import React from "react";
-import { useAll } from "../../context/all_context";
-import { useJoystick } from "./context/joystick_context";
-import { PowerButton } from "@client/src/components/joystick/power_button/power_button";
-
-import { LogoutModalContent } from "@client/src/components/joystick/logout_modal/logout_modal_content";
-
-import Modal from "@client/components/modal/modal";
+import { Pad } from "./component/pad";
+import { SingleButton } from "./component/single_button";
 
 const Joystick: React.FC = () => {
-  const { getToken, setGetToken } = useAll();
-  const { showModal, setShowModal } = useJoystick();
 
-  const clickPowerButton = () => (getToken ? setShowModal(!showModal) : null);
+  const clickTopBtn = () => {
+    console.log("Top Btn Click");
+  }
+  
+  const clickLeftBtn = () => {
+    console.log("Left Btn Click");
+  }
 
-  const closeModal = () => {
-    setShowModal(!showModal);
-  };
+  const clickRightBtn = () => {
+    console.log("Right Btn Click");
+  }
+
+  const clickBottomBtn = () => {
+    console.log("Bottom Btn Click");
+  }
+
+  const clickHomeBtn = () => {
+    console.log("Home Btn Click");
+  }
+  const clickXBtn = () => {
+    console.log("X Btn Click");
+  }
+  const clickYBtn = () => {
+    console.log("Y Btn Click");
+  }
+  const clickSaveBtn = () => {
+    console.log("Save Btn Click");
+  }
+  const clickDelBtn = () => {
+    console.log("Del Btn Click");
+  }
+
   return (
-    <div className="">
-      <p>Joystick Component</p>
-      {/* Joystick에 대한 추가 콘텐츠를 여기에 삽입할 수 있습니다 */}
-      <PowerButton onClick={clickPowerButton} />
-      {showModal ? (
-        <Modal isOpen={showModal} onClose={closeModal}>
-          <LogoutModalContent />
-        </Modal>
-      ) : null}
+    <div className="relative">
+      <Pad topClick={clickTopBtn} leftClick={clickLeftBtn} rightClick={clickRightBtn} bottomClick={clickBottomBtn}></Pad>
+      <SingleButton src="Home-Button.svg" alt="Home-Button" left="80%" top="10%" width={30} height={30} click={clickHomeBtn}></SingleButton>
+      <SingleButton src="/X-Button.svg" alt="X-Button" left="13%" top="10%" width={43} height={43} click={clickXBtn}></SingleButton>
+      <SingleButton src="/Y-Button.svg" alt="Y-Button" left="2%" top="30%" width={43} height={43} click={clickYBtn}></SingleButton>
+      <SingleButton src="/SAVE.svg" alt="Save" left="4%" top="50%" width={46.39} height={45.08} click={clickSaveBtn}></SingleButton>
+      <SingleButton src="/DEL.svg" alt="Del" left="14%" top="70%" width={43.02} height={41.79} click={clickDelBtn}></SingleButton>
     </div>
-  );
+  )
 };
 
 export default Joystick;

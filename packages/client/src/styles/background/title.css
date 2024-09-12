@@ -3,17 +3,24 @@
   line-height: 20px;
   white-space: nowrap;
   /* identical to box height */
+}
 
-  color: #f5f5f5;
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .Whisper-In-A-Bottle2 {
   font-size: 20px;
   line-height: 20px;
   white-space: nowrap;
-  /* identical to box height */
-
-  color: #f9e05f;
-
   filter: blur(5px);
+
+  /* 깜박임 애니메이션 */
+  animation: blink 3s infinite;
 }
