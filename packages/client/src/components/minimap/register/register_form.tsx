@@ -1,6 +1,6 @@
 import React from "react";
 
-import useRegisterHooks from "@client/src/app/hooks/auth/use_register_hooks";
+import useRegisterHooks from "@client/src/hooks/auth/use_register_hooks";
 import { useMinimap } from "@client/src/app/(organism)/minimap/context/minimap_context";
 
 const RegisterForm = () => {
