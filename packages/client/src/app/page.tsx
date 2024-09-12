@@ -29,9 +29,7 @@ const Home: React.FC = () => {
               </MinimapProvider>
             </div>
             <JoysitckProvider>
-              <div className=" bg-zinc-200">
                 <Joystick />
-              </div>
             </JoysitckProvider>
           </div>
         </SocketProvider>
