@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`${className} ${sizeClass[size]} `}
+      className={`${className} `}
       type={type}
       disabled={disabled}
       aria-label={ariaLabel}

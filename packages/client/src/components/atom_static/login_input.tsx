@@ -17,7 +17,7 @@ const LoginInput: React.FC<LoginInputProps> = ({
       value={value}
       onChange={(e) => changeEvent(e.target.value)}
       placeholder={placeholder}
-      className=" bg-gray-200 bg-opacity-50 border-2 border-black rounded-lg placeholder-italic placeholder-text-black placeholder-opacity-40 w-5/6 h-8 text-[10px] pl-2"
+      className=" bg-gray-200 bg-opacity-50 border-2 border-minimap-borderColor rounded-lg placeholder-italic placeholder-text-black placeholder-opacity-40 w-[138px] h-8 text-[8px] pl-2 text-minimap-text"
       id={id}
     />
   );

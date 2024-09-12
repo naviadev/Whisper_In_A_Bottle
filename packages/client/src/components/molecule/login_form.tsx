@@ -24,9 +24,9 @@ const LoginForm = () => {
     <div className="h-full">
       <Form
         onSubmit={onSubmit}
-        className="h-full flex flex-col items-center justify-evenly"
+        className="h-full flex flex-col items-center justify-evenly w-full"
       >
-        <P className="text-[14px]  text-minimap-text " text="Login" />
+        <P className="text-[12px] text-minimap-text " text="Login" />
         <LoginInput
           changeEvent={setId}
           type="text"
@@ -43,7 +43,7 @@ const LoginForm = () => {
         />
         <Button
           onClick={handleSignUpClick}
-          className=" text-[10px]"
+          className="text-[8px] text-minimap-text opacity-50 hover:opacity-100"
           text="Sign up"
         />
       </Form>

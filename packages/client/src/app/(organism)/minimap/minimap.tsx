@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 
 import { useMinimap } from "./context/minimap_context";
 import { useAll } from "../../context/all_context";
-import LoginForm from "@client/src/components/minimap/login/login_form";
-import RegisterForm from "@client/src/components/minimap/register/register_form";
+// import LoginForm from "@client/src/components/minimap/login/login_form";
+
 import MyForm from "@client/src/components/minimap/user/my_form";
+import LoginForm from "@client/src/components/molecule/login_form";
+import RegisterForm from "@client/src/components/molecule/register_form";
 
 const getCurrentDate = () => {
   const today = new Date();
@@ -28,13 +30,18 @@ const Minimap: React.FC = () => {
   }, [userId]);
 
   return (
-    <div className="relative w-full h-full flex justify-center">
-      <line className="absolute w-[151px] border-dashed border-[1px] border-black top-[21%]" />
-      {/* 날짜 기본 로그인시 사용자 아이디 */}
-      <div className={` text-xs absolute top-[10%]`}>
+    <div className=" w-full h-full flex flex-col items-center">
+      <div className="h-[6px]" />
+      <div
+        className={` text-xs h-[49px] flex justify-center items-center text-minimap-text`}
+      >
         {!getToken ? date : id}
       </div>
-      {!getToken ? !isLogin ? <RegisterForm /> : <LoginForm /> : <MyForm />}
+      <line className="w-4/5 h-[1px] border-dashed border-[1px] border-black " />
+      {/* 날짜 기본 로그인시 사용자 아이디 */}
+      <div className="w-full flex h-[198px] items-center justify-center">
+        {!getToken ? !isLogin ? <RegisterForm /> : <LoginForm /> : <MyForm />}
+      </div>
     </div>
   );
 };

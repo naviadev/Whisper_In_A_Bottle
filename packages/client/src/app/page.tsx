@@ -11,6 +11,7 @@ import { SocketProvider } from "./context/socket_context";
 import { ViewProvider } from "./(organism)/view/context/view.context";
 import { MinimapProvider } from "./(organism)/minimap/context/minimap_context";
 import { JoysitckProvider } from "./(organism)/joystick/context/joystick_context";
+import Dpad from "../components/molecule/icon/dpad";
 
 const Home: React.FC = () => {
   return (
