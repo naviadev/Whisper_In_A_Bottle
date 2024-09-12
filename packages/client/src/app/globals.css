@@ -61,3 +61,27 @@ body {
   box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.4);
   border-radius: 28px;
 }
+
+#cross-container {
+  position: absolute;
+  width: 104.6px;
+  height: 104.6px;
+  left: 360px;
+  top: 631px;
+
+  background: linear-gradient(180deg, #c0c0c0 0%, #fbfbfb 100%);
+  box-shadow:
+    0px 3px 6px rgba(0, 0, 0, 0.45),
+    inset 2px 0px 3px #656565,
+    inset 0px 2.5px 3px #b8b8b8,
+    inset 0px -2px 3px #737373,
+    inset 0px 1px 7px #a9a9a9;
+  border-radius: 4px;
+}
+
+.cross {
+  position: relative;
+  background-color: #ddd;
+  border-radius: 20px; /* 모서리 둥글게 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+}
