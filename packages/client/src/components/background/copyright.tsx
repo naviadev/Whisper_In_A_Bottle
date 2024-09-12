@@ -27,7 +27,7 @@ export const CopyRight: React.FC = () => {
           </p>
           <p className="text-copyright-text text-xs opacity-50 hover:opacity-100">
             <a
-              href="https://github.com/kimbreaker"
+              href="https://github.com/jaemin1005"
               target="_blank"
               rel="noopener noreferrer"
             >
