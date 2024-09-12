@@ -15,10 +15,10 @@ import Dpad from "../components/molecule/icon/dpad";
 
 const Home: React.FC = () => {
   return (
-    <div className="w-full h-full grid grid-cols-[3fr_1fr]">
+    <div className="w-full h-full grid grid-cols-[2.6fr_1fr]">
       <AllProvider>
         <SocketProvider>
-          <div className="view-container h-full">
+          <div className="view-container h-full mr-2">
             <ViewProvider>
               <View />
             </ViewProvider>
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
               </MinimapProvider>
             </div>
             <JoysitckProvider>
-                <Joystick />
+              <Joystick />
             </JoysitckProvider>
           </div>
         </SocketProvider>
