@@ -7,17 +7,11 @@ import { WirteLetterView } from "@client/src/components/view/write_letter/write_
 import { ReceivedLetterButton } from "@client/src/components/view/received_letter/received_letter_button";
 import { ReceivedLetterView } from "@client/src/components/view/received_letter/received_letter_view";
 import { useAll } from "../../context/all_context";
-
+import { CanvasComponent } from "@client/src/components/view/canvas";
 const View: React.FC = () => {
   const socket = useSocket();
-  const {
-    onLetterView,
-    setOnLetterView,
-    receivedLetter,
-    setReceivedLetter,
-    sendLetter,
-    setSendLetter,
-  } = useView();
+  const { onLetterView, setOnLetterView, receivedLetter, sendLetter } =
+    useView();
 
   const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
 
@@ -39,11 +33,11 @@ const View: React.FC = () => {
       socket?.off("latte");
       socket?.disconnect();
     };
-  }, [socket]);
+  }, [socket, setOnLetterView]);
 
   return (
-    <main className="">
-      <h2>Welcome to the Letter Page</h2>
+    <main className="h-full">
+      <CanvasComponent />
       {getToken ? (
         <>
           {/* 소켓으로 메세지가 도착하면 버튼이 활성화됨. 버튼을 클릭하면
