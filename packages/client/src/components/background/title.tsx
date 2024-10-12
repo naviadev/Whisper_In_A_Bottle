@@ -12,9 +12,9 @@ export const Title: React.FC = () => {
         <div className="">
           <h1 className="Whisper-In-A-Bottle1 text-title-text relative mx-3">
             Whisper In A Bottle
-            <h1 className="Whisper-In-A-Bottle2 text-title-yellow absolute left-0 top-0">
+            <p className="Whisper-In-A-Bottle2 text-title-yellow absolute left-0 top-0">
               Whisper In A Bottle
-            </h1>
+            </p>
           </h1>
         </div>
         <div className="flex flex-col gap-2 ">
