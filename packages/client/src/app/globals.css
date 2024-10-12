@@ -43,7 +43,7 @@ body {
 }
 
 .view-container {
-  background-color: #bae6fd;
+  /* background-color: #bae6fd; */
   border-radius: 30px;
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.5);
 }
