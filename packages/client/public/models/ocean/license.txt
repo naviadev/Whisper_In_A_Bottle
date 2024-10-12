@@ -1,0 +1,11 @@
+Model Information:
+* title:	Animated Ocean Scene Tutorial Example 1
+* source:	https://sketchfab.com/3d-models/animated-ocean-scene-tutorial-example-1-f2f8e84f6eb443ff95cf6a40f624fdec
+* author:	3DHaupt (https://sketchfab.com/dennish2010)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Animated Ocean Scene Tutorial Example 1" (https://sketchfab.com/3d-models/animated-ocean-scene-tutorial-example-1-f2f8e84f6eb443ff95cf6a40f624fdec) by 3DHaupt (https://sketchfab.com/dennish2010) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

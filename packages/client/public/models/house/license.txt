@@ -1,0 +1,11 @@
+Model Information:
+* title:	stilt house on the sea
+* source:	https://sketchfab.com/3d-models/stilt-house-on-the-sea-824c5488341b4f9ba147673693b84582
+* author:	reizel (https://sketchfab.com/reizel)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "stilt house on the sea" (https://sketchfab.com/3d-models/stilt-house-on-the-sea-824c5488341b4f9ba147673693b84582) by reizel (https://sketchfab.com/reizel) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
