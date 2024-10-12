@@ -1,4 +1,5 @@
-import Image from "next/image"
+"use client";
+import Image from "next/image";
 
 interface PadProps {
   topClick: React.MouseEventHandler<HTMLDivElement>
