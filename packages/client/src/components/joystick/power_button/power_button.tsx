@@ -1,3 +1,4 @@
+"use client";
 //전원버튼 = 로그아웃
 type PowerButtonPropsType = {
   onClick: () => void;
