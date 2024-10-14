@@ -14,7 +14,7 @@ import {
 import { LetterLogicService } from './letter_logic.service';
 import { LetterState } from '../../../../shared/entities/letter_state.entity';
 import { JwtService } from '@nestjs/jwt';
-
+import * as cookie from 'cookie';
 export enum LETTER_MSG {
   INIT_MSG = 'initial_data',
   INIT_MSG_RECEVIED = 'initial_data_received',
@@ -46,7 +46,10 @@ export class LetterGateway
   }
 
   async handleConnection(client: Socket) {
-    const token = client.handshake.auth.token; // 클라이언트의 JWT 토큰
+    const cookies = cookie.parse(client.handshake.headers.cookie || '');
+
+    // 'accessToken'이라는 쿠키에서 JWT 토큰을 추출 (쿠키 이름은 실제 설정에 맞춰 변경)
+    const token = cookies['token'];
 
     if (token) {
       try {
