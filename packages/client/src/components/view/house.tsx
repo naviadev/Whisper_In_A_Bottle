@@ -10,6 +10,7 @@ import {
   EffectComposer,
   Outline,
 } from "@react-three/postprocessing";
+import { useAll } from "@client/src/app/context/all_context";
 
 // GLTF 모델을 불러오는 컴포넌트
 function HouseModel(props: JSX.IntrinsicElements["group"]) {
@@ -62,9 +63,20 @@ const EmptyBottle = React.forwardRef(
 
 EmptyBottle.displayName = "EmptyBottle";
 
+import { useView } from "@client/src/app/(organism)/view/context/view_context";
+
 function HouseScene() {
   const [hoverBottle, setHoverBottle] = useState(false);
   const bottleRef = useRef<THREE.Group>(null);
+
+  const { setSendLetter } = useView();
+  const { getToken } = useAll();
+
+  // 빈병 클릭 시 실행
+  const emptyBottleClick = () => {
+    //편지 작성할 수 있도록 컨텍스트 변경
+    setSendLetter(true);
+  };
 
   return (
     <Selection>
@@ -77,14 +89,16 @@ function HouseScene() {
           width={1000}
         />
       </EffectComposer>
-      <EmptyBottle
-        ref={bottleRef}
-        hover={hoverBottle}
-        position={[1.2, 7.5, 0.1]}
-        onPointerOver={() => setHoverBottle(true)}
-        onPointerOut={() => setHoverBottle(false)}
-        onClick={() => console.log("Empty Bottle clicked")}
-      />
+      {getToken ? (
+        <EmptyBottle
+          ref={bottleRef}
+          hover={hoverBottle}
+          position={[1.2, 7.5, 0.1]}
+          onPointerOver={() => setHoverBottle(true)}
+          onPointerOut={() => setHoverBottle(false)}
+          onClick={emptyBottleClick}
+        />
+      ) : null}
       <HouseModel />
       <OrbitControls />
     </Selection>
