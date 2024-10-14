@@ -74,8 +74,8 @@ export class AuthService implements IAuth {
     try {
       const token = this.jwtService.sign(payload);
       const cookieOptions = {
-        // httpOnly: true,
-        // secure: process.env.NODE_ENV === 'production' || false,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production' || false,
         maxAge: 3600000,
       };
       console.log('토큰 출력 직전');
