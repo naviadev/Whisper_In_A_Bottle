@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useView } from "./context/view.context";
+import { useView } from "./context/view_context";
 import { useSocket } from "../../context/socket_context";
 import { WriteLetterButton } from "@client/src/components/view/write_letter/write_letter_button";
 import { WirteLetterView } from "@client/src/components/view/write_letter/write_letter_view";
@@ -8,6 +8,7 @@ import { ReceivedLetterButton } from "@client/src/components/view/received_lette
 import { ReceivedLetterView } from "@client/src/components/view/received_letter/received_letter_view";
 import { useAll } from "../../context/all_context";
 import { CanvasComponent } from "@client/src/components/view/canvas";
+
 const View: React.FC = () => {
   const socket = useSocket();
   const { onLetterView, setOnLetterView, receivedLetter, sendLetter } =
@@ -36,7 +37,7 @@ const View: React.FC = () => {
   }, [socket, setOnLetterView]);
 
   return (
-    <main className="h-full">
+    <main className="h-full w-full">
       <CanvasComponent />
       {getToken ? (
         <>
