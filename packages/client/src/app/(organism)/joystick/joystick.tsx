@@ -2,8 +2,10 @@
 import React from "react";
 import { Pad } from "./component/pad";
 import { SingleButton } from "./component/single_button";
+import { useView } from "@client/src/app/(organism)/view/context/view_context";
 
 const Joystick: React.FC = () => {
+  const { receivedMessage, setReceivedMessage, setReceivedLetter } = useView();
   const clickTopBtn = () => {
     console.log("Top Btn Click");
   };
@@ -30,10 +32,22 @@ const Joystick: React.FC = () => {
     console.log("Y Btn Click");
   };
   const clickSaveBtn = () => {
-    console.log("Save Btn Click");
+    if (receivedMessage) {
+      // 현재 시간을 키로 사용하여 메시지 저장
+      const key = `savedMessage_${Date.now()}`;
+      localStorage.setItem(key, receivedMessage);
+      console.log("메시지가 저장되었습니다:", key);
+
+      // 메시지 저장 후 편지 창 닫기
+      setReceivedLetter(false);
+    } else {
+      console.log("저장할 메시지가 없습니다.");
+    }
   };
   const clickDelBtn = () => {
     console.log("Del Btn Click");
+    setReceivedMessage(null);
+    setReceivedLetter(false);
   };
 
   return (
