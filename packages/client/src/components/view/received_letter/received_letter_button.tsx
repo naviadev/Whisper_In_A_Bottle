@@ -1,5 +1,5 @@
 import React from "react";
-import { useView } from "../../../app/(organism)/view/context/view.context";
+import { useView } from "../../../app/(organism)/view/context/view_context";
 
 /**
  * * 편지가 도착하면 활성화되는 버튼

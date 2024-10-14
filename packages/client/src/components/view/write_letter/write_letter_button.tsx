@@ -1,5 +1,5 @@
 import React from "react";
-import { useView } from "@client/src/app/(organism)/view/context/view.context";
+import { useView } from "@client/src/app/(organism)/view/context/view_context";
 /**
  * * 편지 작성 버튼
  * @returns Button

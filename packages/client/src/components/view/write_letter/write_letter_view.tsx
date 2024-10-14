@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSocket } from "@client/src/app/context/socket_context";
-import { useView } from "@client/src/app/(organism)/view/context/view.context";
+import { useView } from "@client/src/app/(organism)/view/context/view_context";
 
 /**
  * * 작성된 편지를 보내기 위한 뷰 컴포넌트
