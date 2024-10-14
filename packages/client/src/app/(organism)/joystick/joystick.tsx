@@ -40,6 +40,7 @@ const Joystick: React.FC = () => {
 
       // 메시지 저장 후 편지 창 닫기
       setReceivedLetter(false);
+      setReceivedMessage(null);
     } else {
       console.log("저장할 메시지가 없습니다.");
     }
