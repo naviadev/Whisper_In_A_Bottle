@@ -6,6 +6,7 @@ import Input from "../atom/input/input";
 import Button from "../atom/button/button";
 import P from "../atom/p/p";
 import LoginInput from "../atom_static/login_input";
+import "./login_form.css";
 
 const LoginForm = () => {
   const { id, password, setId, setPassword, handleLogin } = useLoginHooks();
@@ -41,6 +42,9 @@ const LoginForm = () => {
           id="password-input"
           placeholder="Password"
         />
+        <button type="submit" className="login-button">
+          login
+        </button>
         <Button
           onClick={handleSignUpClick}
           className="text-[8px] text-minimap-text opacity-50 hover:opacity-100"
