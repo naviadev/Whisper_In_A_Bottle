@@ -14,7 +14,7 @@ import { JoysitckProvider } from "./(organism)/joystick/context/joystick_context
 
 const Home: React.FC = () => {
   return (
-    <div className="w-full h-full grid grid-cols-[2.6fr_1fr]">
+    <div className="w-full h-full grid grid-cols-[2.6fr_1fr] bg-[#727272]">
       <AllProvider>
         <SocketProvider>
           <ViewProvider>
