@@ -13,9 +13,6 @@ import {
 } from "@react-three/postprocessing";
 import { Euler } from "three";
 
-import { useView } from "@client/src/app/(organism)/view/context/view.context";
-
-
 const BottleModel = forwardRef(
   (props: JSX.IntrinsicElements["group"] & { hover: boolean }, ref) => {
     const { scene } = useGLTF("/models/bottle/scene.gltf");
@@ -56,6 +53,8 @@ const BottleModel = forwardRef(
 
 BottleModel.displayName = "BottleModel";
 
+import { useView } from "@client/src/app/(organism)/view/context/view_context";
+
 function BottleScene() {
   const bottleRef = useRef<THREE.Group>(null);
   const [hover, setHover] = useState(false);
@@ -67,9 +66,14 @@ function BottleScene() {
     }
   });
 
-  const handleClick = () => {
-    console.log("Bottle clicked!");
-    // 여기에 클릭 시 수행할 동작을 추가하세요
+  const { onLetterView, setOnLetterView, receivedLetter, setReceivedLetter } =
+    useView();
+
+  const handleCheckReceivedMessage = () => {
+    setReceivedLetter(true);
+    setOnLetterView(false);
+    console.log("receivedLetter", receivedLetter);
+    console.log("onLetterView", onLetterView);
   };
 
   return (
@@ -90,7 +94,7 @@ function BottleScene() {
         rotation={new Euler(Math.PI / 2.7, Math.PI / 30, 0)}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
-        onClick={handleClick}
+        onClick={handleCheckReceivedMessage}
       />
     </Selection>
   );
