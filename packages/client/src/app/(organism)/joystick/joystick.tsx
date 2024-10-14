@@ -6,20 +6,30 @@ import { useView } from "@client/src/app/(organism)/view/context/view_context";
 
 const Joystick: React.FC = () => {
   const { receivedMessage, setReceivedMessage, setReceivedLetter } = useView();
+  const triggerKeyPress = (key: string) => {
+    const event = new KeyboardEvent("keydown", {
+      key: key,
+      bubbles: true,
+      cancelable: true,
+    });
+    document.dispatchEvent(event);
+  };
+
+  // 버튼 클릭 핸들러에서 사용
   const clickTopBtn = () => {
-    console.log("Top Btn Click");
+    triggerKeyPress("ArrowUp");
   };
 
   const clickLeftBtn = () => {
-    console.log("Left Btn Click");
+    triggerKeyPress("ArrowLeft");
   };
 
   const clickRightBtn = () => {
-    console.log("Right Btn Click");
+    triggerKeyPress("ArrowRight");
   };
 
   const clickBottomBtn = () => {
-    console.log("Bottom Btn Click");
+    triggerKeyPress("ArrowDown");
   };
 
   const clickHomeBtn = () => {
