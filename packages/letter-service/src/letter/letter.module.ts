@@ -11,11 +11,18 @@ import { typeOrmConfig } from '@shared/config/typeorm.config';
 import { configOptions } from '@shared/config/env.config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LetterInfo } from '@shared/entities/letter_info.entity';
+import { LetterSave } from '@shared/entities/letter_save.entitiy';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([LetterState, UserState, Letter, LetterInfo]),
+    TypeOrmModule.forFeature([
+      LetterState,
+      UserState,
+      Letter,
+      LetterInfo,
+      LetterSave,
+    ]),
     JwtModule.registerAsync({
       imports: [ConfigModule.forRoot(configOptions)],
       inject: [ConfigService],
