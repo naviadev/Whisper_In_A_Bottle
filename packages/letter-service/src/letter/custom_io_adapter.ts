@@ -11,7 +11,7 @@ export class CustomIoAdapter extends IoAdapter {
     const optionsWithCors: ServerOptions = {
       ...options,
       cors: {
-        origin: 'http://localhost:80', // 클라이언트 주소
+        origin: 'http://localhost:3000', // 클라이언트 주소
         methods: ['GET', 'POST'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
