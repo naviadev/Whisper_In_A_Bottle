@@ -16,6 +16,7 @@ export const WirteLetterView = () => {
   const handleSendMessage = () => {
     if (socket && message.trim()) {
       socket.emit("espresso", { content: message });
+      console.log("message", message);
       setMessage("");
       setSendLetter(false);
     }
@@ -26,14 +27,21 @@ export const WirteLetterView = () => {
   };
 
   return (
-    <div>
+    <div className="absolute z-10 w-[60%] h-full">
       <textarea
-        placeholder="내용을 입력하세요"
+        placeholder="write your letter"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        className="w-full h-full bg-transparent focus:outline-none placeholder:text-black"
       />
-      <button onClick={handleSendMessage}>보내기</button>
-      <button onClick={handleCloseWirteLetterView}>닫기</button>
+      <div className="flex justify-between w-full">
+        <button onClick={handleSendMessage} className="">
+          Send
+        </button>
+        <button onClick={handleCloseWirteLetterView} className="">
+          Cancel
+        </button>
+      </div>
     </div>
   );
 };
