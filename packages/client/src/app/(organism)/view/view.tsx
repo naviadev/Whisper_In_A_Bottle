@@ -39,23 +39,6 @@ const View: React.FC = () => {
   return (
     <main className="h-full w-full">
       <CanvasComponent />
-      {getToken ? (
-        <>
-          {/* 소켓으로 메세지가 도착하면 버튼이 활성화됨. 버튼을 클릭하면
-receivedLetter가 true로 전환되며 onLetterView가 다시 false로 전환된다. */}
-          {onLetterView ? <ReceivedLetterButton /> : null}
-          {/* ReceivedLetterButton을 클릭하면 receivedLetter가 true로 전환되며
-ReceivedLetterView가 활성화되고 receivedMessage가 내부로 전달됨. */}
-          {receivedLetter ? (
-            <ReceivedLetterView letterMessage={receivedMessage!} />
-          ) : null}
-          {/* 편지 작성 버튼 */}
-          <WriteLetterButton />
-          {/* 작성 버튼 클릭 시 sendLetter가 true로 전환되며 WirteLetterView활성화
-WirteLetterView내부의 보내기 버튼이나 닫기를 클릭하면 sendLetter는 다시 false로 전환. */}
-          {sendLetter ? <WirteLetterView /> : null}
-        </>
-      ) : null}
     </main>
   );
 };
