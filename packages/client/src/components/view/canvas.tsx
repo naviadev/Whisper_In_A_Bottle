@@ -7,9 +7,11 @@ import BottleScene from "./bottle";
 import HouseScene from "./house";
 import KeyboardControlledCamera from "./KeyboardControlledCamera";
 import { ReceivedLetter } from "./received_letter/received_letter";
+import { WriteLetter } from "./write_letter/write_letter";
 import { useSocket } from "@client/src/app/context/socket_context";
 import { useEffect, useState } from "react";
 import { useView } from "@client/src/app/(organism)/view/context/view_context";
+
 export const CanvasComponent = () => {
   const socket = useSocket();
   const {
@@ -19,12 +21,11 @@ export const CanvasComponent = () => {
     setReceivedLetter,
     receivedMessage,
     setReceivedMessage,
+    sendLetter,
+    setSendLetter,
   } = useView();
 
   useEffect(() => {
-    //초기 병 활성화
-    setOnLetterView(true);
-
     if (socket) {
       //사용자가 연결 되었음을 알리기 위한 socket 이벤트. 내용은 비어있음.
       socket.emit("initial_data");
@@ -36,18 +37,8 @@ export const CanvasComponent = () => {
       });
     }
 
-    return () => {
-      socket?.off("latte");
-      socket?.disconnect();
-    };
-  }, [
-    socket,
-    onLetterView,
-    receivedLetter,
-    setOnLetterView,
-    receivedMessage,
-    setReceivedMessage,
-  ]);
+    return () => {};
+  }, [socket]);
 
   return (
     <div className="relative h-full">
@@ -57,6 +48,11 @@ export const CanvasComponent = () => {
             letterMessage={receivedMessage!}
             className="w-full h-full"
           />
+        </div>
+      )}
+      {sendLetter && (
+        <div className="absolute inset-0 z-20">
+          <WriteLetter className="w-full h-full" />
         </div>
       )}
       <Canvas
