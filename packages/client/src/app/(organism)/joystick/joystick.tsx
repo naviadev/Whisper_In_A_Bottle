@@ -56,7 +56,6 @@ const Joystick: React.FC = () => {
     }
   };
   const clickDelBtn = () => {
-    console.log("Del Btn Click");
     setReceivedMessage(null);
     setReceivedLetter(false);
   };

@@ -42,7 +42,7 @@
         "--runInBand",
         "--config",
         "--detectOpenHandles",
-        "${workspaceFolder}/{input:service}/package.json"
+        "${workspaceFolder}/${input:service}/package.json"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
@@ -70,7 +70,7 @@
       "request": "launch",
       "name": "Debug Nest Framework",
       "runtimeExecutable": "npm",
-      "cwd": "${workspaceFolder}/{input:service}",
+      "cwd": "${workspaceFolder}/${input:service}",
       "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
       "autoAttachChildProcesses": true,
       "restart": true,
