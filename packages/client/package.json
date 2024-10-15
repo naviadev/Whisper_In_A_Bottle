@@ -25,15 +25,15 @@
     "three": "^0.159.0",
     "ws": "^8.18.0"
   },
-
-    "overrides": {
-      "three": "0.159.0"
-    },
+  "overrides": {
+    "three": "0.159.0"
+  },
   "devDependencies": {
     "@babel/plugin-transform-private-methods": "^7.25.4",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/axios": "^0.14.0",
+    "@types/cookie-parser": "^1.4.7",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.16.11",
     "@types/react": "^18.3.11",
