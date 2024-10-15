@@ -1,5 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import cookieParser from 'cookie-parser';
+
 // import { CustomIoAdapter } from './modules/letter/custom-io-adapter';
 
 async function bootstrap() {
@@ -11,6 +13,7 @@ async function bootstrap() {
     credentials: true,
   });
 
+  app.use(cookieParser());
   // WebSocket CORS 설정
   // app.useWebSocketAdapter(new CustomIoAdapter(app));
 
