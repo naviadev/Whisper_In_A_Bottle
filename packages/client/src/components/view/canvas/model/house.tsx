@@ -11,6 +11,7 @@ import {
   Outline,
 } from "@react-three/postprocessing";
 import { useAll } from "@client/src/app/context/all_context";
+import CorkSound from "@client/src/components/sound/cork_sound";
 
 // GLTF 모델을 불러오는 컴포넌트
 function HouseModel(props: JSX.IntrinsicElements["group"]) {

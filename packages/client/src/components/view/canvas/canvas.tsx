@@ -2,12 +2,12 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sky } from "@react-three/drei";
 import { Suspense } from "react";
-import { OceanScene } from "./ocean";
-import BottleScene from "./bottle";
-import HouseScene from "./house";
+import { OceanScene } from "./model/ocean";
+import BottleScene from "./model/bottle";
+import HouseScene from "./model/house";
 import KeyboardControlledCamera from "./KeyboardControlledCamera";
-import { ReceivedLetter } from "./received_letter/received_letter";
-import { WriteLetter } from "./write_letter/write_letter";
+import { ReceivedLetter } from "../received_letter/received_letter";
+import { WriteLetter } from "../write_letter/write_letter";
 import { useSocket } from "@client/src/app/context/socket_context";
 import { useEffect, useState } from "react";
 import { useView } from "@client/src/app/(organism)/view/context/view_context";
