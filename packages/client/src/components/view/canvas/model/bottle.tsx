@@ -12,12 +12,12 @@ import {
   Select,
 } from "@react-three/postprocessing";
 import { Euler } from "three";
+import CorkSound from "@client/src/components/sound/cork_sound";
 
 const BottleModel = forwardRef(
   (props: JSX.IntrinsicElements["group"] & { hover: boolean }, ref) => {
     const { scene } = useGLTF("/models/bottle/scene.gltf");
     const { hover } = props;
-    const groupRef = useRef<THREE.Group>(null);
 
     // 모든 자식 객체에 그림자 활성화
     useEffect(() => {
@@ -58,6 +58,7 @@ import { useView } from "@client/src/app/(organism)/view/context/view_context";
 function BottleScene() {
   const bottleRef = useRef<THREE.Group>(null);
   const [hover, setHover] = useState(false);
+  const corkSoundRef = useRef<HTMLAudioElement>(null);
 
   useFrame(({ clock }) => {
     if (bottleRef.current) {
@@ -67,17 +68,21 @@ function BottleScene() {
   });
 
   const { onLetterView, setOnLetterView, receivedLetter, setReceivedLetter } =
-    useView();
+  useView();
 
   const handleCheckReceivedMessage = () => {
     setReceivedLetter(true);
     setOnLetterView(false);
-    console.log("receivedLetter", receivedLetter);
-    console.log("onLetterView", onLetterView);
+    if (corkSoundRef.current) {
+      corkSoundRef.current.play().catch((error) => {
+        console.error("코르크 사운드 재생 실패:", error);
+      });
+    }
   };
 
   return (
     <Selection>
+      <CorkSound ref={corkSoundRef} />
       <EffectComposer multisampling={8} autoClear={false}>
         <Outline
           blur
