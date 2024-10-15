@@ -7,13 +7,15 @@ import Button from "../atom/button/button";
 import P from "../atom/p/p";
 import LoginInput from "../atom_static/login_input";
 import "./login_form.css";
+import { useAll } from "@client/src/app/context/all_context";
 
 const LoginForm = () => {
   const { id, password, setId, setPassword, handleLogin } = useLoginHooks();
   const { setIsLogin } = useMinimap();
-
+  const { setUserId } = useAll();
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setUserId(id);
     await handleLogin();
   };
 
