@@ -9,7 +9,7 @@ import { ValidationService } from '../services/validation.service';
 import { User } from '@shared/entities/user.entity';
 import { UserState } from '@shared/entities/user_state.entity';
 import { Repository } from 'typeorm';
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -113,6 +113,8 @@ describe('AuthService', () => {
       expect(result).toEqual({
         token,
         cookieOptions: {
+          httpOnly: true,
+          secure: false,
           maxAge: 3600000,
         },
       });

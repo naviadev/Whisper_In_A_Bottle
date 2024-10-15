@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { HttpStatus } from '@nestjs/common';
 import request = require('supertest');
 import { INestApplication } from '@nestjs/common';
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 
 //사전설정
 describe('AuthController', () => {

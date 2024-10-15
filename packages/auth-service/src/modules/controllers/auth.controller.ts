@@ -32,9 +32,11 @@ export class AuthController {
         return;
       }
 
-      const { token, cookieOptions } = await this.authService.login(data);
+      await this.authService.login(data);
 
       this.authService.updateUserState(data.id, ip);
+
+      const { token, cookieOptions } = await this.authService.login(data);
 
       res.cookie('token', token, cookieOptions);
       res.status(HttpStatus.OK).json({ success: true, token });

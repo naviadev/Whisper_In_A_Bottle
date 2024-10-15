@@ -3,7 +3,7 @@ import { RegisterController } from '../controllers/register.controller';
 import { RegisterService } from '../services/register.service';
 import { INestApplication, HttpStatus } from '@nestjs/common';
 import request = require('supertest');
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 
 describe('RegisterController', () => {
   let app: INestApplication;
