@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ReceivedLetterView } from "./received_letter_view";
 import { useSocket } from "@client/src/app/context/socket_context";
+import PaperSound from "@client/src/components/sound/paper_sound";
 
 type ReceivedLetterPropType = {
   letterMessage: string;
@@ -15,30 +16,28 @@ type ReceivedLetterPropType = {
  */
 export const ReceivedLetter: React.FC<ReceivedLetterPropType> = ({
   letterMessage,
-  className,
 }) => {
-  const socket = useSocket();
-
-  const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
+  const paperSoundRef = useRef<HTMLAudioElement>(null);
 
   return (
-    <div className="top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-[#D9D9D9]  bg-opacity-70 relative">
-      <div className="w-[60%] h-[60%] relative flex justify-center">
-        <ReceivedLetterView
-          letterMessage={letterMessage}
-          className="z-10 absolute w-[60%] h-full overflow-y-auto p-4 text-black"
-        />
-        {/* TODO 삭제, 저장 버튼 추가 */}
-        <Image
-          src="/ParchmentLetter.jpeg"
-          alt="편지 배경"
-          layout="fill"
-          objectFit="cover"
-          // width={1000}
-          // height={100}
-          className="absolute z-0 rotate-90"
-        />
+    <>
+      <PaperSound ref={paperSoundRef} />
+      <div className="top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-[#D9D9D9]  bg-opacity-70 relative">
+        <div className="w-[60%] h-[60%] relative flex justify-center">
+          <ReceivedLetterView
+            letterMessage={letterMessage}
+            className="z-10 absolute w-[60%] h-full overflow-y-auto p-4 text-black"
+          />
+          {/* TODO 삭제, 저장 버튼 추가 */}
+          <Image
+            src="/ParchmentLetter.jpeg"
+            alt="편지 배경"
+            layout="fill"
+            objectFit="cover"
+            className="absolute z-0 rotate-90"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
