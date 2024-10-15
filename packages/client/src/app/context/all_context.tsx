@@ -1,12 +1,16 @@
 //전역 관리 상태를 정의한다.
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import { REQUEST_PORT } from "@client/src/ts/enum/REQUEST_PORT";
+import axios from "axios";
+import React, { createContext, useState, useContext, useCallback } from "react";
 
 type AllContextType = {
   getToken: boolean;
   setGetToken: (value: boolean) => void;
   userId: string;
   setUserId: (value: string) => void;
+  reqLogin: (id: string, password: string) => Promise<void>;
+  reqLogout: () => Promise<void>;
 };
 
 const AllContext = createContext<AllContextType | undefined>(undefined);
@@ -20,6 +24,49 @@ export const AllProvider: React.FC<{ children: React.ReactNode }> = ({
   const [getToken, setGetToken] = useState(false);
   const [userId, setUserId] = useState<string>("");
 
+  const reqLogin = useCallback(
+    async (id: string, password: string): Promise<void> => {
+      try {
+        const response = await axios.post(
+          REQUEST_PORT.__LOGIN_PORT,
+          {
+            id,
+            password,
+          },
+          {
+            // 처음 로그인하는데 쿠키가 필요?
+            withCredentials: true,
+          }
+        );
+
+        const data = response.data;
+
+        if (data.success) {
+          setUserId(id);
+          setGetToken(true);
+        }
+      } catch (error) {
+        console.error("An error occurred during login:", error);
+      }
+    },
+    []
+  );
+
+  const reqLogout = useCallback(async (): Promise<void> => {
+    try {
+      const response = await axios.post(REQUEST_PORT.__LOGOUT_PORT, null, {
+        withCredentials: true,
+      });
+
+      if (response.status == 200) {
+        setUserId("");
+        setGetToken(false);
+      }
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+    }
+  }, []);
+
   return (
     <AllContext.Provider
       value={{
@@ -27,6 +74,8 @@ export const AllProvider: React.FC<{ children: React.ReactNode }> = ({
         setGetToken,
         userId,
         setUserId,
+        reqLogin,
+        reqLogout,
       }}
     >
       {children}
