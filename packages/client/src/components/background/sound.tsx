@@ -1,3 +1,5 @@
+import React from "react";
+
 export const Sound: React.FC = () => {
   const elements: JSX.Element[] = [];
 
