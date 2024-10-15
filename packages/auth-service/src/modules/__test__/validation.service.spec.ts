@@ -1,5 +1,5 @@
 import { ValidationService } from '../services/validation.service';
-import PlayerDTO from '@shared/DTOs/player.dto';
+import { PlayerDTO } from '@shared/DTOs/player.dto';
 
 describe('ValidationService', () => {
   let validationService: ValidationService;
