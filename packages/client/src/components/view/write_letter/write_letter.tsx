@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { WirteLetterView } from "./write_letter_view";
 import PaperSound from "@client/src/components/sound/paper_sound";
+import { useSocket } from "@client/src/app/context/socket_context";
 
 type WriteLetterPropType = {
   className?: string;
@@ -12,6 +13,7 @@ type WriteLetterPropType = {
  * @param 소켓으로 도착한 메세지
  * @returns
  */
+
 export const WriteLetter: React.FC<WriteLetterPropType> = ({ className }) => {
   const paperSoundRef = useRef<HTMLAudioElement>(null);
   return (

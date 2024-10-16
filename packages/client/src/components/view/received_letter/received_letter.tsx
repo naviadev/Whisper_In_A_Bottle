@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ReceivedLetterView } from "./received_letter_view";
-import { useSocket } from "@client/src/app/context/socket_context";
 import PaperSound from "@client/src/components/sound/paper_sound";
+import { useSocket } from "@client/src/app/context/socket_context";
 
 type ReceivedLetterPropType = {
   letterMessage: string;

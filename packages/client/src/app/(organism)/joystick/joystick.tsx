@@ -1,10 +1,14 @@
 "use client";
+"use client";
 import React from "react";
 import { Pad } from "./component/pad";
 import { SingleButton } from "./component/single_button";
 import { useView } from "@client/src/app/(organism)/view/context/view_context";
+import { useAll } from "../../context/all_context";
+
 
 const Joystick: React.FC = () => {
+  const { reqLogout} = useAll();
   const { receivedMessage, setReceivedMessage, setReceivedLetter } = useView();
   const triggerKeyPress = (key: string) => {
     const event = new KeyboardEvent("keydown", {
@@ -14,6 +18,7 @@ const Joystick: React.FC = () => {
     });
     document.dispatchEvent(event);
   };
+
 
   // 버튼 클릭 핸들러에서 사용
   const clickTopBtn = () => {
@@ -34,6 +39,7 @@ const Joystick: React.FC = () => {
 
   const clickHomeBtn = () => {
     console.log("Home Btn Click");
+    reqLogout();
   };
   const clickXBtn = () => {
     console.log("X Btn Click");
