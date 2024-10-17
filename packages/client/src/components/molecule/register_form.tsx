@@ -56,12 +56,13 @@ const RegisterForm = () => {
           id="password-check-input"
           placeholder="Confirm Password"
         />
+        <Button type="submit" text="확인"/>
+      </Form>
         <Button
           onClick={handleLoginClick}
           className="text-[10px] text-minimap-text opacity-50 hover:opacity-100"
           text="Login"
         />
-      </Form>
     </div>
   );
 };
