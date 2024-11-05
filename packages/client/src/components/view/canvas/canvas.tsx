@@ -1,6 +1,6 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Sky } from "@react-three/drei";
+import { Sky } from "@react-three/drei";
 import { Suspense } from "react";
 import { OceanScene } from "./model/ocean";
 import BottleScene from "./model/bottle";
@@ -9,7 +9,7 @@ import KeyboardControlledCamera from "./KeyboardControlledCamera";
 import { ReceivedLetter } from "../received_letter/received_letter";
 import { WriteLetter } from "../write_letter/write_letter";
 import { useSocket } from "@client/src/app/context/socket_context";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useView } from "@client/src/app/(organism)/view/context/view_context";
 
 export const CanvasComponent = () => {
@@ -74,7 +74,6 @@ export const CanvasComponent = () => {
           <KeyboardControlledCamera />
         </Suspense>
         <Sky sunPosition={[500, 150, -1000]} turbidity={0.1} />
-        <OrbitControls maxAzimuthAngle={Math.PI} maxPolarAngle={Math.PI} />
       </Canvas>
     </div>
   );

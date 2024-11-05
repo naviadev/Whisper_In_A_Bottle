@@ -7,7 +7,6 @@ import { Sound } from "../components/background/sound";
 import { CopyRight } from "../components/background/copyright";
 import { CoolongFan } from "../components/background/cooling_fan";
 
-import BackgroundMusicWithSlider from "../components/background";
 
 const PressStart2P = Press_Start_2P({ subsets: ["latin"], weight: ["400"] });
 
@@ -39,8 +38,7 @@ export default function RootLayout({
               <footer className="h-[9%] flex flex-row">
                 <div className="w-[70px]" />
                 <CopyRight />
-                <div className="w-[50px]" />
-                <BackgroundMusicWithSlider className="w-[300px] flex justify-center items-center" />
+                <div className="w-[350px]" />
                 <CoolongFan />
               </footer>
             </div>

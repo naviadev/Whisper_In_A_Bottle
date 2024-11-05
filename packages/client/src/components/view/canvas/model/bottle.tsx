@@ -6,13 +6,11 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
 import {
-  EffectComposer,
   Outline,
   Selection,
   Select,
 } from "@react-three/postprocessing";
 import { Euler } from "three";
-import CorkSound from "@client/src/components/sound/cork_sound";
 
 const BottleModel = forwardRef(
   (props: JSX.IntrinsicElements["group"] & { hover: boolean }, ref) => {
@@ -58,7 +56,6 @@ import { useView } from "@client/src/app/(organism)/view/context/view_context";
 function BottleScene() {
   const bottleRef = useRef<THREE.Group>(null);
   const [hover, setHover] = useState(false);
-  const corkSoundRef = useRef<HTMLAudioElement>(null);
 
   useFrame(({ clock }) => {
     if (bottleRef.current) {
@@ -68,30 +65,22 @@ function BottleScene() {
   });
 
   const { onLetterView, setOnLetterView, receivedLetter, setReceivedLetter } =
-  useView();
+    useView();
 
   const handleCheckReceivedMessage = () => {
     setReceivedLetter(true);
     setOnLetterView(false);
-    if (corkSoundRef.current) {
-      corkSoundRef.current.play().catch((error) => {
-        console.error("코르크 사운드 재생 실패:", error);
-      });
-    }
   };
 
   return (
     <Selection>
-      <CorkSound ref={corkSoundRef} />
-      <EffectComposer multisampling={8} autoClear={false}>
-        <Outline
-          blur
-          visibleEdgeColor={0xffffff}
-          hiddenEdgeColor={0x22090a}
-          edgeStrength={100}
-          width={1000}
-        />
-      </EffectComposer>
+      {/* <Outline
+        blur
+        visibleEdgeColor={0xffffff}
+        hiddenEdgeColor={0x22090a}
+        edgeStrength={100}
+        width={1000}
+      /> */}
       <BottleModel
         ref={bottleRef}
         hover={hover}

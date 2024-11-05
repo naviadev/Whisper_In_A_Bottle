@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Slider from "@mui/material/Slider";
 import MuiInput from "@mui/material/Input";
-import VolumeUp from "@mui/icons-material/VolumeUp";
 import { styled } from "@mui/material/styles";
 
 const Input = styled(MuiInput)`
@@ -114,7 +113,6 @@ export default function BackgroundMusicWithSlider({
           </Grid>
         </Grid>
       </Box>
-      <audio ref={audioRef} src="/BackgroundSound.mp3" loop />
     </div>
   );
 }

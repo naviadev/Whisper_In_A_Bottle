@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ReceivedLetterView } from "./received_letter_view";
-import PaperSound from "@client/src/components/sound/paper_sound";
 import { useSocket } from "@client/src/app/context/socket_context";
 
 type ReceivedLetterPropType = {
@@ -17,11 +16,9 @@ type ReceivedLetterPropType = {
 export const ReceivedLetter: React.FC<ReceivedLetterPropType> = ({
   letterMessage,
 }) => {
-  const paperSoundRef = useRef<HTMLAudioElement>(null);
 
   return (
     <>
-      <PaperSound ref={paperSoundRef} />
       <div className="top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-[#D9D9D9]  bg-opacity-70 relative">
         <div className="w-[60%] h-[60%] relative flex justify-center">
           <ReceivedLetterView
